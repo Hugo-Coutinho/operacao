@@ -16,20 +16,4 @@ public class Calculo {
 	public static  ICalculoUmParamString palavraPalindromo = (a) -> new Operacoes().palavraPalindromo(a);
 	public static ICalculoUmParamString frasePalindromo = (a) -> Operacoes.frasePalindromo(a); 
 	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		System.out.println("fatorial = " + Calculo.fatorial.operacao(5));
-		System.out.println(Calculo.primo.operacao(17));
-		System.out.println(Calculo.perfeito.operacao(6));
-		System.out.println("fibonacci = " + Calculo.fibonacci.operacao(9));
-		System.out.println(Calculo.palavraPalindromo.operacao("arara"));
-		System.out.println(Calculo.frasePalindromo.operacao("luz azul"));
-		
-	}
-	
-	
-
 }
