@@ -20,11 +20,11 @@ public class Operacoes {
 		for (int i = 2; i <= n; i++) {
 
 			if (n % 2 == 0) {
-				return n + " nã é primo";
+				return n + " nÃ£ Ã© primo";
 			}
 
 		}
-		return n + " é número primo";
+		return n + " Ã© nÃºmero primo";
 
 	}
 
@@ -50,7 +50,7 @@ public class Operacoes {
 
 		} else {
 
-			return n + " não é perfeito";
+			return n + " nÃ£o Ã© perfeito";
 		}
 
 	}
@@ -62,11 +62,11 @@ public class Operacoes {
 
 		if (palavra.toString().equals(p)) {
 
-			return p + " é palindromo";
+			return p + " Ã© palindromo";
 
 		} else {
 
-			return p + " não é  palindromo";
+			return p + " nÃ£o Ã©  palindromo";
 		}
 
 	}
@@ -78,9 +78,9 @@ public class Operacoes {
 		sb.reverse();
 		if (sb.toString().equals(palavra)) {
 
-			return p + " é palindromo";
+			return p + " Ã© palindromo";
 		} else {
-			return p + " não é palindromo";
+			return p + " nÃ£o Ã© palindromo";
 		}
 
 	}
@@ -94,15 +94,4 @@ public class Operacoes {
 		return fibonacci(n-1) + fibonacci(n-2);
 		
 	}
-	
-	
-	public static void main(String[] args) {
-
-		System.out.println(primo(17));
-		System.out.println(perfeito(11));
-		System.out.println(palavraPalindromo("arara"));
-		System.out.println(frasePalindromo("luz azul"));
-		System.out.println("fibonacci igual = " + fibonacci(6));
-	}
-
 }
