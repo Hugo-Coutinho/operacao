@@ -36,21 +36,4 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 	}
 
 
-	public static void main(String[] args) {
-		try {
-
-			UsuarioDao ud = new UsuarioDao();
-			Usuario u = ud.findByCode(111);
-//			u.setSenha(10);
-//			ud.delete(u);
-			System.out.println(u);
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-	}
-
-
-
 }
