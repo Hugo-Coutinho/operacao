@@ -21,13 +21,13 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 				<div class="panel-body">
 
 						<label for="nome" style="font-family:Bell MT;">Nome :</label> 
-			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" class="form-control">
+			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" pattern="[a-z A-Z]+" class="form-control">
 			
 			<label for="nome" style="font-family:Bell MT;">Email :</label> 
 			<input type="email" id="email"name="email" required="required" placeholder="digite seu email" class="form-control">
 			
 			<label for="numero"style="font-family:Bell MT;">Senha :</label>
-			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" class="form-control"><br/>
+			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
 			    
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
@@ -54,19 +54,19 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 				</div>
 				<div class="panel-body">
 			<label for="cep" style="font-family:Bell MT;">cep :</label> 
-			<input type="text" id="bairro"name="cep" required="required" placeholder="digite seu cep" class="form-control">
+			<input type="text" id="bairro"name="cep" required="required" placeholder="digite seu cep" pattern="[0-9]{8}" class="form-control">
 			<br><br>
 			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
-			<input type="text" id="logradouro"name="logradouro" required="required" placeholder="digite seu logradouro" class="form-control">
+			<input type="text" id="logradouro"name="logradouro" required="required" placeholder="digite seu logradouro" pattern="[a-z A-Z]+" class="form-control">
 
 			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
-			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu bairro" class="form-control">
+			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu bairro" pattern="[a-z A-Z]+" class="form-control">
 			
 			<label for="cidade" style="font-family:Bell MT;">cidade :</label> 
-			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite seu cidade" class="form-control">
+			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite seu cidade" pattern="[a-z A-Z]+" class="form-control">
 			
 			<label for="estado" style="font-family:Bell MT;">estado :</label> 
-			<input type="text" id="estado"name="estado" required="required" placeholder="digite seu estado" class="form-control">
+			<input type="text" id="estado"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]+" class="form-control">
 			
 						<button type="reset" class="btn btn-info">Limpar</button>
 						<button type="submit" class="btn btn-info">Salvar</button>

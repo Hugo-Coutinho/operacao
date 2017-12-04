@@ -23,14 +23,14 @@
 <div class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/projeto01Web/paginaInicialUser.jsp">Pagina inicial</a>
+      <a class="navbar-brand" href="/operacao/paginaInicialUser.jsp">Pagina inicial</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/projeto01Web/operacao.jsp">Operações</a></li>
-      <li><a href="/projeto01Web/cadastro.jsp">Editar Cadastro</a></li>
+      <li><a href="/operacao/operacao.jsp">Operações</a></li>
+      <li><a href="/operacao/cadastro.jsp">Editar Cadastro</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/projeto01Web/logout.jsp"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
+      <li><a href="/operacao/logout.jsp"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
     </ul>
     <div align="center">
     <ul>

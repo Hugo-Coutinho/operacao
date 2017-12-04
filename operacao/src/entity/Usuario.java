@@ -67,6 +67,18 @@ public class Usuario implements Serializable {
 		this.permissao = permissao;
 		this.endereco = endereco;
 	}
+	
+	
+
+	public Usuario(String nome, String email, Integer senha, String sexo, String foto, String permissao) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.sexo = sexo;
+		this.foto = foto;
+		this.permissao = permissao;
+	}
 
 	@Override
 	public String toString() {

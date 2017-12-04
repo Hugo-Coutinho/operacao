@@ -35,17 +35,14 @@ scope="page"></jsp:useBean>
 				</div>
 				<div class="panel-body">
 				
-			<label for="nome" style="font-family:Bell MT;">ID</label> 
-			<input type="text" id="id"name="id" required="required" placeholder="digite seu identificador no sistema" class="form-control">
+			<label for="nome" style="font-family:Bell MT;">Nome : ${logado.nome}</label> 
+			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" pattern="[a-z A-Z]+" class="form-control">
 			
-			<label for="nome" style="font-family:Bell MT;">Nome :</label> 
-			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" class="form-control">
-			
-			<label for="nome" style="font-family:Bell MT;">Email :</label> 
+			<label for="nome" style="font-family:Bell MT;">Email: ${logado.email}</label> 
 			<input type="email" id="email"name="email" required="required" placeholder="digite seu email" class="form-control">
 			
-			<label for="numero"style="font-family:Bell MT;">Senha :</label>
-			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" class="form-control"><br/>
+			<label for="numero"style="font-family:Bell MT;">Senha : ${logado.senha}</label>
+			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" pattern="[0-9]+"class="form-control"><br/>
 			    
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
@@ -74,7 +71,7 @@ scope="page"></jsp:useBean>
 <div class="container">
   <h2>Lista de Usuarios</h2>
   <form>
-  <p><input type="text" name="id" placeholder="digite o número do usuário que deseja excluir." title="digite o id e exclua" class="form-control">
+  <p><input type="text" name="id" placeholder="digite o número do usuário que deseja excluir." pattern="[0-9]{1,50}" title="digite o id e exclua" class="form-control">
   <br><button class="btn btn-danger" formmethod="post" formaction="deletar.htm">deletar</button> </p>
               
   <table class="table table-bordered">

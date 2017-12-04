@@ -20,11 +20,11 @@ public class Operacoes {
 		for (int i = 2; i <= n; i++) {
 
 			if (n % 2 == 0) {
-				return n + " nã é primo";
+				return n + " primo";
 			}
 
 		}
-		return n + " é número primo";
+		return n + " nao primo";
 
 	}
 
@@ -50,7 +50,7 @@ public class Operacoes {
 
 		} else {
 
-			return n + " não é perfeito";
+			return n + " nao perfeito";
 		}
 
 	}
@@ -62,11 +62,11 @@ public class Operacoes {
 
 		if (palavra.toString().equals(p)) {
 
-			return p + " é palindromo";
+			return p + " palindromo";
 
 		} else {
 
-			return p + " não é  palindromo";
+			return p + " nao  palindromo";
 		}
 
 	}
@@ -78,9 +78,9 @@ public class Operacoes {
 		sb.reverse();
 		if (sb.toString().equals(palavra)) {
 
-			return p + " é palindromo";
+			return p + " palindromo";
 		} else {
-			return p + " não é palindromo";
+			return p + " nao e palindromo";
 		}
 
 	}

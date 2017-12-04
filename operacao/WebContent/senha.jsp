@@ -35,8 +35,6 @@
 					<h2 style="font-family:Bell MT;" align="center">nova senha</h2>				
 				</div>
 					<div class="card-body">
-						<label style="font-family:Bell MT; font-size:20px;" >digite seu número de indentificação no sistema:</label><br>
-						<input type="number" name="getId" required placeholder="digite aqui seu número de indentificação " title="receber email com a nova senha" class="form-control">
 						<label style="font-family:Bell MT; font-size:20px;" >digite seu email:</label><br>
 						<input type="text" name="senha" required placeholder="digite aqui seu email" title="receber email com a nova senha" class="form-control">
 						<br><input type="submit" value="gerar nova senha" name="btnLogar" class="btn btn-primary btn-block">

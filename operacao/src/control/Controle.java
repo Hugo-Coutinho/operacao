@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
 import persistence.EnderecoDao;
 import persistence.UsuarioDao;
-import persistence.jdbcDao;
 import util.EnviarEmail;
 
 /**
@@ -34,7 +32,6 @@ public class Controle extends HttpServlet {
 
 	EnviarEmail enviaremail;
 	UsuarioDao usuariodao;
-	jdbcDao jdbcdao;
 	Arquivo word;
 	PrintWriter out;
 	HttpSession session;
@@ -181,7 +178,6 @@ public class Controle extends HttpServlet {
 
 		if (request.getServletPath().equals("/editar.htm")) {
 
-			Integer id = new Integer(request.getParameter("id"));
 			String nome = request.getParameter("nome");
 			String email = request.getParameter("email");
 			Integer senha = new Integer(request.getParameter("senha"));
@@ -191,7 +187,8 @@ public class Controle extends HttpServlet {
 
 			try {
 
-				usuario = new Usuario(id, nome, email, senha, sexo, foto, permissao);
+				Usuario u2 = (Usuario) session.getAttribute("logado");
+				usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao);
 
 				new UsuarioDao().update(usuario);
 
