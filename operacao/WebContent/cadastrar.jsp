@@ -66,7 +66,7 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite seu cidade" pattern="[a-z A-Z]+" class="form-control">
 			
 			<label for="estado" style="font-family:Bell MT;">estado :</label> 
-			<input type="text" id="estado"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]+" class="form-control">
+			<input type="text" id="estado"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control">
 			
 						<button type="reset" class="btn btn-info">Limpar</button>
 						<button type="submit" class="btn btn-info">Salvar</button>

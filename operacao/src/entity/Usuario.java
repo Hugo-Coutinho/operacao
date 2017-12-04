@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
 	private String email;
 	@Column
 	private Integer senha;
-	@Column(length = 10)
+	@Column(columnDefinition=" enum('m','f')")
 	private String sexo;
 	@Column
 	private String foto;
