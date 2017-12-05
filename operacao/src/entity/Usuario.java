@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuario")
@@ -23,8 +24,10 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idUsuario;
 	@Column(length = 50)
+	@Pattern(regexp="[a-z A-Z]{2,50}" , message="Error no nome")
 	private String nome;
 	@Column(length = 50, unique = true)
+	@Pattern(regexp="^.+@.+\\.[a-z]+$",message="deu ruim no email")
 	private String email;
 	@Column
 	private Integer senha;

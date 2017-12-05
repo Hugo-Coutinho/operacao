@@ -88,7 +88,34 @@ public class Controle extends HttpServlet {
 
 	private void usu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if (request.getServletPath().equals("/uploadUsu.htm")) {
+		if (request.getServletPath().equals("/editarUsu.htm")) {
+
+			String nome = request.getParameter("nome");
+			String email = request.getParameter("email");
+			Integer senha = new Integer(request.getParameter("senha"));
+			String sexo = request.getParameter("sexo");
+			String foto = request.getParameter("foto");
+			String permissao = request.getParameter("permissao");
+
+			try {
+
+				Usuario u2 = (Usuario) session.getAttribute("logado");
+				usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao);
+
+				new UsuarioDao().update(usuario);
+
+				request.setAttribute("msg", "editado com sucesso");
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			} finally {
+				request.getRequestDispatcher("cadastro.jsp").forward(request, response);
+				
+			}
+			
+		}else if (request.getServletPath().equals("/uploadUsu.htm")) {
 			try {
 
 				request.setAttribute("msg", "ok!!");

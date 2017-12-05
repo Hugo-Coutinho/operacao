@@ -15,15 +15,13 @@
 				<div class="panel-body">
 				<form method="post" action="editar.htm">
 						
-						<label for="nome" style="font-family:Bell MT;">ID</label> 
-			<input type="text" id="id"name="id" required="required" placeholder="digite seu identificador no sistema" class="form-control">
-						<label for="nome" style="font-family:Bell MT;">Nome :</label> 
+			<label for="nome" style="font-family:Bell MT;">Nome: ${logado.nome}</label> 
 			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" class="form-control">
 			
-			<label for="nome" style="font-family:Bell MT;">Email :</label> 
+			<label for="nome" style="font-family:Bell MT;">Email: ${logado.email}</label> 
 			<input type="email" id="email"name="email" required="required" placeholder="digite seu email" class="form-control">
 			
-			<label for="numero"style="font-family:Bell MT;">Senha :</label>
+			<label for="numero"style="font-family:Bell MT;">Senha: ${logado.senha}</label>
 			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" class="form-control"><br/>
 			    
 			<div class="form-group">
