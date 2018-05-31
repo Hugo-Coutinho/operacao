@@ -44,7 +44,7 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 				<div class="panel-footer"></div>
 			
 			</div>
-		<a href="login.jsp" class="btn btn-link">voltar para p√°gina de login</a>	
+		<a href="login.jsp" class="btn btn-link">voltar para p·gina de login</a>	
 		</div>
 		
 		<div class="col-md-6">
