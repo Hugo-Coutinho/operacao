@@ -10,5 +10,6 @@ public interface IDao<E,ID extends Serializable> {
 	void delete(E obj)throws Exception;
 	List<E>findAll()throws Exception;
 	E findByCode(ID cod)throws Exception;
+	Integer findByEmail(String email)throws Exception;
 	
 }

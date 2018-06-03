@@ -35,5 +35,10 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		return lst;
 	}
 
+	public Integer findByEmail(String email) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+		Integer id= session.createFilter(Usuario.class, "select idUsuario where email > :email").setString("email", email).getFirstResult();
+		return id;
+	}
 
 }
