@@ -67,11 +67,4 @@ abstract public class GenericDao<E, ID extends Serializable> implements IDao<E, 
 		return obj;
 	}
 	
-	@Override
-	public Integer findByEmail(String email) throws Exception {
-		session = HibernateUtil.getSessionFactory().openSession();
-		Integer id= session.createFilter(classe, "select idUsuario where email > :email").setString("email", email).getFirstResult();
-		return id;
-	}
-
 }

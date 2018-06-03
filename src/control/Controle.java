@@ -365,12 +365,12 @@ public class Controle extends HttpServlet {
 			try {
 
 				String login = request.getParameter("senha");
-				String id = request.getParameter("getId");
+				Integer id = new UsuarioDao().findByEmail(login);
 				Integer novaSenha = (int) (10000 * Math.random());
 				String msg = "<h1>NOVA SENHA</h1>" + "Sua senha = " + novaSenha;
 				enviaremail = new EnviarEmail();
 				usuariodao = new UsuarioDao();
-				Usuario usuario = usuariodao.findByCode(new Integer(id));
+				Usuario usuario = usuariodao.findByCode(id);
 				
 
 				if (usuario == null) {
