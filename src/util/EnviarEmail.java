@@ -15,7 +15,7 @@ public class EnviarEmail {
 
 	// }
 
-	public void enviar(String para, String assunto, String msg) {
+	public boolean enviar(String para, String assunto, String msg) {
 
 		try {
 
@@ -31,12 +31,11 @@ public class EnviarEmail {
 			html.setHtmlMsg(msg);
 			html.send();
 			html.setCharset("utf-8");
-			// return true;
+			 return true;
 
-			return;
 		} catch (Exception e) {
 			e.printStackTrace();
-			// return false;
+			 return false;
 		}
 
 	}
@@ -44,7 +43,8 @@ public class EnviarEmail {
 	public static void main(String[] args) {
 
 		EnviarEmail ee = new EnviarEmail();
-		ee.enviar("hugocoutinho2011@gmail.com", "testando sem nome", "foi , parabéns !!!");
+//		ee.enviar("hugocoutinho2011@gmail.com", "testando sem nome", "foi , parabéns !!!");
+		new EnviarEmail().enviar("hugocoutinho2011@gmail.com", "senha do sistema operação", "senha 123");
 
 	}
 

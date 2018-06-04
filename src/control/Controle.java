@@ -78,7 +78,7 @@ public class Controle extends HttpServlet {
 			usu(request, response);
 		} else if (request.getServletPath().equals("/fibonacci.htm")) {
 			usu(request, response);
-		}  else if (request.getServletPath().equals("/uploadUsu.htm")) {
+		} else if (request.getServletPath().equals("/uploadUsu.htm")) {
 			usu(request, response);
 		} else if (request.getServletPath().equals("/editarUsu.htm")) {
 			usu(request, response);
@@ -112,10 +112,10 @@ public class Controle extends HttpServlet {
 
 			} finally {
 				request.getRequestDispatcher("cadastro.jsp").forward(request, response);
-				
+
 			}
-			
-		}else if (request.getServletPath().equals("/uploadUsu.htm")) {
+
+		} else if (request.getServletPath().equals("/uploadUsu.htm")) {
 			try {
 
 				request.setAttribute("msg", "ok!!");
@@ -362,41 +362,24 @@ public class Controle extends HttpServlet {
 			}
 		} else if (request.getServletPath().equals("/senha.htm")) {
 
-			try {
+			String login = request.getParameter("senha");
+			Integer senha = new UsuarioDao().findPasswordByEmail(login);
+			String msg = "<h1>SENHA </h1>" + "Sua senha = " + senha;
+			if (senha != -1) {
+				request.setAttribute("msg",
+						"<div class=\"alert alert-success\"><strong>Parabéns!! </strong> email enviado com sua senha!!</div>");
+				request.getRequestDispatcher("senha.jsp").forward(request, response);
+				new EnviarEmail().enviar(login, "senha do sistema operação", msg);
+				return;
+			}
 
-				String login = request.getParameter("senha");
-				Integer id = new UsuarioDao().findByEmail(login);
-				Integer novaSenha = (int) (10000 * Math.random());
-				String msg = "<h1>NOVA SENHA</h1>" + "Sua senha = " + novaSenha;
-				enviaremail = new EnviarEmail();
-				usuariodao = new UsuarioDao();
-				Usuario usuario = usuariodao.findByCode(id);
-				
-
-				if (usuario == null) {
-
-					request.setAttribute("msg",
-							"<div class=\"alert alert-danger\"><strong>ERRADO!! </strong> esse login não está registrado no sistema</div>");
-				} else {
-
-					usuario.setSenha(novaSenha);
-					usuariodao.update(usuario);
-					enviaremail.enviar(login, "nova Senha", msg);
-					request.setAttribute("msg",
-							"<div class=\"alert alert-success\"><strong>Parabéns!! </strong> email com nova senha enviado!!</div>");
-
-				}
-
-			} catch (Exception e) {
-
-				e.printStackTrace();
-				request.setAttribute("msg", "deu ruim no senha " + e.getMessage());
-
-			} finally {
-
+			if (senha == -1) {
+				request.setAttribute("msg",
+						"<div class=\"alert alert-danger\"><strong>RUIM!! </strong> não achamos teu email na base de dados, desculpas..</div>");
 				request.getRequestDispatcher("senha.jsp").forward(request, response);
 			}
 		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

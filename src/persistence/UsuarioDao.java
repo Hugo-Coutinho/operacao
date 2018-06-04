@@ -35,13 +35,13 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		return lst;
 	}
 
-	public Integer findPasswordByEmail(String email) throws Exception {
+	public Integer findPasswordByEmail(String email) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		query = session.createSQLQuery("select senha from usuario where email= :param1");
 		query.setParameter("param1", email);
 		List<Integer> senha = (List<Integer>) query.list();
 		if (senha.size() == 0) {
-			return 0;
+			return -1;
 		} else {
 			return senha.get(0);
 		}
