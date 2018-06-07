@@ -31,6 +31,7 @@ public class CtrlAdmin extends HttpServlet {
 
 	public CtrlAdmin() {
 		super();
+		session = CtrlLogin.session;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +48,7 @@ public class CtrlAdmin extends HttpServlet {
 
 	protected void editar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		Integer senha = new Integer(request.getParameter("senha"));

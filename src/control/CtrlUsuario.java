@@ -32,6 +32,7 @@ public class CtrlUsuario extends HttpServlet {
 
 	public CtrlUsuario() {
 		super();
+		session = CtrlLogin.session;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

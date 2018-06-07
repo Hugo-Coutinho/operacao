@@ -25,7 +25,7 @@ public class CtrlLogin extends HttpServlet {
 	UsuarioDao usuariodao;
 	Arquivo word;
 	PrintWriter out;
-	HttpSession session;
+	public static HttpSession session;
 	Usuario usuario;
 	Endereco endereco;
 	Calculo calculo;
