@@ -77,17 +77,20 @@ public class CtrlAdmin extends HttpServlet {
 
 	protected void anotar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		word = new Arquivo();
+
 		String texto = request.getParameter("texto");
+		String path = request.getParameter("path");
+
+		word = new Arquivo(path);
 		try {
 
 			word.open();
 			word.writeFile(texto);
 			word.close();
-			request.setAttribute("msg", "salvo em documentos");
+			request.setAttribute("msg", "salvo com sucesso !!!");
 
 		} catch (Exception e) {
-			request.setAttribute("msg", "word deu ruim");
+			request.setAttribute("msg", "word deu ruim " + e.getMessage());
 
 		} finally {
 
