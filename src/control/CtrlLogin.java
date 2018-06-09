@@ -89,27 +89,21 @@ public class CtrlLogin extends HttpServlet {
 		try {
 
 			String login = request.getParameter("senha");
-			String id = request.getParameter("getId");
-			Integer novaSenha = (int) (10000 * Math.random());
-			String msg = "<h1>NOVA SENHA</h1>" + "Sua senha = " + novaSenha;
-			enviaremail = new EnviarEmail();
-			usuariodao = new UsuarioDao();
-			Usuario usuario = usuariodao.findByCode(new Integer(id));
-
-			if (usuario == null) {
-
+			Integer senha = new UsuarioDao().findPasswordByEmail(login);
+			String msg = "<h1>SENHA </h1>" + "Sua senha = " + senha;
+			if (senha != -1) {
 				request.setAttribute("msg",
-						"<div class=\"alert alert-danger\"><strong>ERRADO!! </strong> esse login não está registrado no sistema</div>");
-			} else {
-
-				usuario.setSenha(novaSenha);
-				usuariodao.update(usuario);
-				enviaremail.enviar(login, "nova Senha", msg);
-				request.setAttribute("msg",
-						"<div class=\"alert alert-success\"><strong>Parabéns!! </strong> email com nova senha enviado!!</div>");
-
+						"<div class=\"alert alert-success\"><strong>Parabéns!! </strong> email enviado com sua senha!!</div>");
+				request.getRequestDispatcher("senha.jsp").forward(request, response);
+				new EnviarEmail().enviar(login, "senha do sistema operação", msg);
+				return;
 			}
 
+			if (senha == -1) {
+				request.setAttribute("msg",
+						"<div class=\"alert alert-danger\"><strong>RUIM!! </strong> não achamos seu email na base de dados, desculpas..</div>");
+				request.getRequestDispatcher("senha.jsp").forward(request, response);
+			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
