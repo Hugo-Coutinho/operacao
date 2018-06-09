@@ -17,7 +17,7 @@ scope="page"></jsp:useBean>
   <script src="<%=request.getContextPath()%>/js/tabs.js"></script>
 </head>
 <body>
- <%@include file="headerADM.jsp" %>
+ <%@include file="/Admin/headerADM.jsp" %>
 <div id="tabs">
   <ul>
     <li><a href="#edit">Editar</a></li>

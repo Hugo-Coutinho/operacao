@@ -6,7 +6,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-<%@include file="headerADM.jsp" %>
+<%@include file="/Admin/headerADM.jsp" %>
 <div align="center">
 <h2>Área para anotações <img src="notas.jpg" class="img-rounded" alt="Cinque Terre" width="104" height="80"> </h2><p>
 

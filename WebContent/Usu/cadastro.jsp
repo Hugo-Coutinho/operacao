@@ -13,7 +13,7 @@
 					<div class="panel-title" align="center"><font style="font-style:italic;">Editar Cadastro</font>${msg}</div>
 				</div>
 				<div class="panel-body">
-				<form method="post" action="editar.htm">
+				<form method="post" action="editarUsu.htm">
 						
 			<label for="nome" style="font-family:Bell MT;">Nome: ${logado.nome}</label> 
 			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" class="form-control">

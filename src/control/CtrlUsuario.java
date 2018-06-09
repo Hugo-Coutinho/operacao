@@ -16,8 +16,8 @@ import io.Arquivo;
 import persistence.UsuarioDao;
 import util.EnviarEmail;
 
-@WebServlet({ "/upload.htm", "/uploadUsu.htm", "/editarUsu.htm", "/palavraPalindromo.htm", "/frasePalindromo.htm",
-		"/fatorial.htm", "/primo.htm", "/fibonacci.htm", "/perfeito.htm" })
+@WebServlet({ "/Usu/upload.htm", "/Usu/uploadUsu.htm", "/Usu/editarUsu.htm", "/Usu/palavraPalindromo.htm",
+		"/Usu/frasePalindromo.htm", "/Usu/fatorial.htm", "/Usu/primo.htm", "/Usu/fibonacci.htm", "/Usu/perfeito.htm" })
 public class CtrlUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,20 +39,39 @@ public class CtrlUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		if (request.getServletPath().equals("/palavraPalindromo.htm")) {
+		if (request.getServletPath().equals("/Usu/palavraPalindromo.htm")) {
 			palavraPalindromo(request, response);
-		} else if (request.getServletPath().equals("/frasePalindromo.htm")) {
+		} else if (request.getServletPath().equals("/Usu/frasePalindromo.htm")) {
 			frasePalindromo(request, response);
-		} else if (request.getServletPath().equals("/fatorial.htm")) {
+		} else if (request.getServletPath().equals("/Usu/fatorial.htm")) {
 			fatorial(request, response);
-		} else if (request.getServletPath().equals("/primo.htm")) {
+		} else if (request.getServletPath().equals("/Usu/primo.htm")) {
 			primo(request, response);
-		} else if (request.getServletPath().equals("/fibonacci.htm")) {
+		} else if (request.getServletPath().equals("/Usu/fibonacci.htm")) {
 			fibonacci(request, response);
-		} else if (request.getServletPath().equals("/uploadUsu.htm")) {
+		} else if (request.getServletPath().equals("/Usu/uploadUsu.htm")) {
 			uploadUsu(request, response);
-		} else if (request.getServletPath().equals("/editarUsu.htm")) {
+		} else if (request.getServletPath().equals("/Usu/editarUsu.htm")) {
 			editarUsu(request, response);
+		} else if (request.getServletPath().equals("/Usu/perfeito.htm")) {
+			perfeito(request, response);
+		}
+
+	}
+
+	protected void perfeito(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+
+			String palavra = request.getParameter("perfeito");
+			calculo = new Calculo();
+			request.setAttribute("msg", ": " + calculo.perfeito.operacao(new Integer(palavra)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}
@@ -97,7 +116,7 @@ public class CtrlUsuario extends HttpServlet {
 
 		} finally {
 
-			request.getRequestDispatcher("fotoUsu.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/fotoUsu.jsp").forward(request, response);
 
 		}
 
@@ -115,7 +134,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			request.getRequestDispatcher("operacao.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}
@@ -132,7 +151,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			request.getRequestDispatcher("operacao.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}
@@ -150,7 +169,7 @@ public class CtrlUsuario extends HttpServlet {
 
 		} finally {
 
-			request.getRequestDispatcher("operacao.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}
@@ -167,7 +186,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			request.getRequestDispatcher("operacao.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}
@@ -184,7 +203,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			request.getRequestDispatcher("operacao.jsp").forward(request, response);
+			request.getRequestDispatcher("/Usu/operacao.jsp").forward(request, response);
 		}
 
 	}

@@ -16,7 +16,7 @@ import io.Arquivo;
 import persistence.UsuarioDao;
 import util.EnviarEmail;
 
-@WebServlet({ "/anotar.htm", "/editar.htm", "/deletar.htm" })
+@WebServlet({ "/Admin/anotar.htm", "/Admin/editar.htm", "/Admin/deletar.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,11 +37,11 @@ public class CtrlAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getServletPath().equals("/editar.htm")) {
+		if (request.getServletPath().equals("/Admin/editar.htm")) {
 			editar(request, response);
-		} else if (request.getServletPath().equals("/anotar.htm")) {
+		} else if (request.getServletPath().equals("/Admin/anotar.htm")) {
 			anotar(request, response);
-		} else if (request.getServletPath().equals("/deletar.htm")) {
+		} else if (request.getServletPath().equals("/Admin/deletar.htm")) {
 			deletar(request, response);
 		}
 	}
@@ -119,13 +119,7 @@ public class CtrlAdmin extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
-		} finally {
-
-			request.getRequestDispatcher("foto.jsp").forward(request, response);
-
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
