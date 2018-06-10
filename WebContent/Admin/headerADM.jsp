@@ -23,7 +23,7 @@
 <div class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/operacao/paginaInicial.jsp">Pagina inicial</a>
+      <a class="navbar-brand" href="/operacao/Admin/paginaInicial.jsp">Pagina inicial</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/operacao/Admin/adminListUsuario.jsp">Usuário</a></li>

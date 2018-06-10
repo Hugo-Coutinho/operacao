@@ -138,7 +138,7 @@ public class CtrlLogin extends HttpServlet {
 
 			} else {
 				session.setAttribute("logado", usuario);
-				request.getRequestDispatcher("paginaInicial.jsp").forward(request, response);
+				request.getRequestDispatcher("/Admin/paginaInicial.jsp").forward(request, response);
 			}
 
 		} catch (Exception e) {

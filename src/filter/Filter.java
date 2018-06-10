@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/Filter")
+@WebFilter({"/Admin/*", "/Usu/*"})
 public class Filter implements javax.servlet.Filter {
 
 	public Filter() {
@@ -32,7 +32,7 @@ public class Filter implements javax.servlet.Filter {
 			chain.doFilter(request, response);
 
 		} else {
-			resp.sendRedirect("../login.jsp");
+			resp.sendRedirect("/operacao/login.jsp");
 		}
 
 	}
