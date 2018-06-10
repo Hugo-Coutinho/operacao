@@ -1,8 +1,8 @@
 insert into endereco values(123,'gamboa','20221160','Rj','Rj','Rua sacadura cabral 327');
-insert into usuario values(1,'michelsoliva@gmail.com','https://i.ytimg.com/vi/azEatWLF9hI/hqdefault.jpg','michel','administrador',001,'m',123);
+insert into usuario values(1,'michelsolivapqd@gmail.com','https://i.ytimg.com/vi/azEatWLF9hI/hqdefault.jpg','michel','administrador',001,'m',123);
 
 insert into endereco values(124,'saude','20221123','Rj','Rj','Rua Livramento 3');
-insert into usuario values(2,'hugocoutinho@gmail.com','http://media.ufc.tv/fighter_images/Vitor_Belfort/BELFORT_VITOR.png','hugo','administrador',002,'m',124);
+insert into usuario values(2,'hugocoutinho2011@gmail.com','http://media.ufc.tv/fighter_images/Vitor_Belfort/BELFORT_VITOR.png','hugo','administrador',002,'m',124);
 
 insert into endereco values(125,'bonsucesso','21321160','Rj','Rj','Rua Mantem 302');
 insert into usuario values(3,'belem@gmail.com','https://cdn.lowkickmma.com/wp-content/uploads/2018/01/Jon-Jones.jpg','belem','administrador',003,'m',125);
@@ -29,16 +29,6 @@ insert into usuario values(9,'Vampira@gmail.com','http://3.bp.blogspot.com/-sFPY
 
 insert into endereco values(15,'Nova Iguacu','329428711','Rj','Rj','Rua da estrada 2');
 insert into usuario values(10,'Goku@gmail.com','https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg','goku','usuario',010,'m',15);
-
-
-
-
-
-
-
-
-
-
 
 
 
