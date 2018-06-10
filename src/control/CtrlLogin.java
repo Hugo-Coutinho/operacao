@@ -131,7 +131,7 @@ public class CtrlLogin extends HttpServlet {
 				request.setAttribute("msg", "<div class=\"alert alert-danger\"><strong>ERRADO!! </strong></div>");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
-			} else if (usuario.getPermissao().equals("Usuario")) {
+			} else if (usuario.getPermissao().equalsIgnoreCase("Usuario")) {
 
 				session.setAttribute("logado", usuario);
 				request.getRequestDispatcher("/Usu/paginaInicialUser.jsp").forward(request, response);
