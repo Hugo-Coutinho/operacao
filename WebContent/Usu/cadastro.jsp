@@ -6,14 +6,15 @@
 </head>
 <body>
 <%@include file="headerUSU.jsp" %>
-<div align="center"><h2 align="center"><b>Editar</b></h2></div>
-<div class="col-md-6 col-md-offset-3">
+<form method="post" action="editarUsu.htm">
+<div align="center"><h2 align="center"><b>Editar</b></h2><br /> <br />  </div> 
+<div class="col-md-6">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title" align="center"><font style="font-style:italic;">Editar Cadastro</font>${msg}</div>
 				</div>
 				<div class="panel-body">
-				<form method="post" action="editarUsu.htm">
+<!-- 				<form method="post" action="editarUsu.htm"> -->
 						
 			<label for="nome" style="font-family:Bell MT;">Nome: ${logado.nome}</label> 
 			<input type="text" id="nome"name="nome" required="required" placeholder="digite seu nome" class="form-control">
@@ -31,22 +32,48 @@
         		<option>Usuario</option>
 			 	 </select>    
 			 </div>   
-			<br />Sexo :<br /> <input
+			Sexo :<br /> <input
 			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
-			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/><br>
-			
-				<br><button type="reset" class="btn btn-info">Limpar</button>
-				<button type="submit" class="btn btn-info">Salvar</button>
-			</form>  
+			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font>
+<!-- 			<button type="reset" class="btn btn-info">Limpar</button> -->
+<!-- 				<button type="submit" class="btn btn-info">Salvar</button> -->
+<!-- 			</form>   -->
 				</div>
-				<div class="panel-footer">
-				<br>
+<!-- 				<div class="panel-footer"> -->
+<!-- 				<br> -->
+<!-- 				</div> -->
 				</div>
+			</div>
 			
+			<div class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title" align="center">Endereco</div>
+				</div>
+				<div class="panel-body">
+			<label for="cep" style="font-family:Bell MT;">cep :</label> 
+			<input type="text" id="cep"name="cep" required="required" placeholder="digite seu novo cep" pattern="[0-9]{8}" class="form-control">
+			
+			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
+			<input type="text" id="rua"name="logradouro" required="required" placeholder="digite seu novo logradouro" pattern="[a-z A-Z]+" class="form-control">
+
+			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
+			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu novo bairro" pattern="[a-z A-Z]+" class="form-control">
+			
+			<label for="cidade" style="font-family:Bell MT;">cidade :</label> 
+			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite sua cidade" pattern="[a-z A-Z]+" class="form-control">
+			
+			<label for="estado" style="font-family:Bell MT;">estado :</label>
+			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control"> <br /> <br />
+<!-- 						<button type="reset" class="btn btn-info">Limpar</button> -->
+<!-- 						<button type="submit" class="btn btn-info">Salvar</button> -->
+				</div>
+<!-- 				<div class="panel-footer"> -->
+<!-- 				</div> -->
 			</div>
 		</div>
-
-
-
+		<input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
+		${msg}
+	</form>
 </body>
 </html>
