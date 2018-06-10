@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ctrlPattern.LoginPattern;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
@@ -120,27 +121,32 @@ public class CtrlLogin extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		LoginPattern pattern = new LoginPattern(request, response);
+		Usuario u = new Usuario();
+
 		try {
-			session = request.getSession(true);
-			usuariodao = new UsuarioDao();
-			usuario = new Usuario();
-			Usuario usuario = usuariodao.login(login, new Integer(senha));
+			u = pattern.trazUsuario(login, senha);
+			pattern.verificarNull(u);
 
-			if (usuario == null) {
-
-				request.setAttribute("msg", "<div class=\"alert alert-danger\"><strong>ERRADO!! </strong></div>");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-
-			} else if (usuario.getPermissao().equalsIgnoreCase("Usuario")) {
-
-				session.setAttribute("logado", usuario);
-				request.getRequestDispatcher("/Usu/paginaInicialUser.jsp").forward(request, response);
-
-			} else {
-				session.setAttribute("logado", usuario);
-				request.getRequestDispatcher("/Admin/paginaInicial.jsp").forward(request, response);
-			}
-
+			// if (usuario == null) {
+			//
+			// request.setAttribute("msg",
+			// "<div class=\"alert alert-danger\"><strong>não possui cadastro em nosso
+			// sistema!! </strong></div>");
+			// request.getRequestDispatcher("login.jsp").forward(request, response);
+			//
+			// } else if (usuario.getPermissao().equalsIgnoreCase("Usuario")) {
+			//
+			// session.setAttribute("logado", usuario);
+			// request.getRequestDispatcher("/Usu/paginaInicialUser.jsp").forward(request,
+			// response);
+			//
+			// } else {
+			// session.setAttribute("logado", usuario);
+			// request.getRequestDispatcher("/Admin/paginaInicial.jsp").forward(request,
+			// response);
+			// }
+			//
 		} catch (Exception e) {
 
 			e.printStackTrace();
