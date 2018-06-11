@@ -16,10 +16,13 @@ import entity.Usuario;
 import io.Arquivo;
 import persistence.EnderecoDao;
 import persistence.UsuarioDao;
+import strategyConcrete.EnviarEmailConcrete;
+import strategyConcrete.ErroSenha;
 import strategyConcrete.ModoAdmin;
 import strategyConcrete.ModoNulo;
 import strategyConcrete.ModoUsuario;
-import strategyContext.Context;
+import strategyContext.LoginContext;
+import strategyContext.SenhaContext;
 import util.EnviarEmail;
 
 @WebServlet({ "/cadastrar.htm", "/senha.htm", "/logar.htm" })
@@ -96,28 +99,16 @@ public class CtrlLogin extends HttpServlet {
 			String login = request.getParameter("senha");
 			Integer senha = new UsuarioDao().findPasswordByEmail(login);
 			String msg = "<h1>SENHA </h1>" + "Sua senha = " + senha;
-			if (senha != -1) {
-				request.setAttribute("msg",
-						"<div class=\"alert alert-success\"><strong>Parabéns!! </strong> email enviado com sua senha!!</div>");
-				request.getRequestDispatcher("senha.jsp").forward(request, response);
-				new EnviarEmail().enviar(login, "senha do sistema operação", msg);
-				return;
-			}
+			SenhaContext ctx = new SenhaContext();
+			ctx.setSenha(senha.equals(-1) ? new ErroSenha() : new EnviarEmailConcrete());
+			ctx.executar(request, response, login, msg);
 
-			if (senha == -1) {
-				request.setAttribute("msg",
-						"<div class=\"alert alert-danger\"><strong>RUIM!! </strong> não achamos seu email na base de dados, desculpas..</div>");
-				request.getRequestDispatcher("senha.jsp").forward(request, response);
-			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			request.setAttribute("msg", "deu ruim no senha " + e.getMessage());
-
-		} finally {
-
-			request.getRequestDispatcher("senha.jsp").forward(request, response);
 		}
+
 	}
 
 	protected void logar(HttpServletRequest request, HttpServletResponse response)
@@ -125,24 +116,13 @@ public class CtrlLogin extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		// LoginPattern pattern = new LoginPattern(request, response);
-//		IUsuarioModel u = new Usuario();
 
 		try {
-			// u = pattern.trazUsuario(login, senha);
-			// pattern.verificarNull(u);
-//			usuario = new Usuario();
-			IUsuarioModel u= new UsuarioDao().login(login, new Integer(senha));
-
-			// if (usuario == null) {
-
-			// } else {
-
-			Context ctx = new Context();
-			ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario() : u.getPermissao().equalsIgnoreCase("administrador")? new ModoAdmin(): new ModoNulo());
-			ctx.criarUsuario(new Integer(senha),session, u, request, response);
-			
-			// }
+			IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
+			LoginContext ctx = new LoginContext();
+			ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
+					: u.getPermissao().equalsIgnoreCase("administrador") ? new ModoAdmin() : new ModoNulo());
+			ctx.criarUsuario(session, u, request, response);
 
 		} catch (Exception e) {
 

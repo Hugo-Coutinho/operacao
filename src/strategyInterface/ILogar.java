@@ -5,10 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ctrlPattern.IUsuarioModel;
-import entity.Usuario;
 
-public interface IPermissao {
+public interface ILogar {
 
-	public void gerarPermissao(Integer senha, HttpSession sessao, IUsuarioModel u, HttpServletRequest req,
+	public void gerarPermissao(HttpSession sessao, IUsuarioModel u, HttpServletRequest req,
 			HttpServletResponse res) throws Exception;
 }
