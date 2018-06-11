@@ -2,6 +2,8 @@ package persistence;
 
 import java.util.List;
 
+import ctrlPattern.IUsuarioModel;
+import ctrlPattern.UsuarioNull;
 import entity.Usuario;
 
 public class UsuarioDao extends GenericDao<Usuario, Integer> {
@@ -12,26 +14,31 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
 	}
 
-	public Usuario login(String login, Integer senha) throws Exception {
+	public IUsuarioModel login(String login, Integer senha) throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		String hql = "from Usuario where email= :param1 and senha= :param2";
-		Usuario u = null;
+		IUsuarioModel u = null;
 		query = session.createQuery(hql);
 		query.setParameter("param1", login);
 		query.setParameter("param2", senha);
-		List<Usuario> lst = (List<Usuario>) query.list();
+		List<IUsuarioModel> lst = (List<IUsuarioModel>) query.list();
 		if (lst.size() == 0) {
-			return u = null;
+			return u = new UsuarioNull();
 		}
-		u = (Usuario) lst.get(0);
+		u = lst.get(0);
 		return u;
 	}
 
-	public List<Usuario> findByPermision() throws Exception {
+	public List<IUsuarioModel> findByPermision() throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		query = session.createQuery("from Usuario where permissao= :param1");
 		query.setParameter("param1", "Usuario");
-		List<Usuario> lst = (List<Usuario>) query.list();
+		List<IUsuarioModel> lst = (List<IUsuarioModel>) query.list();
+		if (lst.size() == 0) {
+			IUsuarioModel nulo = new UsuarioNull();
+			lst.add(nulo);
+			return lst;
+		}
 		return lst;
 	}
 
@@ -51,7 +58,8 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
 		try {
 
-			System.out.println(new UsuarioDao().findPasswordByEmail("hugocoutinho2011@gmail.com"));
+			System.out.println(new UsuarioDao().findByPermision());
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
