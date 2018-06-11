@@ -8,6 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import ctrlPattern.UsuarioNull;
+import entity.Usuario;
+
 abstract public class GenericDao<E, ID extends Serializable> implements IDao<E, ID> {
 
 	Session session;
@@ -64,7 +67,10 @@ abstract public class GenericDao<E, ID extends Serializable> implements IDao<E, 
 		session = HibernateUtil.getSessionFactory().openSession();
 		E obj = (E) session.get(classe.getClass(), cod);
 		session.close();
+		if(obj == null && classe instanceof Usuario) {
+			obj = (E) new UsuarioNull();
+			return obj;
+		}
 		return obj;
 	}
-	
 }

@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ctrlPattern.IUsuarioModel;
+import ctrlPattern.UsuarioNull;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
 import persistence.UsuarioDao;
+import strategyConcrete.ModoDeletar;
+import strategyConcrete.ModoDeletarNulo;
+import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
 @WebServlet({ "/Admin/anotar.htm", "/Admin/editar.htm", "/Admin/deletar.htm" })
@@ -106,16 +111,11 @@ public class CtrlAdmin extends HttpServlet {
 
 			Integer id = new Integer(request.getParameter("id"));
 			usuariodao = new UsuarioDao();
-			usuario = new Usuario();
+			IUsuarioModel usuario = new Usuario();
 			usuario = usuariodao.findByCode(id);
-
-			if (usuario == null) {
-				request.getRequestDispatcher("adminListUsuario.jsp").forward(request, response);
-			} else {
-
-				usuariodao.delete(usuario);
-				request.getRequestDispatcher("adminListUsuario.jsp").forward(request, response);
-			}
+			DeletarContext ctx = new DeletarContext();
+			ctx.setDel(usuario instanceof Usuario ? new ModoDeletar() : new ModoDeletarNulo());
+			ctx.CondicaoDeletar(request, response, usuario);
 
 		} catch (Exception e) {
 			e.printStackTrace();

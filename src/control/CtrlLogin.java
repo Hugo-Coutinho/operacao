@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ctrlPattern.IUsuarioModel;
+import ctrlPattern.UsuarioNull;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
