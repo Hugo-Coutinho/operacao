@@ -32,7 +32,9 @@ public class CtrlUsuario extends HttpServlet {
 
 	public CtrlUsuario() {
 		super();
-		session = CtrlLogin.session;
+		
+		new CtrlLogin();
+		this.session = CtrlLogin.session;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -86,10 +88,16 @@ public class CtrlUsuario extends HttpServlet {
 		String foto = request.getParameter("foto");
 		String permissao = request.getParameter("permissao");
 
-		try {
+		String cep = request.getParameter("cep");
+		String logradouro = request.getParameter("logradouro");
+		String bairro = request.getParameter("bairro");
+		String cidade = request.getParameter("cidade");
+		String estado = request.getParameter("estado");
 
+		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao);
+			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e);
 
 			new UsuarioDao().update(usuario);
 
@@ -98,6 +106,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
 
 		} finally {
 			request.getRequestDispatcher("cadastro.jsp").forward(request, response);
