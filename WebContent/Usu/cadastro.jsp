@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="<%=request.getContextPath()%>/js/CEP.js"></script>
 </head>
 <body>
 <%@include file="headerUSU.jsp" %>

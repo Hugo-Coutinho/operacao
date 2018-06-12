@@ -15,6 +15,7 @@ scope="page"></jsp:useBean>
   }
   </style>
   <script src="<%=request.getContextPath()%>/js/tabs.js"></script>
+  <script src="<%=request.getContextPath()%>/js/CEP.js"></script>
 </head>
 <body>
  <%@include file="/Admin/headerADM.jsp" %>
@@ -23,7 +24,6 @@ scope="page"></jsp:useBean>
     <li><a href="#edit">Editar</a></li>
     <li><a href="#del">Excluir</a></li>
   </ul>
-<div align="center"><h2 align="center"><b>Editar</b></h2>  </div> 
 <div id="edit" >
 
 <!-- <div align="center"><h2 align="center"><b>Editar</b></h2><br /> <br />  </div>  -->
