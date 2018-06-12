@@ -23,12 +23,14 @@ scope="page"></jsp:useBean>
     <li><a href="#edit">Editar</a></li>
     <li><a href="#del">Excluir</a></li>
   </ul>
-
+<div align="center"><h2 align="center"><b>Editar</b></h2>  </div> 
 <div id="edit" >
+
+<!-- <div align="center"><h2 align="center"><b>Editar</b></h2><br /> <br />  </div>  -->
   
 <div align="center"><h2 align="center"><b>${msg}</b></h2></div>
 <form method="post" action="editar.htm">
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title" align="center"><font style="font-style:italic;">Editar Cadastro</font></div>
@@ -56,15 +58,46 @@ scope="page"></jsp:useBean>
 			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/> 
 
 				</div>
-				<div class="panel-footer">
-				<button type="reset" class="btn btn-info">Limpar</button>
-				<button type="submit" class="btn btn-info">Salvar</button>
-				</div>
-			
+<!-- 				<div class="panel-footer"> -->
+<!-- 				<button type="reset" class="btn btn-info">Limpar</button> -->
+<!-- 				<button type="submit" class="btn btn-info">Salvar</button> -->
+<!-- 				</div> -->
 			</div>
 		</div>
+		
+		
+		
+		<div class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title" align="center">Editar Endereco</div>
+				</div>
+				<div class="panel-body">
+			<label for="cep" style="font-family:Bell MT;">cep :</label> 
+			<input type="text" id="cep"name="cep" required="required" placeholder="digite seu novo cep" pattern="[0-9]{8}" class="form-control">
+			
+			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
+			<input type="text" id="rua"name="logradouro" required="required" placeholder="digite seu novo logradouro" pattern="[a-z A-Z]+" class="form-control">
+
+			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
+			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu novo bairro" pattern="[a-z A-Z]+" class="form-control">
+			
+			<label for="cidade" style="font-family:Bell MT;">cidade :</label> 
+			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite sua cidade" pattern="[a-z A-Z]+" class="form-control">
+			
+			<label for="estado" style="font-family:Bell MT;">estado :</label>
+			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control"> <br /> <br />
+<!-- 						<button type="reset" class="btn btn-info">Limpar</button> -->
+<!-- 						<button type="submit" class="btn btn-info">Salvar</button> -->
+				</div>
+<!-- 				<div class="panel-footer"> -->
+<!-- 				</div> -->
+			</div>
+		</div>
+		
 		</form>
   </div>  
+  <input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
   
   <div id="del" >
   
