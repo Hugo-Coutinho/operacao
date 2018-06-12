@@ -73,7 +73,8 @@
 			</div>
 		</div>
 		<input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
-		${msg}
+		<p>
+	<h2 style="color:maroon;" align="center">${msg}</h2>	
 	</form>
 </body>
 </html>

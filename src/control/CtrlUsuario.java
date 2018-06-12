@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
+import persistence.EnderecoDao;
 import persistence.UsuarioDao;
 import util.EnviarEmail;
 
@@ -99,6 +100,7 @@ public class CtrlUsuario extends HttpServlet {
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
 			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e);
 
+			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
 
 			request.setAttribute("msg", "editado com sucesso");
