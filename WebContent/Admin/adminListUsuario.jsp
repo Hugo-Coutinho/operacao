@@ -28,7 +28,6 @@ scope="page"></jsp:useBean>
 
 <!-- <div align="center"><h2 align="center"><b>Editar</b></h2><br /> <br />  </div>  -->
   
-<div align="center"><h2 align="center"><b>${msg}</b></h2></div>
 <form method="post" action="editar.htm">
 <div class="col-md-6">
 			<div class="panel panel-info">
@@ -95,9 +94,10 @@ scope="page"></jsp:useBean>
 			</div>
 		</div>
 		
+  <input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
+  	<h2 style="color:maroon;" align="center">${msg}</h2>
 		</form>
   </div>  
-  <input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
   
   <div id="del" >
   

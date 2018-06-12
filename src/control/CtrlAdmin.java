@@ -15,6 +15,7 @@ import ctrlPattern.UsuarioNull;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
+import persistence.EnderecoDao;
 import persistence.UsuarioDao;
 import strategyConcrete.ModoDeletar;
 import strategyConcrete.ModoDeletarNulo;
@@ -61,17 +62,24 @@ public class CtrlAdmin extends HttpServlet {
 		String foto = request.getParameter("foto");
 		String permissao = request.getParameter("permissao");
 
+		String cep = request.getParameter("cep");
+		String logradouro = request.getParameter("logradouro");
+		String bairro = request.getParameter("bairro");
+		String cidade = request.getParameter("cidade");
+		String estado = request.getParameter("estado");
 		try {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao);
+			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e);
 
+			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
 
 			request.setAttribute("msg", "editado com sucesso");
 
 		} catch (Exception e) {
-
+			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
 			e.printStackTrace();
 
 		} finally {

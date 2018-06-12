@@ -30,7 +30,7 @@
       <li><a href="/operacao/Admin/doc.jsp">Anotações</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/operacao/logout.jsp"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
+      <li><a href="/operacao/login.jsp"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
     </ul>
     <div align="center">
     <ul>

@@ -28,6 +28,14 @@
     </style>
 </head>
 <body style="background-color:#C0C0C0;">
+<%
+	try {
+		session.setAttribute("logado", null);
+		session.invalidate();
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	}
+%>
 <div class="vertical-center">
 			<form method="post" action="logar.htm">
 				<div class="card">
