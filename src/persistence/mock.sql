@@ -1,3 +1,8 @@
+use system01;
+
+delimiter $
+create procedure gerarClienteEndereco()
+begin	
 insert into endereco values(123,'gamboa','20221160','Rj','Rj','Rua sacadura cabral 327');
 insert into usuario values(1,'michelsolivapqd@gmail.com','https://i.ytimg.com/vi/azEatWLF9hI/hqdefault.jpg','michel','administrador',567,'m',123);
 
@@ -29,6 +34,13 @@ insert into usuario values(9,'Vampira@gmail.com','http://3.bp.blogspot.com/-sFPY
 
 insert into endereco values(15,'Nova Iguacu','329428711','Rj','Rj','Rua da estrada 2');
 insert into usuario values(10,'Goku@gmail.com','https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg','goku','usuario',567,'m',15);
+
+end
+$
+delimiter ;
+
+call gerarClienteEndereco(); 
+
 
 
 
