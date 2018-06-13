@@ -11,7 +11,7 @@
 	
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-<script src="<%=request.getContextPath()%>/js/CEP.js"></script>
+<script src="<%=request.getContextPath()%>/js/ApiCep.js"></script>
 
 	
 </head>
@@ -38,7 +38,7 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
       			<select class="form-control" id="#" name="permissao">
-        		<option>Admnistrador</option>
+        		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
 			 </div>   

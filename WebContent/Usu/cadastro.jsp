@@ -3,7 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="<%=request.getContextPath()%>/js/CEP.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script src="<%=request.getContextPath()%>/js/ApiCep.js"></script>
 </head>
 <body>
 <%@include file="headerUSU.jsp" %>
@@ -29,7 +36,7 @@
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
       			<select class="form-control" id="#" name="permissao">
-        		<option>Admnistrador</option>
+        		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
 			 </div>   

@@ -122,7 +122,7 @@ public class CtrlLogin extends HttpServlet {
 			IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
 			LoginContext ctx = new LoginContext();
 			ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
-					: u.getPermissao().equalsIgnoreCase("administrador") ? new ModoAdmin() : new ModoNulo());
+					: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
 			ctx.criarUsuario(session, u, request, response);
 
 		} catch (Exception e) {

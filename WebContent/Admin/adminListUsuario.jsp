@@ -15,7 +15,7 @@ scope="page"></jsp:useBean>
   }
   </style>
   <script src="<%=request.getContextPath()%>/js/tabs.js"></script>
-  <script src="<%=request.getContextPath()%>/js/CEP.js"></script>
+  <script src="<%=request.getContextPath()%>/js/ApiCep.js"></script>
 </head>
 <body>
  <%@include file="/Admin/headerADM.jsp" %>
@@ -48,7 +48,7 @@ scope="page"></jsp:useBean>
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
       			<select class="form-control" id="#" name="permissao">
-        		<option>Admnistrador</option>
+        		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
 			 </div>   
