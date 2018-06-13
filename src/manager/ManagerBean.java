@@ -3,6 +3,7 @@ package manager;
 import java.util.List;
 
 import ctrlPattern.IUsuarioModel;
+import ctrlPattern.UsuarioNull;
 import persistence.UsuarioDao;
 
 public class ManagerBean {
@@ -18,6 +19,10 @@ public class ManagerBean {
 		try {
 
 			usuarios = new UsuarioDao().findByPermision();
+			if (usuarios.get(0) instanceof UsuarioNull) {
+				return null;
+			}
+
 		} catch (Exception e) {
 
 			e.printStackTrace();

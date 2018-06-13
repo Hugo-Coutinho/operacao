@@ -21,8 +21,7 @@
 					<strong>palavra palíndromo</strong>
 				</h3>
 				<form method="post" action="palavraPalindromo.htm">
-					<input type="text" name="palavraPalindromo"
-						placeholder="digite sua palavra aqui">
+					<input type="text" name="palavraPalindromo" placeholder="digite sua palavra aqui" class="form-control" style="width: 250px;">
 					<button type="submit" class="btn btn-primary">Verificar</button>
 					<br>
 				</form>
@@ -37,8 +36,7 @@
 					<strong>Frase Palíndromo</strong>
 				</h3>
 				<form method="post" action="frasePalindromo.htm">
-					<input type="text" name="frasePalindromo"
-						placeholder="digite sua frase aqui">
+					<input type="text" name="frasePalindromo" placeholder="digite sua frase aqui" class="form-control" style="width: 450px;">
 					<!-- <button type="submit">verificar</button> -->
 					<button type="submit" class="btn btn-primary">Verificar</button>
 					<br>
@@ -54,7 +52,7 @@
 					<strong>Fatorial</strong>
 				</h3>
 				<form method="post" action="fatorial.htm">
-					<input type="text" name="fatorial" placeholder="Entre com um numero">
+					<input type="text" name="fatorial" placeholder="Entre com um numero" class="form-control" style="width: 250px;">
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>
 			</div>
@@ -69,7 +67,7 @@
 				<strong>Numero Primo</strong>
 			</h3>
 				<form method="post" action="primo.htm">
-					<input type="text" name="primo" placeholder="verificar se é primo">
+					<input type="text" name="primo" placeholder="verificar se é primo" class="form-control" style="width: 250px;">
 <!-- 					<button type="submit">Verificar</button> -->
 					<button type="submit" class="btn btn-primary">Verificar</button>
 				</form>
@@ -84,7 +82,7 @@
 					<strong>Fibonacci</strong>
 				</h3>
 				<form method="post" action="fibonacci.htm">
-					<input type="text" name="fibonacci" placeholder="calcula fibonacci">
+					<input type="text" name="fibonacci" placeholder="calcula fibonacci" class="form-control" style="width: 250px;">
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>
 			</div>
@@ -98,7 +96,7 @@
 				<strong>Perfeito</strong>
 			</h3>
 				<form method="post" action="perfeito.htm">
-					<input type="text" name="perfeito" placeholder="achar perfeito">
+					<input type="text" name="perfeito" placeholder="achar perfeito" class="form-control" style="width: 250px;">
 <!-- 					<button type="submit">Resultado</button> -->
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>

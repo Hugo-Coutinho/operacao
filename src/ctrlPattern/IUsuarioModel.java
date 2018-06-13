@@ -1,5 +1,7 @@
 package ctrlPattern;
 
+import entity.Endereco;
+
 public interface IUsuarioModel {
 
 	public String getFoto();
@@ -15,5 +17,7 @@ public interface IUsuarioModel {
 	public String getEmail();
 	
 	public String getNome();
+	
+	public Endereco getEndereco();
 
 }

@@ -1,5 +1,7 @@
 package ctrlPattern;
 
+import entity.Endereco;
+
 public class UsuarioNull implements IUsuarioModel {
 
 	@Override
@@ -49,6 +51,12 @@ public class UsuarioNull implements IUsuarioModel {
 		return "UsuarioNull [getFoto()=" + getFoto() + ", getSenha()=" + getSenha() + ", getPermissao()="
 				+ getPermissao() + ", getSexo()=" + getSexo() + ", getIdUsuario()=" + getIdUsuario() + ", getEmail()="
 				+ getEmail() + ", getNome()=" + getNome() + "]";
+	}
+
+	@Override
+	public Endereco getEndereco() {
+		// TODO Auto-generated method stub
+		return new Endereco();
 	}
 
 }
