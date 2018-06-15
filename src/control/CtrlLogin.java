@@ -47,15 +47,26 @@ public class CtrlLogin extends HttpServlet {
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		if (request.getServletPath().equals("/cadastrar.htm")) {
+		switch (request.getServletPath()) {
+		case "/cadastrar.htm":
 			cadastrar(request, response);
-		} else if (request.getServletPath().equals("/senha.htm")) {
+			break;
+		case "/senha.htm":
 			senha(request, response);
-		} else if (request.getServletPath().equals("/logar.htm")) {
+			break;
+		case "/logar.htm":
 			logar(request, response);
+			break;
 		}
-
 	}
+	// if (request.getServletPath().equals("/cadastrar.htm")) {
+	// cadastrar(request, response);
+	// } else if (request.getServletPath().equals("/senha.htm")) {
+	// senha(request, response);
+	// } else if (request.getServletPath().equals("/logar.htm")) {
+	// logar(request, response);
+	// }
+	//
 
 	protected void cadastrar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
