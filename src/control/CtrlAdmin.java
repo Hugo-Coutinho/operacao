@@ -42,15 +42,23 @@ public class CtrlAdmin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		if (request.getServletPath().equals("/Admin/editar.htm")) {
-			editar(request, response);
-		} else if (request.getServletPath().equals("/Admin/anotar.htm")) {
-			anotar(request, response);
-		} else if (request.getServletPath().equals("/Admin/deletar.htm")) {
-			deletar(request, response);
+		
+		
+		switch(request.getServletPath()) {
+		case"/Admin/editar.htm": editar(request, response);break;
+		case"/Admin/anotar.htm": anotar(request, response);break;
+		case"/Admin/deletar.htm": deletar(request,response); break;
 		}
 	}
+
+//		if (request.getServletPath().equals("/Admin/editar.htm")) {
+//			editar(request, response);
+//		} else if (request.getServletPath().equals("/Admin/anotar.htm")) {
+//			anotar(request, response);
+//		} else if (request.getServletPath().equals("/Admin/deletar.htm")) {
+//			deletar(request, response);
+//		}
+	
 
 	protected void editar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

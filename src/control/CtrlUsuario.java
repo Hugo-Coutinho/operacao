@@ -41,24 +41,36 @@ public class CtrlUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		if (request.getServletPath().equals("/Usu/palavraPalindromo.htm")) {
-			palavraPalindromo(request, response);
-		} else if (request.getServletPath().equals("/Usu/frasePalindromo.htm")) {
-			frasePalindromo(request, response);
-		} else if (request.getServletPath().equals("/Usu/fatorial.htm")) {
-			fatorial(request, response);
-		} else if (request.getServletPath().equals("/Usu/primo.htm")) {
-			primo(request, response);
-		} else if (request.getServletPath().equals("/Usu/fibonacci.htm")) {
-			fibonacci(request, response);
-		} else if (request.getServletPath().equals("/Usu/uploadUsu.htm")) {
-			uploadUsu(request, response);
-		} else if (request.getServletPath().equals("/Usu/editarUsu.htm")) {
-			editarUsu(request, response);
-		} else if (request.getServletPath().equals("/Usu/perfeito.htm")) {
-			perfeito(request, response);
-		}
+		
+		switch(request.getServletPath()) {
+		case"/Usu/palavraPalindromo.htm": palavraPalindromo(request, response); break;
+		case"/Usu/frasePalindromo.htm": frasePalindromo(request, response); break;
+		case"/Usu/fatorial.htm": fatorial(request, response); break;
+		case"/Usu/primo.htm": primo(request, response); break;
+		case"/Usu/fibonacci.htm": fibonacci(request, response); break;
+		case"/Usu/uploadUsu.htm" : uploadUsu(request, response); break;
+		case"/Usu/editarUsu.htm" : editarUsu(request, response); break;
+		case"/Usu/perfeito.htm" : perfeito(request, response); break; 
+		
+	}
+		
+//		if (request.getServletPath().equals("/Usu/palavraPalindromo.htm")) {
+//			palavraPalindromo(request, response);
+//		} else if (request.getServletPath().equals("/Usu/frasePalindromo.htm")) {
+//			frasePalindromo(request, response);
+//		} else if (request.getServletPath().equals("/Usu/fatorial.htm")) {
+//			fatorial(request, response);
+//		} else if (request.getServletPath().equals("/Usu/primo.htm")) {
+//			primo(request, response);
+//		} else if (request.getServletPath().equals("/Usu/fibonacci.htm")) {
+//			fibonacci(request, response);
+//		} else if (request.getServletPath().equals("/Usu/uploadUsu.htm")) {
+//			uploadUsu(request, response);
+//		} else if (request.getServletPath().equals("/Usu/editarUsu.htm")) {
+//			editarUsu(request, response);
+//		} else if (request.getServletPath().equals("/Usu/perfeito.htm")) {
+//			perfeito(request, response);
+//		}
 
 	}
 
