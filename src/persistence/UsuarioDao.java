@@ -54,12 +54,21 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		}
 	}
 
+	public boolean usuarioExiste(String email) {
+		Integer vl = 0;
+		vl = findPasswordByEmail(email);
+		if (vl >= 1)
+			return true;
+
+		return false;
+	}
+
 	public static void main(String[] args) {
 
 		try {
 
-			System.out.println(new UsuarioDao().findByPermision());
-			
+			System.out.println(new UsuarioDao().usuarioExiste("hugocoutinho2011@gmail.com"));
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

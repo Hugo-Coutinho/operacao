@@ -20,8 +20,11 @@ import persistence.UsuarioDao;
 import strategyConcrete.EnviarEmailConcrete;
 import strategyConcrete.ErroSenha;
 import strategyConcrete.ModoAdmin;
+import strategyConcrete.ModoCadastrar;
+import strategyConcrete.ModoCadastrarFalha;
 import strategyConcrete.ModoNulo;
 import strategyConcrete.ModoUsuario;
+import strategyContext.CadastrarContext;
 import strategyContext.LoginContext;
 import strategyContext.SenhaContext;
 import util.EnviarEmail;
@@ -59,14 +62,6 @@ public class CtrlLogin extends HttpServlet {
 			break;
 		}
 	}
-	// if (request.getServletPath().equals("/cadastrar.htm")) {
-	// cadastrar(request, response);
-	// } else if (request.getServletPath().equals("/senha.htm")) {
-	// senha(request, response);
-	// } else if (request.getServletPath().equals("/logar.htm")) {
-	// logar(request, response);
-	// }
-	//
 
 	protected void cadastrar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -90,17 +85,12 @@ public class CtrlLogin extends HttpServlet {
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
 			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco);
 
-			new EnderecoDao().create(endereco);
-			new UsuarioDao().create(usuario);
-
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('cadastrado com sucesso');");
-			out.println("location='login.jsp';");
-			out.println("</script>");
+			CadastrarContext ctx = new CadastrarContext();
+			ctx.setCadastrar(!new UsuarioDao().usuarioExiste(usuario.getEmail())? new ModoCadastrar() : new ModoCadastrarFalha());
+			ctx.executarCadastramento(request, response, usuario, endereco);
 
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
 		}
 	}
 

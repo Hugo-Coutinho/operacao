@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-            function limpa_formulário_cep() {
+	limpa_formulário_cep
+            function limpaFormularioCep() {
                 $("#rua").val("");
                 $("#bairro").val("");
                 $("#cidade").val("");
                 $("#uf").val("");
-                $("#ibge").val("");
             }
             
             $("#cep").blur(function() {
@@ -22,7 +22,6 @@ $(document).ready(function() {
                         $("#bairro").val("...");
                         $("#cidade").val("...");
                         $("#uf").val("...");
-                        $("#ibge").val("...");
 
                         $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
@@ -31,23 +30,22 @@ $(document).ready(function() {
                                 $("#bairro").val(dados.bairro);
                                 $("#cidade").val(dados.localidade);
                                 $("#uf").val(dados.uf);
-                                $("#ibge").val(dados.ibge);
                             } //end if.
                             else {
-                                limpa_formulário_cep();
+                            	limpaFormularioCep();
                                 alert("CEP não encontrado.");
                             }
                         });
                     } //end if.
                     else {
                         //cep é inválido.
-                        limpa_formulário_cep();
+                    	limpaFormularioCep();
                         alert("Formato de CEP inválido.");
                     }
                 } //end if.
                 else {
                     //cep sem valor, limpa formulário.
-                    limpa_formulário_cep();
+                	limpaFormularioCep();
                 }
             });
         });
