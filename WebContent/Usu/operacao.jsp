@@ -18,7 +18,7 @@
 		<div>
 			<div align="center">
 				<h3>
-					<strong>palavra palíndromo</strong>
+					<strong>Palavra ou numero palíndromo</strong>
 				</h3>
 				<form method="post" action="palavraPalindromo.htm">
 					<input type="text" name="palavraPalindromo" placeholder="digite sua palavra aqui" class="form-control" style="width: 250px;">
@@ -105,9 +105,9 @@
 	</div>
 	
 
-			
-	Operação ..
-	<h1 align="center">${msg }</h1>
+				
+<!-- 	Operação .. -->
+	<h1 align="center" style="color:maroon;" >${msg }</h1>
 
 </body>
 </html>

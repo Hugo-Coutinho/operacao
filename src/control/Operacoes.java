@@ -20,11 +20,11 @@ public class Operacoes {
 		for (int i = 2; i <= n; i++) {
 
 			if (n % 2 == 0) {
-				return n + " primo";
+				return n + "<span style=font-family:Bell MT;> Primo </span>";
 			}
 
 		}
-		return n + " nao primo";
+		return n + " <span style=font-family:Bell MT;> Nao Primo </span>";
 
 	}
 
@@ -46,11 +46,11 @@ public class Operacoes {
 
 		if (resp == true) {
 
-			return n + " perfeito";
+			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
 
 		} else {
 
-			return n + " nao perfeito";
+			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
 		}
 
 	}
@@ -62,11 +62,11 @@ public class Operacoes {
 
 		if (palavra.toString().equals(p)) {
 
-			return p + " palindromo";
+			return p + "<span style=font-family:Bell MT;> Palindromo </span>";
 
 		} else {
-
-			return p + " nao  palindromo";
+			
+			return p + "<span style=font-family:Bell MT;> Não é Palindromo</span>";
 		}
 
 	}
@@ -78,9 +78,9 @@ public class Operacoes {
 		sb.reverse();
 		if (sb.toString().equals(palavra)) {
 
-			return p + " palindromo";
+			return p + "<span style=font-family:Bell MT;> Palindromo </span>";
 		} else {
-			return p + " nao e palindromo";
+			return p + "<span style=font-family:Bell MT;> Não é Palindromo</span>";
 		}
 
 	}
