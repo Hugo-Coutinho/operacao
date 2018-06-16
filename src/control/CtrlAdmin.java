@@ -51,15 +51,6 @@ public class CtrlAdmin extends HttpServlet {
 		}
 	}
 
-//		if (request.getServletPath().equals("/Admin/editar.htm")) {
-//			editar(request, response);
-//		} else if (request.getServletPath().equals("/Admin/anotar.htm")) {
-//			anotar(request, response);
-//		} else if (request.getServletPath().equals("/Admin/deletar.htm")) {
-//			deletar(request, response);
-//		}
-	
-
 	protected void editar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -87,7 +78,7 @@ public class CtrlAdmin extends HttpServlet {
 			request.setAttribute("msg", "editado com sucesso");
 
 		} catch (Exception e) {
-			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
+			request.setAttribute("msg", "fudeu manÃ©!!, " + e.getMessage());
 			e.printStackTrace();
 
 		} finally {
