@@ -54,24 +54,7 @@ public class CtrlUsuario extends HttpServlet {
 		
 	}
 		
-//		if (request.getServletPath().equals("/Usu/palavraPalindromo.htm")) {
-//			palavraPalindromo(request, response);
-//		} else if (request.getServletPath().equals("/Usu/frasePalindromo.htm")) {
-//			frasePalindromo(request, response);
-//		} else if (request.getServletPath().equals("/Usu/fatorial.htm")) {
-//			fatorial(request, response);
-//		} else if (request.getServletPath().equals("/Usu/primo.htm")) {
-//			primo(request, response);
-//		} else if (request.getServletPath().equals("/Usu/fibonacci.htm")) {
-//			fibonacci(request, response);
-//		} else if (request.getServletPath().equals("/Usu/uploadUsu.htm")) {
-//			uploadUsu(request, response);
-//		} else if (request.getServletPath().equals("/Usu/editarUsu.htm")) {
-//			editarUsu(request, response);
-//		} else if (request.getServletPath().equals("/Usu/perfeito.htm")) {
-//			perfeito(request, response);
-//		}
-
+		
 	}
 
 	protected void perfeito(HttpServletRequest request, HttpServletResponse response)
@@ -120,7 +103,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
+			request.setAttribute("msg", "fudeu manÃ©!!, " + e.getMessage());
 
 		} finally {
 			request.getRequestDispatcher("cadastro.jsp").forward(request, response);
