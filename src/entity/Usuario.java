@@ -154,5 +154,4 @@ public class Usuario implements Serializable, IUsuarioModel {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
 }
