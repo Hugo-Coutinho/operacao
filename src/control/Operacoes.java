@@ -30,30 +30,53 @@ public class Operacoes {
 
 	public static String perfeito(int n) {
 
-		int divisor = 0;
-		boolean resp = false;
-		for (int i = 0; i < n; i++) {
-
-			if (i % 2 == 0) {
-
-				divisor += i;
-			}
-			if (n == divisor) {
-
-				resp = true;
+		
+		int temp = 0;
+		for(int i = 1; i<= n/2; i++) {
+			if(n%i==0) {
+				temp += i;
 			}
 		}
-
-		if (resp == true) {
-
+		if(temp == n) {
 			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
-
-		} else {
-
-			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
+		}else {
+			return n + " <span style=font-family:Bell MT;>Não Perfeito </span>";
 		}
+		
+		
+//		int divisor = 0;
+//		boolean resp = false;
+//		for (int i = 0; i < n; i++) {
+//
+//			if (i % 2 == 0) {
+//
+//				divisor += i;
+//			}
+//			if (n == divisor) {
+//
+//				resp = true;
+//			}
+//		}
+//
+//		if (resp == true) {
+//
+//			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
+//
+//		} else {
+//
+//			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
+//		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public static String palavraPalindromo(String p) {
 
