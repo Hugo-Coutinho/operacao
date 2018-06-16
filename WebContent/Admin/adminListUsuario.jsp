@@ -16,9 +16,9 @@ scope="page"></jsp:useBean>
   </style>
   <script src="<%=request.getContextPath()%>/js/tabs.js"></script>
 <%--   <script src="<%=request.getContextPath()%>/js/ApiCep.js"></script> --%>
-</head>
-<body>
-<%--  <%@include file="/Admin/headerADM.jsp" %> --%>
+
+
+
 <script type="text/javascript" >
         $(document).ready(function() {
             function limpa_formulário_cep() {
@@ -66,6 +66,12 @@ scope="page"></jsp:useBean>
             });
         });
     </script>
+
+
+</head>
+<body>
+ <%@include file="/Admin/headerADM.jsp" %>
+
 <div id="tabs">
   <ul>
     <li><a href="#edit">Editar</a></li>
@@ -142,9 +148,9 @@ scope="page"></jsp:useBean>
 		</div>
 		
   <input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
-  	<h2 style="color:maroon;" align="center">${msg}</h2>
+  	<h2 style="color:maroon;" align="center"> <strong style="color:maroon; font-family:Bell MT;">${msg} </strong></h2>
 		</form>
-  </div>  
+  </div>                 
   
   <div id="del" >
   

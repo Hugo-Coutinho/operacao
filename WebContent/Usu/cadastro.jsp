@@ -129,7 +129,7 @@
 		</div>
 		<input type="submit" value="Atualizar" name="btnLogar" class="btn btn-primary btn-block">
 		<p>
-	<h2 style="color:maroon;" align="center">${msg}</h2>	
+	<h2 style="color:maroon;" align="center"> <span style="color:maroon; font-family:Bell MT;">${msg} </span></h2>	
 	</form>
-</body>
+</body>                  <span style="color:maroon; font-family:Bell MT;">${msg} </span>
 </html>

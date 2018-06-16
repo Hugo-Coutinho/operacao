@@ -122,11 +122,9 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 						<button type="submit" class="btn btn-info">Salvar</button>
 				
 				</div>
-				<div class="panel-footer">
-				${msg}
-				</div>
+<%-- 				<div class="panel-footer" > <span style="color:maroon; font-family:Bell MT;"> ${msg} </span></div> --%>
 			</div>
-		</div>
+		</div>                         
 </form>
 </body>
 </html>

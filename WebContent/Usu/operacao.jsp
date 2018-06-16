@@ -52,7 +52,7 @@
 					<strong>Fatorial</strong>
 				</h3>
 				<form method="post" action="fatorial.htm">
-					<input type="text" name="fatorial" placeholder="Entre com um numero" class="form-control" style="width: 250px;">
+					<input type="number" name="fatorial" placeholder="Entre com um numero" class="form-control" style="width: 250px;">
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>
 			</div>
@@ -67,7 +67,7 @@
 				<strong>Numero Primo</strong>
 			</h3>
 				<form method="post" action="primo.htm">
-					<input type="text" name="primo" placeholder="verificar se é primo" class="form-control" style="width: 250px;">
+					<input type="number" name="primo" placeholder="verificar se é primo" class="form-control" style="width: 250px;">
 <!-- 					<button type="submit">Verificar</button> -->
 					<button type="submit" class="btn btn-primary">Verificar</button>
 				</form>
@@ -82,7 +82,7 @@
 					<strong>Fibonacci</strong>
 				</h3>
 				<form method="post" action="fibonacci.htm">
-					<input type="text" name="fibonacci" placeholder="calcula fibonacci" class="form-control" style="width: 250px;">
+					<input type="number" name="fibonacci" placeholder="calcula fibonacci" class="form-control" style="width: 250px;">
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>
 			</div>
@@ -96,7 +96,7 @@
 				<strong>Perfeito</strong>
 			</h3>
 				<form method="post" action="perfeito.htm">
-					<input type="text" name="perfeito" placeholder="achar perfeito" class="form-control" style="width: 250px;">
+					<input type="number" name="perfeito" placeholder="achar perfeito" class="form-control" style="width: 250px;">
 <!-- 					<button type="submit">Resultado</button> -->
 					<button type="submit" class="btn btn-primary">Resultado</button>
 				</form>
@@ -108,6 +108,6 @@
 				
 <!-- 	Operação .. -->
 	<h1 align="center" style="color:maroon;" >${msg }</h1>
-
-</body>
+               
+</body>  
 </html>
