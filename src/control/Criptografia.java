@@ -6,13 +6,8 @@ import entity.Usuario;
 
 public class Criptografia {
 	
-//	public void criptografar(Usuario u) {
-//		SimpleMD5 md5 = new SimpleMD5(new String(u.getSenha()),"muralha paredao");
-//		
-//		
-//		
-//		
-//	}
-//	
-
+	public void criptografia(Usuario u){
+		SimpleMD5 md5 = new SimpleMD5(""+u.getSenha(),"cotiinfromatica@123$#@..567abc_");
+		u.setSenha(new Integer(md5.hashCode()));
+	}
 }
