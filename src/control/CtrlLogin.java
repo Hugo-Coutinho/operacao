@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ctrlPattern.IUsuarioModel;
-import ctrlPattern.UsuarioNull;
 import entity.Endereco;
 import entity.Usuario;
 import io.Arquivo;
-import persistence.EnderecoDao;
 import persistence.UsuarioDao;
 import strategyConcrete.EnviarEmailConcrete;
 import strategyConcrete.ErroSenha;
@@ -28,6 +26,7 @@ import strategyContext.CadastrarContext;
 import strategyContext.LoginContext;
 import strategyContext.SenhaContext;
 import util.EnviarEmail;
+import util.Valida;
 
 @WebServlet({ "/cadastrar.htm", "/senha.htm", "/logar.htm" })
 public class CtrlLogin extends HttpServlet {
@@ -86,7 +85,8 @@ public class CtrlLogin extends HttpServlet {
 			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco);
 
 			CadastrarContext ctx = new CadastrarContext();
-			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail())? new ModoCadastrarFalha(): new ModoCadastrar());
+			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail()) ? new ModoCadastrarFalha()
+					: new ModoCadastrar());
 			ctx.executarCadastramento(request, response, usuario, endereco);
 
 		} catch (Exception e) {
@@ -120,14 +120,23 @@ public class CtrlLogin extends HttpServlet {
 		String senha = request.getParameter("senha");
 
 		try {
-			IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
-			LoginContext ctx = new LoginContext();
-			ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
-					: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
-			ctx.criarUsuario(session, u, request, response);
+
+			if (new Valida().validaLoginNomeOuEmail(login).equalsIgnoreCase("Nome")) {
+				IUsuarioModel u = new UsuarioDao().loginByNome(login, new Integer(senha));
+				LoginContext ctx = new LoginContext();
+				ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
+						: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
+				ctx.criarUsuario(session, u, request, response);
+
+			} else {
+				IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
+				LoginContext ctx = new LoginContext();
+				ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
+						: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
+				ctx.criarUsuario(session, u, request, response);
+			}
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			request.setAttribute("msg", "deu ruim logar " + e.getMessage());
 			request.getRequestDispatcher("login.jsp").forward(request, response);

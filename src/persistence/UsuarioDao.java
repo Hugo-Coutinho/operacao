@@ -29,6 +29,21 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		return u;
 	}
 
+	public IUsuarioModel loginByNome(String login, Integer senha) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+		String hql = "from Usuario where nome= :param1 and senha= :param2";
+		IUsuarioModel u = null;
+		query = session.createQuery(hql);
+		query.setParameter("param1", login);
+		query.setParameter("param2", senha);
+		List<IUsuarioModel> lst = (List<IUsuarioModel>) query.list();
+		if (lst.size() == 0) {
+			return u = new UsuarioNull();
+		}
+		u = lst.get(0);
+		return u;
+	}
+
 	public List<IUsuarioModel> findByPermision() throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		query = session.createQuery("from Usuario where permissao= :param1");
@@ -67,7 +82,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
 		try {
 
-			System.out.println(new UsuarioDao().usuarioExiste("hugocoutinho2011@gmail.com"));
+			System.out.println(new UsuarioDao().loginByNome("Goku", 567));
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
