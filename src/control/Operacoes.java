@@ -17,15 +17,14 @@ public class Operacoes {
 
 	public static String primo(int n) {
 
-		for (int i = 2; i <= n; i++) {
+		for (int i=2; i<=n; i++) {
 
-			if (n % 2 == 0) {
-				return n + "<span style=font-family:Bell MT;> Primo </span>";
+			if (n%2== 0) {
+				return "<span style=font-family:Bell MT;> Nao Primo </span>";
 			}
-
+//			"<span style=font-family:Bell MT;> Primo </span>";
 		}
-		return n + " <span style=font-family:Bell MT;> Nao Primo </span>";
-
+		return "<span style=font-family:Bell MT;> Primo </span>";
 	}
 
 	public static String perfeito(int n) {
