@@ -1,6 +1,6 @@
 package entity;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import ctrlPattern.IUsuarioModel;
+
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, IUsuarioModel {
 
 	/**
 	 * 
@@ -152,5 +154,4 @@ public class Usuario implements Serializable {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
 }

@@ -1,5 +1,6 @@
 package persistence;
 
+import java.sql.CallableStatement; 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ public class Dao {
 	PreparedStatement stmt;
 	ResultSet rs;
 	Connection con;
+	CallableStatement call;
 
 	public void open() throws Exception {
 

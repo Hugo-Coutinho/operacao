@@ -5,10 +5,10 @@
 <head>
 </head>
 <body style="background-color:#C0C0C0">
-<%@include file="headerADM.jsp" %>
+<%@include file="/Admin/headerADM.jsp" %>
 
 
-<div align="center"><img src="bem-vindo.jpg" class="img-rounded" alt="Cinque Terre" width="600" height="300"></div>
+<div align="center"><img src="/operacao/Admin/bem-vindo.jpg" class="img-rounded" alt="Cinque Terre" width="600" height="300"></div>
 
 
 
