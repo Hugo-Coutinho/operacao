@@ -22,7 +22,7 @@ public class ModoCadastrar implements ICadastrar {
 		new UsuarioDao().create(usu);
 
 		out.println("<script type=\"text/javascript\">");
-		out.println("alert('usuário com esse email já existe');");
+		out.println("alert('cadastrado com sucesso !!!');");
 		out.println("location='login.jsp';");
 		out.println("</script>");
 

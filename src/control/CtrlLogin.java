@@ -86,7 +86,7 @@ public class CtrlLogin extends HttpServlet {
 			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco);
 
 			CadastrarContext ctx = new CadastrarContext();
-			ctx.setCadastrar(!new UsuarioDao().usuarioExiste(usuario.getEmail())? new ModoCadastrar() : new ModoCadastrarFalha());
+			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail())? new ModoCadastrarFalha(): new ModoCadastrar());
 			ctx.executarCadastramento(request, response, usuario, endereco);
 
 		} catch (Exception e) {
