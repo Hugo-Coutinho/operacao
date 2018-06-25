@@ -7,7 +7,7 @@ insert into perfil values(350,'https://i.ytimg.com/vi/azEatWLF9hI/hqdefault.jpg'
 insert into endereco values(123,'gamboa','20221160','Rj','Rj','Rua sacadura cabral 327');
 insert into usuario values(1,'michelsolivapqd@gmail.com','https://i.ytimg.com/vi/azEatWLF9hI/hqdefault.jpg','michel','administrador',567,'m',123,350);
 
-insert into perfil values(351,'http://media.ufc.tv/fighter_images/Vitor_Belfort/BELFORT_VITOR.png');
+insert into perfil values(351,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ZJZltTRtOtnq6YYRLEvP8hzeqdYjbd8SFnclHCJoiZ_dlNpt-A');
 insert into endereco values(124,'saude','20221123','Rj','Rj','Rua Livramento 3');
 insert into usuario values(2,'hugocoutinho2011@gmail.com','http://media.ufc.tv/fighter_images/Vitor_Belfort/BELFORT_VITOR.png','hugo','administrador',567,'m',124,351);
 
