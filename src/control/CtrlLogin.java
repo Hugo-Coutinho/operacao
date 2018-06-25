@@ -4,16 +4,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import ctrlPattern.IUsuarioModel;
 import entity.Endereco;
+import entity.Perfil;
 import entity.Usuario;
 import io.Arquivo;
+import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import strategyConcrete.EnviarEmailConcrete;
 import strategyConcrete.ErroSenha;
@@ -28,7 +32,8 @@ import strategyContext.SenhaContext;
 import util.EnviarEmail;
 import util.Valida;
 
-@WebServlet({ "/cadastrar.htm", "/senha.htm", "/logar.htm" })
+@MultipartConfig
+@WebServlet({ "/cadastrar.htm","/senha.htm", "/logar.htm" })
 public class CtrlLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -65,7 +70,15 @@ public class CtrlLogin extends HttpServlet {
 	protected void cadastrar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		try {
+			
 		out = response.getWriter();
+
+		Part part = request.getPart("file");
+		String nomeImagem = request.getParameter("nomeImagem");
+		
+		part.write(request.getRealPath("/" + nomeImagem));
+		
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -79,15 +92,15 @@ public class CtrlLogin extends HttpServlet {
 		String cidade = request.getParameter("cidade");
 		String estado = request.getParameter("estado");
 
-		try {
 
+			Perfil p = new Perfil(null, "\\operacao\\" + nomeImagem);
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco);
+			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco,p);
 
 			CadastrarContext ctx = new CadastrarContext();
 			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail()) ? new ModoCadastrarFalha()
 					: new ModoCadastrar());
-			ctx.executarCadastramento(request, response, usuario, endereco);
+			ctx.executarCadastramento(request, response, usuario, endereco,p);
 
 		} catch (Exception e) {
 			request.getRequestDispatcher("cadastrar.jsp").forward(request, response);

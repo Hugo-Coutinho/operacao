@@ -1,6 +1,7 @@
 package ctrlPattern;
 
 import entity.Endereco;
+import entity.Perfil;
 
 public class UsuarioNull implements IUsuarioModel {
 
@@ -57,6 +58,12 @@ public class UsuarioNull implements IUsuarioModel {
 	public Endereco getEndereco() {
 		// TODO Auto-generated method stub
 		return new Endereco();
+	}
+
+	@Override
+	public Perfil getPerfil() {
+		// TODO Auto-generated method stub
+		return new Perfil();
 	}
 
 }

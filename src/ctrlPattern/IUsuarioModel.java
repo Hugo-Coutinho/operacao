@@ -1,6 +1,7 @@
 package ctrlPattern;
 
 import entity.Endereco;
+import entity.Perfil;
 
 public interface IUsuarioModel {
 
@@ -19,5 +20,7 @@ public interface IUsuarioModel {
 	public String getNome();
 	
 	public Endereco getEndereco();
+	
+	public Perfil getPerfil();
 
 }

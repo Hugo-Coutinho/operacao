@@ -60,7 +60,7 @@
 	
 </head>
 <body style="background-color:#C0C0C0">
-<form method="Post" action="cadastrar.htm">
+<form enctype="multipart/form-data">
 <div align="center"><h2 align="center"><b>Cadastrar</b><img 
 src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90" align="middle"></h2></div>
 <div class="col-md-6">
@@ -78,14 +78,18 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			
 			<label for="numero"style="font-family:Bell MT;">Senha :</label>
 			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
-			    
+				
+				<input type="text" name="nomeImagem" placeholder="digite aqui o nome da imagem exe: hugo.jpg" class="form-control">
+				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp">
+			
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
       			<select class="form-control" id="#" name="permissao">
         		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
-			 </div>   
+			</div>
+			    
 			<br />Sexo :<br /> <input
 			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
 			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/><br>
@@ -118,8 +122,9 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			<label for="estado" style="font-family:Bell MT;">estado :</label> 
 			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control">
 					
+
 						<button type="reset" class="btn btn-info">Limpar</button>
-						<button type="submit" class="btn btn-info">Salvar</button>
+						<button formmethod="Post" formaction="cadastrar.htm" class="btn btn-info">Salvar</button>
 				
 				</div>
 <%-- 				<div class="panel-footer" > <span style="color:maroon; font-family:Bell MT;"> ${msg} </span></div> --%>

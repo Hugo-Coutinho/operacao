@@ -163,6 +163,7 @@ scope="page"></jsp:useBean>
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>Foto</th>
         <th>Id</th>
         <th>Nome</th>
         <th>Logradouro</th>
@@ -172,6 +173,7 @@ scope="page"></jsp:useBean>
     <tbody>
     <c:forEach items="${mb.usuarios }" var="linha">
       <tr>
+        <td><img src="${linha.perfil.foto }" class="img-rounded" alt="Cinque Terre" width="104" height="50"></td>
         <td>${linha.idUsuario}</td>
         <td>${linha.nome}</td>
         <td>${linha.endereco.logradouro}</td>
@@ -184,9 +186,6 @@ scope="page"></jsp:useBean>
 </div>  
   </div>
  </div>
- 
 </body>
-
-
 
 </html>
