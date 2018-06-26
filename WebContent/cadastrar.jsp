@@ -9,6 +9,7 @@
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script type="text/javascript" >
         $(document).ready(function() {
@@ -58,11 +59,11 @@
         });
     </script>
 	
+	
 </head>
 <body style="background-color:#C0C0C0">
-<form enctype="multipart/form-data">
-<div align="center"><h2 align="center"><b>Cadastrar</b><img 
-src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90" align="middle"></h2></div>
+<form enctype="multipart/form-data"  id="form1" runat="server">
+<div align="center"><h2 align="center"><b>Cadastrar</b><img src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90" align="middle"></h2></div>
 <div class="col-md-6">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -80,7 +81,8 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
 				
 				<input type="text" name="nomeImagem" placeholder="digite aqui o nome da imagem exe: hugo.jpg" class="form-control">
-				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp">
+				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId">
+				  <img id="imagem" src="" alt="sua foto" width="250px" height="250px" class="img-rounded" />
 			
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
@@ -132,4 +134,25 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 		</div>                         
 </form>
 </body>
+
+<script type="text/javascript" >
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#imagem').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#fileId").change(function() {
+  readURL(this);
+});
+</script>
+
+
 </html>
