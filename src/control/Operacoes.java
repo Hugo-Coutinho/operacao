@@ -17,65 +17,30 @@ public class Operacoes {
 
 	public static String primo(int n) {
 
-		for (int i=2; i<=n; i++) {
+		for (int i = 2; i <= n; i++) {
 
-			if (n%2== 0) {
+			if (n % 2 == 0) {
 				return "<span style=font-family:Bell MT;> Nao Primo </span>";
 			}
-//			"<span style=font-family:Bell MT;> Primo </span>";
+			// "<span style=font-family:Bell MT;> Primo </span>";
 		}
 		return "<span style=font-family:Bell MT;> Primo </span>";
 	}
 
 	public static String perfeito(int n) {
 
-		
 		int temp = 0;
-		for(int i = 1; i<= n/2; i++) {
-			if(n%i==0) {
+		for (int i = 1; i <= n / 2; i++) {
+			if (n % i == 0) {
 				temp += i;
 			}
 		}
-		if(temp == n) {
+		if (temp == n) {
 			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
-		}else {
+		} else {
 			return n + " <span style=font-family:Bell MT;>Não Perfeito </span>";
 		}
-		
-		
-//		int divisor = 0;
-//		boolean resp = false;
-//		for (int i = 0; i < n; i++) {
-//
-//			if (i % 2 == 0) {
-//
-//				divisor += i;
-//			}
-//			if (n == divisor) {
-//
-//				resp = true;
-//			}
-//		}
-//
-//		if (resp == true) {
-//
-//			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
-//
-//		} else {
-//
-//			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
-//		}
-
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	public static String palavraPalindromo(String p) {
 
@@ -87,7 +52,7 @@ public class Operacoes {
 			return p + "<span style=font-family:Bell MT;> Palindromo </span>";
 
 		} else {
-			
+
 			return p + "<span style=font-family:Bell MT;> Não é Palindromo</span>";
 		}
 
@@ -108,12 +73,22 @@ public class Operacoes {
 	}
 
 	public static long fibonacci(int n) {
-		
-		if(n<=1) {
+
+		if (n <= 1) {
 			return n;
 		}
-		
-		return fibonacci(n-1) + fibonacci(n-2);
-		
+
+		return fibonacci(n - 1) + fibonacci(n - 2);
+
 	}
+
+	public static String getNomeImagem(String path) {
+
+		int qtdChar = path.length();
+		int posUltimaBarra = path.lastIndexOf("\\") + 1;
+
+		return path.substring(posUltimaBarra, qtdChar);
+
+	}
+
 }

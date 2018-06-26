@@ -75,9 +75,8 @@ public class CtrlLogin extends HttpServlet {
 		out = response.getWriter();
 
 		Part part = request.getPart("file");
-		String nomeImagem = request.getParameter("nomeImagem");
 		
-		part.write(request.getRealPath("/" + nomeImagem));
+		part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
 		
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -93,7 +92,7 @@ public class CtrlLogin extends HttpServlet {
 		String estado = request.getParameter("estado");
 
 
-			Perfil p = new Perfil(null, "\\operacao\\" + nomeImagem);
+			Perfil p = new Perfil(null, "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
 			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco,p);
 
