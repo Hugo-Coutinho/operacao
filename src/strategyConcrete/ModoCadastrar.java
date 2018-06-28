@@ -19,17 +19,13 @@ public class ModoCadastrar implements ICadastrar {
 	public void executar(HttpServletRequest request, HttpServletResponse response, Usuario usu, Endereco e, Perfil p)
 			throws Exception {
 
-		PrintWriter out = response.getWriter();
-
 		new PerfilDao().create(p);
 		new EnderecoDao().create(e);
 		new UsuarioDao().create(usu);
 
-		out.println("<script type=\"text/javascript\">");
-		out.println("alert('cadastrado com sucesso !!!');");
-		out.println("location='login.jsp';");
-		out.println("</script>");
-
+		request.setAttribute("alert", true);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
+		
 	}
 
 }
