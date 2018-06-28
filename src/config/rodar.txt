@@ -1,0 +1,7 @@
+passos necessários para rodar operação.
+segue os passos:
+
+1- ir no project facets e ativar java e dynamic web project
+2- ir no mock.sql e criar a procudre no banco
+3- rodar o main para o hibernate gerar as tabelas
+4- start no login.jsp

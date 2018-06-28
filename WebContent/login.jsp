@@ -45,14 +45,14 @@
 				swal("Bom Trabalho!!", "cadastrado com sucesso!", "success");
 			</script>
 		</c:when>
-		<c:otherwise>
+		<c:when test="${alert ==false}">
 			<script type="text/javascript">
 				swal("Opaaa!!", "você já possui cadastro..", "warning");
 			</script>
-  </c:otherwise>
+		</c:when>
 	</c:choose>
 
-<div class="vertical-center">
+	<div class="vertical-center">
 			<form method="post" action="logar.htm">
 				<div class="card">
 				<div class="card-header bg-info">
