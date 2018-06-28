@@ -28,6 +28,7 @@
     <ul class="nav navbar-nav">
       <li><a href="/operacao/Usu/operacao.jsp">Operações</a></li>
       <li><a href="/operacao/Usu/cadastro.jsp">Editar Cadastro</a></li>
+      <li><a href="/operacao/Usu/perfilUsu.jsp">Editar Foto</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/operacao/login.jsp"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
