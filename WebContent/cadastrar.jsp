@@ -99,7 +99,7 @@
 				<div class="panel-footer"></div>
 			
 			</div>
-		<a href="login.jsp" class="btn btn-link">voltar para página de login</a>	
+		<a href="login.jsp" class="btn btn-link"><img src="voltar.png"></a>	
 		</div>
 		
 		<div class="col-md-6">
