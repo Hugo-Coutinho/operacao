@@ -23,19 +23,19 @@
 <div class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/operacao/Admin/paginaInicial.jsp"><span style="font-size: 25px;">Pagina inicial</span></a>
+      <a class="navbar-brand" href="/operacao/Admin/paginaInicial.jsp"><span style="font-size: 21px;">Pagina inicial</span></a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/operacao/Admin/adminListUsuario.jsp"><span style="font-size: 25px;">Usuário</span></a></li>
-      <li><a href="/operacao/Admin/doc.jsp"><span style="font-size: 25px;">Anotações</span></a></li>
-      <li><a href="/operacao/Admin/perfilAdmin.jsp"><span style="font-size: 25px;">Editar Foto</span></a></li>
+      <li><a href="/operacao/Admin/adminListUsuario.jsp"><span style="font-size: 21px;">Usuário</span></a></li>
+      <li><a href="/operacao/Admin/doc.jsp"><span style="font-size: 21px;">Anotações</span></a></li>
+      <li><a href="/operacao/Admin/perfilAdmin.jsp"><span style="font-size: 21px;">Editar Foto</span></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/operacao/login.jsp"><span class="glyphicon glyphicon-user" style="font-size: 25px;">Sair</span></a></li>
+      <li><a href="/operacao/login.jsp"><span class="glyphicon glyphicon-user" style="font-size: 21px;">Sair</span></a></li>
     </ul>
     <div align="center">
     <ul>
-    <li><h4 style="color:#FFD700; font-size: 25px;">modo Administador: ${logado.nome}</h4></li>
+    <li><h4 style="color:#FFD700; font-size: 21px;">modo Administador: ${logado.nome}</h4></li>
     </ul>
     </div>
   </div>

@@ -4,20 +4,25 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import entity.Endereco;
+import entity.Perfil;
 import entity.Usuario;
 import io.Arquivo;
 import persistence.EnderecoDao;
+import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import util.EnviarEmail;
 
-@WebServlet({ "/Usu/upload.htm", "/Usu/uploadUsu.htm", "/Usu/editarUsu.htm", "/Usu/palavraPalindromo.htm",
+@MultipartConfig
+@WebServlet({ "/Usu/upload.htm", "/Usu/atualizarFotoModoUsu.htm","/Usu/uploadUsu.htm", "/Usu/editarUsu.htm", "/Usu/palavraPalindromo.htm",
 		"/Usu/frasePalindromo.htm", "/Usu/fatorial.htm", "/Usu/primo.htm", "/Usu/fibonacci.htm", "/Usu/perfeito.htm" })
 public class CtrlUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -55,6 +60,9 @@ public class CtrlUsuario extends HttpServlet {
 		case "/Usu/primo.htm":
 			primo(request, response);
 			break;
+		case "/Usu/atualizarFotoModoUsu.htm":
+			atualizaPerfil(request, response);
+			break;
 		case "/Usu/fibonacci.htm":
 			fibonacci(request, response);
 			break;
@@ -72,6 +80,30 @@ public class CtrlUsuario extends HttpServlet {
 
 	}
 
+	
+	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			Part part = request.getPart("file");
+			
+			part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
+			
+			Usuario usu = (Usuario) session.getAttribute("logado");
+			Perfil novoPerfil = usu.getPerfil();
+			novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
+			new PerfilDao().update(novoPerfil);
+			usu.getPerfil().setFoto(novoPerfil.getFoto());
+			session.setAttribute("logado", usu);
+			request.setAttribute("msg", "atualizado com sucesso");
+		} catch (Exception e) {
+			request.setAttribute("msg", e.getMessage());
+		}finally {
+			request.getRequestDispatcher("perfilUsu.jsp").forward(request, response);
+		}
+		
+	}
+
+	
 	protected void perfeito(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

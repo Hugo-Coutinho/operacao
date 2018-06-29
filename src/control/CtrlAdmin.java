@@ -4,25 +4,29 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import ctrlPattern.IUsuarioModel;
-import ctrlPattern.UsuarioNull;
 import entity.Endereco;
+import entity.Perfil;
 import entity.Usuario;
 import io.Arquivo;
 import persistence.EnderecoDao;
+import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import strategyConcrete.ModoDeletar;
 import strategyConcrete.ModoDeletarNulo;
 import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
-@WebServlet({ "/Admin/anotar.htm", "/Admin/editar.htm", "/Admin/deletar.htm" })
+@MultipartConfig
+@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,10 +54,35 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/anotar.htm":
 			anotar(request, response);
 			break;
+		case "/Admin/atualizarFoto.htm":
+			atualizaPerfil(request, response);
+			break;
 		case "/Admin/deletar.htm":
 			deletar(request, response);
 			break;
 		}
+	}
+
+	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			Part part = request.getPart("file");
+			
+			part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
+			
+			Usuario usu = (Usuario) session.getAttribute("logado");
+			Perfil novoPerfil = usu.getPerfil();
+			novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
+			new PerfilDao().update(novoPerfil);
+			usu.getPerfil().setFoto(novoPerfil.getFoto());
+			session.setAttribute("logado", usu);
+			request.setAttribute("msg", "atualizado com sucesso");
+		} catch (Exception e) {
+			request.setAttribute("msg", e.getMessage());
+		}finally {
+			request.getRequestDispatcher("perfilAdmin.jsp").forward(request, response);
+		}
+		
 	}
 
 	protected void editar(HttpServletRequest request, HttpServletResponse response)
