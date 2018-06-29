@@ -14,7 +14,7 @@
 
 <textarea rows="20" cols="80" name="texto"></textarea><br>
 <br><br>
-<input type="text" name="path" required="required" placeholder="cole aqui o caminho + nome do arquivo + extensão, exemplo: D:\Git\meu\listaCompra.docx" style="width: 500px;" class="form-control">
+<input type="text" name="path" required="required" placeholder="cole aqui o caminho + nome do arquivo + extensão, exemplo: D:\Git\meu\listaCompra.docx" style="width: 580px;" class="form-control">
 <br>
 <input type="submit" value="gerar anotação.." class="btn btn-primary"> 
 <br>

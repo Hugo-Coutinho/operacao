@@ -7,6 +7,12 @@
 </head>
 <body>
 <%@include file="/Admin/headerADM.jsp" %>
+<div align="center" style="padding-top: 100px">
+<img src="${logado.perfil.foto}" alt="perfil" class="img-thumbnail" alt="perfil" width="390px" height="450px">
+<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId">
+<br>
+<button type="button" class="btn btn-primary btn-lg">Atualizar</button>
+</div>
 
 
 
