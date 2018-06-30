@@ -80,19 +80,18 @@
 			<label for="numero"style="font-family:Bell MT;">Senha :</label>
 			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
 				
-				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId">
+				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId" required="required">
 				  <img id="imagem" src="" alt="sua foto" width="250px" height="250px" class="img-rounded" />
 			
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
-      			<select class="form-control" id="#" name="permissao">
+      			<select class="form-control" id="#" name="permissao" required="required">
         		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
 			</div>
 			    
-			<br />Sexo :<br /> <input
-			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
+			<br />Sexo :<br /> <input type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
 			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/><br>
 			
 				</div>

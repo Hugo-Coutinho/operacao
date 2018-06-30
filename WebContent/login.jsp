@@ -33,7 +33,7 @@
 <%
 	try {
 		session.setAttribute("logado", null);
-		session.invalidate();
+// 		session.invalidate();
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	}
