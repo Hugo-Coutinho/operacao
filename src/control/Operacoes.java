@@ -20,39 +20,26 @@ public class Operacoes {
 		for (int i = 2; i <= n; i++) {
 
 			if (n % 2 == 0) {
-				return n + " primo";
+				return "<span style=font-family:Bell MT;> Nao Primo </span>";
 			}
-
+			// "<span style=font-family:Bell MT;> Primo </span>";
 		}
-		return n + " nao primo";
-
+		return "<span style=font-family:Bell MT;> Primo </span>";
 	}
 
 	public static String perfeito(int n) {
 
-		int divisor = 0;
-		boolean resp = false;
-		for (int i = 0; i < n; i++) {
-
-			if (i % 2 == 0) {
-
-				divisor += i;
-			}
-			if (n == divisor) {
-
-				resp = true;
+		int temp = 0;
+		for (int i = 1; i <= n / 2; i++) {
+			if (n % i == 0) {
+				temp += i;
 			}
 		}
-
-		if (resp == true) {
-
-			return n + " perfeito";
-
+		if (temp == n) {
+			return n + " <span style=font-family:Bell MT;> Perfeito </span>";
 		} else {
-
-			return n + " nao perfeito";
+			return n + " <span style=font-family:Bell MT;>Não Perfeito </span>";
 		}
-
 	}
 
 	public static String palavraPalindromo(String p) {
@@ -62,11 +49,11 @@ public class Operacoes {
 
 		if (palavra.toString().equals(p)) {
 
-			return p + " palindromo";
+			return p + "<span style=font-family:Bell MT;> Palindromo </span>";
 
 		} else {
 
-			return p + " nao  palindromo";
+			return p + "<span style=font-family:Bell MT;> Não é Palindromo</span>";
 		}
 
 	}
@@ -78,20 +65,30 @@ public class Operacoes {
 		sb.reverse();
 		if (sb.toString().equals(palavra)) {
 
-			return p + " palindromo";
+			return p + "<span style=font-family:Bell MT;> Palindromo </span>";
 		} else {
-			return p + " nao e palindromo";
+			return p + "<span style=font-family:Bell MT;> Não é Palindromo</span>";
 		}
 
 	}
 
 	public static long fibonacci(int n) {
-		
-		if(n<=1) {
+
+		if (n <= 1) {
 			return n;
 		}
-		
-		return fibonacci(n-1) + fibonacci(n-2);
-		
+
+		return fibonacci(n - 1) + fibonacci(n - 2);
+
 	}
+
+	public static String getNomeImagem(String path) {
+
+		int qtdChar = path.length();
+		int posUltimaBarra = path.lastIndexOf("\\") + 1;
+
+		return path.substring(posUltimaBarra, qtdChar);
+
+	}
+
 }

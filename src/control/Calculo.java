@@ -1,8 +1,8 @@
 package control;
 
-import functional.ICalculoUmLong;
-import functional.ICalculoUmParamString;
-import functional.ICalculoUmString;
+import iFunctional.ICalculoUmLong;
+import iFunctional.ICalculoUmParamString;
+import iFunctional.ICalculoUmString;
 
 public class Calculo {
 

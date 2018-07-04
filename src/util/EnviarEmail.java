@@ -2,32 +2,40 @@ package util;
 
 import org.apache.commons.mail.HtmlEmail;
 
+import entity.Usuario;
+import persistence.UsuarioDao;
+
 public class EnviarEmail {
 
-	private static String HOSTNAME = "smtp.gmail.com";
-	private static String USERNAME = "cotiinformatica1@gmail.com";
-	private static String PASSWORD = "aulaJava";
+	private static final String HOSTNAME = "smtp.gmail.com";
+	private static final String USERNAME = "cotiexemplo@gmail.com";
+	private static final String PASSWORD = "@coticoti@";
 
-	public Boolean enviar(String para, String assunto, String msg) {
+	// public static Email conectaEmail()throws Exception{
+
+	// }
+
+	public boolean enviar(String para, String assunto, String msg) {
 
 		try {
 
 			HtmlEmail html = new HtmlEmail();
 			html.setHostName(HOSTNAME);
-			html.setSmtpPort(465);
-			html.setSSL(true);
+			html.setSmtpPort(587);
 			html.setAuthentication(USERNAME, PASSWORD);
-			html.addTo(para);
+			html.setTLS(true);
+			html.setSSL(true);
+			html.setFrom(USERNAME, USERNAME);
 			html.setSubject(assunto);
-			html.setFrom(USERNAME);
+			html.addTo(para);
 			html.setHtmlMsg(msg);
-			html.setCharset("utf-8");
 			html.send();
-			return true;
+			html.setCharset("utf-8");
+			 return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			 return false;
 		}
 
 	}
@@ -35,7 +43,8 @@ public class EnviarEmail {
 	public static void main(String[] args) {
 
 		EnviarEmail ee = new EnviarEmail();
-		ee.enviar("hugocoutinho2011@gmail.com","testando sem nome", "foi , parabéns !!!");
+//		ee.enviar("hugocoutinho2011@gmail.com", "testando sem nome", "foi , parabéns !!!");
+		new EnviarEmail().enviar("hugocoutinho2011@gmail.com", "senha do sistema operação", "senha 123");
 
 	}
 

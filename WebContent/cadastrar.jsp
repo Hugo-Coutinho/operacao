@@ -6,13 +6,64 @@
 <title>cadastrar</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            function limpa_formulário_cep() {
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#ibge").val("");
+            }
+            
+            $("#cep").blur(function() {
+                var cep = $(this).val().replace(/\D/g, '');
+                if (cep != "") {
+                    var validacep = /^[0-9]{8}$/;
+                    if(validacep.test(cep)) {
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
+                        $("#ibge").val("...");
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                            if (!("erro" in dados)) {
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                            } //end if.
+                            else {
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+    </script>
+	
+	
 </head>
 <body style="background-color:#C0C0C0">
-<form method="Post" action="cadastrar.htm">
-<div align="center"><h2 align="center"><b>Cadastrar</b><img 
-src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90" align="middle"></h2></div>
+<form enctype="multipart/form-data"  id="form1" runat="server">
+<div align="center"><h2 align="center"><b>Cadastrar</b><img src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90" align="middle"></h2></div>
 <div class="col-md-6">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -28,23 +79,26 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			
 			<label for="numero"style="font-family:Bell MT;">Senha :</label>
 			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
-			    
+				
+				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId" required="required">
+				  <img id="imagem" src="" alt="sua foto" width="250px" height="250px" class="img-rounded" />
+			
 			<div class="form-group">
       			<label for="#">tipo de acesso:</label>
-      			<select class="form-control" id="#" name="permissao">
-        		<option>Admnistrador</option>
+      			<select class="form-control" id="#" name="permissao" required="required">
+        		<option>Administrador</option>
         		<option>Usuario</option>
 			 	 </select>    
-			 </div>   
-			<br />Sexo :<br /> <input
-			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
+			</div>
+			    
+			<br />Sexo :<br /> <input type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
 			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/><br>
 			
 				</div>
 				<div class="panel-footer"></div>
 			
 			</div>
-		<a href="login.jsp" class="btn btn-link">voltar para página de login</a>	
+		<a href="login.jsp" class="btn btn-link"><img src="voltar.png"></a>	
 		</div>
 		
 		<div class="col-md-6">
@@ -54,10 +108,10 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 				</div>
 				<div class="panel-body">
 			<label for="cep" style="font-family:Bell MT;">cep :</label> 
-			<input type="text" id="bairro"name="cep" required="required" placeholder="digite seu cep" pattern="[0-9]{8}" class="form-control">
+			<input type="text" id="cep"name="cep" required="required" placeholder="digite seu cep" pattern="[0-9]{8}" class="form-control">
 			<br><br>
 			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
-			<input type="text" id="logradouro"name="logradouro" required="required" placeholder="digite seu logradouro" pattern="[a-z A-Z]+" class="form-control">
+			<input type="text" id="rua"name="logradouro" required="required" placeholder="digite seu logradouro" pattern="[a-z A-Z]+" class="form-control">
 
 			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
 			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu bairro" pattern="[a-z A-Z]+" class="form-control">
@@ -66,17 +120,37 @@ src="cadastrar.png" class="img-circle" alt="Cinque Terre" width="100" height="90
 			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite seu cidade" pattern="[a-z A-Z]+" class="form-control">
 			
 			<label for="estado" style="font-family:Bell MT;">estado :</label> 
-			<input type="text" id="estado"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control">
-			
+			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control">
+					
+
 						<button type="reset" class="btn btn-info">Limpar</button>
-						<button type="submit" class="btn btn-info">Salvar</button>
+						<button formmethod="Post" formaction="cadastrar.htm" class="btn btn-info">Salvar</button>
 				
 				</div>
-				<div class="panel-footer">
-				${msg}
-				</div>
+<%-- 				<div class="panel-footer" > <span style="color:maroon; font-family:Bell MT;"> ${msg} </span></div> --%>
 			</div>
-		</div>
+		</div>                         
 </form>
 </body>
+
+<script type="text/javascript" >
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#imagem').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#fileId").change(function() {
+  readURL(this);
+});
+</script>
+
+
 </html>

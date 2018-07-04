@@ -1,4 +1,4 @@
-package functional;
+package iFunctional;
 
 @FunctionalInterface
 public interface ICalculoUmString {

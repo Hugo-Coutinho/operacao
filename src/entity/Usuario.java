@@ -9,12 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import ctrlPattern.IUsuarioModel;
+
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, IUsuarioModel {
 
 	/**
 	 * 
@@ -24,14 +27,14 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idUsuario;
 	@Column(length = 50)
-	@Pattern(regexp="[a-z A-Z]{2,50}" , message="Error no nome")
+	@Pattern(regexp = "[a-z A-Z]{2,50}", message = "Error no nome")
 	private String nome;
 	@Column(length = 50, unique = true)
-	@Pattern(regexp="^.+@.+\\.[a-z]+$",message="deu ruim no email")
+	@Pattern(regexp = "^.+@.+\\.[a-z]+$", message = "deu ruim no email")
 	private String email;
 	@Column
 	private Integer senha;
-	@Column(columnDefinition=" enum('m','f')")
+	@Column(columnDefinition = " enum('m','f')")
 	private String sexo;
 	@Column
 	private String foto;
@@ -41,6 +44,10 @@ public class Usuario implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
+
+	@OneToOne()
+	@JoinColumn(name = "id_perfil")
+	private Perfil perfil;
 
 	public Usuario() {
 
@@ -59,6 +66,20 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
+			String permissao, Endereco endereco, Perfil perfil) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.sexo = sexo;
+		this.foto = foto;
+		this.permissao = permissao;
+		this.endereco = endereco;
+		this.perfil = perfil;
+	}
+
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
 			String permissao, Endereco endereco) {
 		super();
 		this.idUsuario = idUsuario;
@@ -70,8 +91,6 @@ public class Usuario implements Serializable {
 		this.permissao = permissao;
 		this.endereco = endereco;
 	}
-	
-	
 
 	public Usuario(String nome, String email, Integer senha, String sexo, String foto, String permissao) {
 		super();
@@ -153,4 +172,11 @@ public class Usuario implements Serializable {
 		this.foto = foto;
 	}
 
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 }

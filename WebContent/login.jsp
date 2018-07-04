@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
 <title>pagina de login</title>
    <title>Login</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <link rel="stylesheet" href="css/bootstrap.css">
    <style type="text/css">
  .vertical-center {
-  min-height: 100%;
+  min-height: 100%;		
   min-height: 100vh;
   display: -webkit-box;
   display: -moz-box;
@@ -28,7 +30,29 @@
     </style>
 </head>
 <body style="background-color:#C0C0C0;">
-<div class="vertical-center">
+<%
+	try {
+		session.setAttribute("logado", null);
+// 		session.invalidate();
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	}
+%>
+
+	<c:choose>
+		<c:when test="${alert }">
+			<script type="text/javascript">
+				swal("Bom Trabalho!!", "cadastrado com sucesso!", "success");
+			</script>
+		</c:when>
+		<c:when test="${alert ==false}">
+			<script type="text/javascript">
+				swal("Opaaa!!", "você já possui cadastro..", "warning");
+			</script>
+		</c:when>
+	</c:choose>
+
+	<div class="vertical-center">
 			<form method="post" action="logar.htm">
 				<div class="card">
 				<div class="card-header bg-info">

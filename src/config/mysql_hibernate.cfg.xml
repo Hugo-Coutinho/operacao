@@ -15,6 +15,7 @@
     
     <mapping class="entity.Usuario"/>
     <mapping class="entity.Endereco"/>
+    <mapping class="entity.Perfil"/>
 
 
  </session-factory>

@@ -1,7 +1,6 @@
 package entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.io.Serializable; 
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,8 +33,6 @@ public class Endereco implements Serializable{
 	private String estado;
 	@Column
 	private String cep;
-	@OneToMany(mappedBy="endereco",cascade=CascadeType.REMOVE)
-	private List<Usuario> usuarios;
 
 	public Endereco() {
 
@@ -106,24 +103,4 @@ public class Endereco implements Serializable{
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
-	public List<Usuario> getUsuario() {
-		return usuarios;
-	}
-
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuarios = usuario;
-	}
-
-	public void adicionar(Usuario... u) {
-		if (usuarios == null) {
-
-			usuarios = new ArrayList<Usuario>();
-		}
-		for (Usuario x : u) {
-			usuarios.add(x);
-		}
-
-	}
-
 }
