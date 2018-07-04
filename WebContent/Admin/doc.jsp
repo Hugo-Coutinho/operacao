@@ -301,6 +301,7 @@ $(document).ready(function(){
 							<td>${linha.endereco.bairro}</td>
 							<td>
 							<a href="#editarAnotacao" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+							<a href="#ver" data-toggle="modal"><i data-toggle="tooltip" title="visualizar"class="material-icons">play_circle_filled</i></a>
                             <a href="#deletarAnotacao" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
                             </td>
 						</tr>
@@ -377,6 +378,22 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+<!-- ver -->
+	<div id="ver" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" align="center">visualizando anotação</h4>
+				</div>
+				<div class="modal-body">
+					<pre>vai vendo..</pre>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="sair">
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Delete Modal HTML -->
 	<div id="deletarAnotacao" class="modal fade">
 		<div class="modal-dialog">
@@ -388,7 +405,7 @@ $(document).ready(function(){
 					</div>
 					<div class="modal-body">					
 						<p>Tem certeza que deseja remover essa anotacão?</p>
-						<p class="text-warning"><small>Essa acão nao poderá ser desfeita.</small></p>
+						<p class="text-warning"><small>Essa acão não poderá ser desfeita.</small></p>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">

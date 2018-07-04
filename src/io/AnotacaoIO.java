@@ -1,5 +1,7 @@
 package io;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 
 public class AnotacaoIO implements IArquivo {
@@ -31,4 +33,38 @@ public class AnotacaoIO implements IArquivo {
 		fw.write(t);
 		fw.flush();
 	}
+
+	public String lerArquivo(String nome) {
+
+		try {
+
+			FileReader fr = new FileReader(caminho + "\\" + nome + ".txt");
+			BufferedReader br = new BufferedReader(fr);
+			String linha = br.readLine();
+			String resp = "";
+			while (linha != null) {
+				resp += linha + "\n";
+				linha = br.readLine();
+			}
+			br.close();
+			return resp;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "não encontrado";
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			AnotacaoIO noteIo = new AnotacaoIO("diaTeste");
+			noteIo.open();
+			noteIo.writeFile("teste o dia todo ...\n vai vendo.");
+			noteIo.close();
+			System.out.println(noteIo.lerArquivo("diaTeste"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 }
