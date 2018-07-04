@@ -49,8 +49,27 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
 
+	@OneToOne()
+	@JoinColumn(name = "id_anotacao")
+	private Anotacao anotacao;
+
 	public Usuario() {
 
+	}
+
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
+			String permissao, Endereco endereco, Perfil perfil, Anotacao anotacao) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.sexo = sexo;
+		this.foto = foto;
+		this.permissao = permissao;
+		this.endereco = endereco;
+		this.perfil = perfil;
+		this.anotacao = anotacao;
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
@@ -179,4 +198,13 @@ public class Usuario implements Serializable, IUsuarioModel {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+
+	public Anotacao getAnotacao() {
+		return anotacao;
+	}
+
+	public void setAnotacao(Anotacao anotacao) {
+		this.anotacao = anotacao;
+	}
+
 }
