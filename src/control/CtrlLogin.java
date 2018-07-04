@@ -94,7 +94,7 @@ public class CtrlLogin extends HttpServlet {
 
 			Perfil p = new Perfil(null, "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco,p);
+			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco,p,null);
 
 			CadastrarContext ctx = new CadastrarContext();
 			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail()) ? new ModoCadastrarFalha()

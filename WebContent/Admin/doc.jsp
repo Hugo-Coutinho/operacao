@@ -308,6 +308,7 @@ $(document).ready(function(){
 
 				</tbody>
 			</table>
+			${errorAddAnotacao }
 			<div class="clearfix">
                 <div class="hint-text">mostrando <b>2</b> de <b>6</b> anotacões</div>
                 <ul class="pagination">
@@ -334,16 +335,16 @@ $(document).ready(function(){
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Nome da anotacão</label>
-							<input type="text" class="form-control" required>
+							<input type="text" name="nome" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Digite aqui sua anotacão</label>
-							<textarea class="form-control" required></textarea>
+							<textarea class="form-control" name="anotacao" required></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="submit" class="btn btn-success" value="Adicionar">
+						<input type="submit" class="btn btn-success" value="Adicionar" formaction="addAnotacao.htm" formmethod="Post">
 					</div>
 				</form>
 			</div>

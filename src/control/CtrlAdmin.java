@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,10 +14,13 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import ctrlPattern.IUsuarioModel;
+import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
 import entity.Usuario;
+import io.AnotacaoIO;
 import io.Arquivo;
+import persistence.AnotacaoDao;
 import persistence.EnderecoDao;
 import persistence.PerfilDao;
 import persistence.UsuarioDao;
@@ -26,7 +30,8 @@ import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
 @MultipartConfig
-@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm" })
+@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
+		"/Admin/addAnotacao.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +43,7 @@ public class CtrlAdmin extends HttpServlet {
 	Usuario usuario;
 	Endereco endereco;
 	Calculo calculo;
+	AnotacaoIO anotacaoIO;
 
 	public CtrlAdmin() {
 		super();
@@ -60,16 +66,39 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/deletar.htm":
 			deletar(request, response);
 			break;
+		case "/Admin/addAnotacao.htm":
+			addAnotacao(request, response);
+			break;
 		}
 	}
 
-	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void addAnotacao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		String nome = request.getParameter("nome");
+		String nota = request.getParameter("anotacao");
+		try {
+			new AnotacaoDao().create(new Anotacao(null, nome, new Date()));
+			anotacaoIO = new AnotacaoIO(nome);
+			anotacaoIO.open();
+			anotacaoIO.writeFile(nota);
+			anotacaoIO.close();
+		} catch (Exception e) {
+			request.setAttribute("errorAddAnotacao", e.getMessage());
+		} finally {
+			request.getRequestDispatcher("doc.jsp").forward(request, response);
+		}
+	}
+
+	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			Part part = request.getPart("file");
-			
+
 			part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
-			
+
 			Usuario usu = (Usuario) session.getAttribute("logado");
 			Perfil novoPerfil = usu.getPerfil();
 			novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
@@ -79,10 +108,10 @@ public class CtrlAdmin extends HttpServlet {
 			request.setAttribute("msg", "atualizado com sucesso");
 		} catch (Exception e) {
 			request.setAttribute("msg", e.getMessage());
-		}finally {
+		} finally {
 			request.getRequestDispatcher("perfilAdmin.jsp").forward(request, response);
 		}
-		
+
 	}
 
 	protected void editar(HttpServletRequest request, HttpServletResponse response)
@@ -104,7 +133,8 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e,u2.getPerfil());
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e, u2.getPerfil(),
+					null);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

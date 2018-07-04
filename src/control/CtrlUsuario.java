@@ -136,7 +136,7 @@ public class CtrlUsuario extends HttpServlet {
 		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e,u2.getPerfil());
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e,u2.getPerfil(),null);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

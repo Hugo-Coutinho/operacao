@@ -16,7 +16,7 @@ public class AnotacaoIO implements IArquivo {
 	@Override
 	public void open() throws Exception {
 		// TODO Auto-generated method stub
-		fw = new FileWriter(caminho + "\\WebContent\\Admin\\anotacoes\\" + nome + ".txt", false);
+		fw = new FileWriter(caminho + "\\" + nome + ".txt", false);
 	}
 
 	@Override
