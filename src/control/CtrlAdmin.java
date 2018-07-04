@@ -104,7 +104,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e,u2.getPerfil());
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
@@ -112,7 +112,7 @@ public class CtrlAdmin extends HttpServlet {
 			request.setAttribute("msg", "editado com sucesso");
 
 		} catch (Exception e) {
-			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
+			request.setAttribute("msg", "fudeu mane!!, " + e.getMessage());
 			e.printStackTrace();
 
 		} finally {

@@ -106,19 +106,19 @@
 					<div class="panel-title" align="center">Endereco</div>
 				</div>
 				<div class="panel-body">
-			<label for="cep" style="font-family:Bell MT;">cep :</label> 
+			<label for="cep" style="font-family:Bell MT;">cep : ${logado.endereco.cep}</label> 
 			<input type="text" id="cep"name="cep" required="required" placeholder="digite seu novo cep" pattern="[0-9]{8}" class="form-control">
 			
-			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
+			<label for="logradouro" style="font-family:Bell MT;">logradouro : ${logado.endereco.logradouro}</label> 
 			<input type="text" id="rua"name="logradouro" required="required" placeholder="digite seu novo logradouro" pattern="[a-z A-Z]+" class="form-control">
 
-			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
+			<label for="bairro" style="font-family:Bell MT;">bairro : ${logado.endereco.bairro}</label> 
 			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu novo bairro" pattern="[a-z A-Z]+" class="form-control">
 			
-			<label for="cidade" style="font-family:Bell MT;">cidade :</label> 
+			<label for="cidade" style="font-family:Bell MT;">cidade : ${logado.endereco.cidade}</label> 
 			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite sua cidade" pattern="[a-z A-Z]+" class="form-control">
 			
-			<label for="estado" style="font-family:Bell MT;">estado :</label>
+			<label for="estado" style="font-family:Bell MT;">estado : ${logado.endereco.estado}</label> 
 			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control"> <br /> <br />
 <!-- 						<button type="reset" class="btn btn-info">Limpar</button> -->
 <!-- 						<button type="submit" class="btn btn-info">Salvar</button> -->

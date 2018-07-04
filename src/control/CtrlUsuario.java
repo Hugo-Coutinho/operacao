@@ -22,7 +22,7 @@ import persistence.UsuarioDao;
 import util.EnviarEmail;
 
 @MultipartConfig
-@WebServlet({ "/Usu/upload.htm", "/Usu/atualizarFotoModoUsu.htm","/Usu/uploadUsu.htm", "/Usu/editarUsu.htm", "/Usu/palavraPalindromo.htm",
+@WebServlet({ "/Usu/upload.htm", "/Usu/atualizarFotoModoUsu.htm", "/Usu/editarUsu.htm", "/Usu/palavraPalindromo.htm",
 		"/Usu/frasePalindromo.htm", "/Usu/fatorial.htm", "/Usu/primo.htm", "/Usu/fibonacci.htm", "/Usu/perfeito.htm" })
 public class CtrlUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -66,9 +66,6 @@ public class CtrlUsuario extends HttpServlet {
 		case "/Usu/fibonacci.htm":
 			fibonacci(request, response);
 			break;
-		case "/Usu/uploadUsu.htm":
-			uploadUsu(request, response);
-			break;
 		case "/Usu/editarUsu.htm":
 			editarUsu(request, response);
 			break;
@@ -80,30 +77,29 @@ public class CtrlUsuario extends HttpServlet {
 
 	}
 
-	
-	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void atualizaPerfil(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			Part part = request.getPart("file");
-			
-			part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
-			
-			Usuario usu = (Usuario) session.getAttribute("logado");
-			Perfil novoPerfil = usu.getPerfil();
-			novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
-			new PerfilDao().update(novoPerfil);
-			usu.getPerfil().setFoto(novoPerfil.getFoto());
-			session.setAttribute("logado", usu);
-			request.setAttribute("msg", "atualizado com sucesso");
+				
+				part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
+				
+				Usuario usu = (Usuario) session.getAttribute("logado");
+				Perfil novoPerfil = usu.getPerfil();
+				novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
+				new PerfilDao().update(novoPerfil);
+				usu.getPerfil().setFoto(novoPerfil.getFoto());
+				session.setAttribute("logado", usu);
+				request.setAttribute("msg", "atualizado com sucesso");
 		} catch (Exception e) {
 			request.setAttribute("msg", e.getMessage());
-		}finally {
+		} finally {
 			request.getRequestDispatcher("perfilUsu.jsp").forward(request, response);
 		}
-		
+
 	}
 
-	
 	protected void perfeito(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -140,7 +136,7 @@ public class CtrlUsuario extends HttpServlet {
 		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e,u2.getPerfil());
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
@@ -156,23 +152,6 @@ public class CtrlUsuario extends HttpServlet {
 			request.getRequestDispatcher("cadastro.jsp").forward(request, response);
 
 		}
-	}
-
-	protected void uploadUsu(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		try {
-
-			request.setAttribute("msg", "ok!!");
-
-		} catch (Exception e) {
-
-		} finally {
-
-			request.getRequestDispatcher("/Usu/fotoUsu.jsp").forward(request, response);
-
-		}
-
 	}
 
 	protected void fibonacci(HttpServletRequest request, HttpServletResponse response)

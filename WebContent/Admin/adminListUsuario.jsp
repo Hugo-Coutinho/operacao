@@ -3,8 +3,7 @@
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="entity.*, manager.*, java.util.*, persistence.*" %>
-<jsp:useBean id="mb" class="manager.ManagerBean"
-scope="page"></jsp:useBean>
+<jsp:useBean id="mb" class="manager.ManagerBean" scope="page"></jsp:useBean>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -125,19 +124,19 @@ scope="page"></jsp:useBean>
 					<div class="panel-title" align="center">Editar Endereco</div>
 				</div>
 				<div class="panel-body">
-			<label for="cep" style="font-family:Bell MT;">cep :</label> 
+			<label for="cep" style="font-family:Bell MT;">cep : ${logado.endereco.cep}</label> 
 			<input type="text" id="cep"name="cep" required="required" placeholder="digite seu novo cep" pattern="[0-9]{8}" class="form-control">
 			
-			<label for="logradouro" style="font-family:Bell MT;">logradouro :</label> 
+			<label for="logradouro" style="font-family:Bell MT;">logradouro : ${logado.endereco.logradouro}</label> 
 			<input type="text" id="rua"name="logradouro" required="required" placeholder="digite seu novo logradouro" pattern="[a-z A-Z]+" class="form-control">
 
-			<label for="bairro" style="font-family:Bell MT;">bairro :</label> 
+			<label for="bairro" style="font-family:Bell MT;">bairro : ${logado.endereco.bairro}</label> 
 			<input type="text" id="bairro"name="bairro" required="required" placeholder="digite seu novo bairro" pattern="[a-z A-Z]+" class="form-control">
 			
-			<label for="cidade" style="font-family:Bell MT;">cidade :</label> 
+			<label for="cidade" style="font-family:Bell MT;">cidade : ${logado.endereco.cidade}</label> 
 			<input type="text" id="cidade"name="cidade" required="required" placeholder="digite sua cidade" pattern="[a-z A-Z]+" class="form-control">
 			
-			<label for="estado" style="font-family:Bell MT;">estado :</label>
+			<label for="estado" style="font-family:Bell MT;">estado : ${logado.endereco.estado}</label>
 			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control"> <br /> <br />
 <!-- 						<button type="reset" class="btn btn-info">Limpar</button> -->
 <!-- 						<button type="submit" class="btn btn-info">Salvar</button> -->
