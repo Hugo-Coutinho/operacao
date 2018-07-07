@@ -141,6 +141,7 @@ public class CtrlUsuario extends HttpServlet {
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
 
+			session.setAttribute("logado", usuario);
 			request.setAttribute("msg", "editado com sucesso");
 
 		} catch (Exception e) {

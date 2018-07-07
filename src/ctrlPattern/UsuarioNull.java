@@ -1,5 +1,6 @@
 package ctrlPattern;
 
+import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
 
@@ -51,7 +52,8 @@ public class UsuarioNull implements IUsuarioModel {
 	public String toString() {
 		return "UsuarioNull [getFoto()=" + getFoto() + ", getSenha()=" + getSenha() + ", getPermissao()="
 				+ getPermissao() + ", getSexo()=" + getSexo() + ", getIdUsuario()=" + getIdUsuario() + ", getEmail()="
-				+ getEmail() + ", getNome()=" + getNome() + "]";
+				+ getEmail() + ", getNome()=" + getNome() + ", getEndereco()=" + getEndereco() + ", getPerfil()="
+				+ getPerfil() + ", getAnotacao()=" + getAnotacao() + "]";
 	}
 
 	@Override
@@ -64,6 +66,12 @@ public class UsuarioNull implements IUsuarioModel {
 	public Perfil getPerfil() {
 		// TODO Auto-generated method stub
 		return new Perfil();
+	}
+
+	@Override
+	public Anotacao getAnotacao() {
+		// TODO Auto-generated method stub
+		return new Anotacao();
 	}
 
 }

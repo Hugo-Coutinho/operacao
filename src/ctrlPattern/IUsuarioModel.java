@@ -1,5 +1,6 @@
 package ctrlPattern;
 
+import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
 
@@ -16,11 +17,13 @@ public interface IUsuarioModel {
 	public Integer getIdUsuario();
 
 	public String getEmail();
-	
+
 	public String getNome();
-	
+
 	public Endereco getEndereco();
-	
+
 	public Perfil getPerfil();
+
+	public Anotacao getAnotacao();
 
 }

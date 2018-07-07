@@ -30,8 +30,7 @@ import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
 @MultipartConfig
-@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
-		"/Admin/addAnotacao.htm" })
+@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm", "/Admin/addAnotacao.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -139,6 +138,7 @@ public class CtrlAdmin extends HttpServlet {
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
 
+			session.setAttribute("logado", usuario);
 			request.setAttribute("msg", "editado com sucesso");
 
 		} catch (Exception e) {
