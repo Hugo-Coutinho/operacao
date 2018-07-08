@@ -80,8 +80,8 @@ public class Anotacao implements Serializable {
 		this.nome = nome;
 	}
 
-	public Date getData() {
-		return data;
+	public String getData() {
+		return SDF.format(data);
 	}
 
 	public void setData(Date data) {

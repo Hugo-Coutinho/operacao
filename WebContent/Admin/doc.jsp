@@ -290,15 +290,15 @@ $(document).ready(function(){
 						<th class="col-md-3">acão</th>
 					</tr>
 				</thead>
-				<c:forEach items="${mb.usuarios }" var="linha">
+				<c:forEach items="${mb.notas }" var="nota">
 					<tbody>
 						<tr>
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox1" name="options[]" value="1">
 									<label for="checkbox1"></label>
 							</span></td>
-							<td>${linha.nome}</td>
-							<td>${linha.endereco.bairro}</td>
+							<td>${nota.nome}</td>
+							<td>${nota.data}</td>
 							<td>
 							<a href="#editarAnotacao" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
 							<a href="#ver" data-toggle="modal"><i data-toggle="tooltip" title="visualizar"class="material-icons">play_circle_filled</i></a>
