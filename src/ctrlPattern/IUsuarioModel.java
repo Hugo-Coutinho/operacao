@@ -1,5 +1,7 @@
 package ctrlPattern;
 
+import java.util.List;
+
 import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
@@ -24,6 +26,6 @@ public interface IUsuarioModel {
 
 	public Perfil getPerfil();
 
-	public Anotacao getAnotacao();
+	public List<Anotacao> getAnotacoes(); 
 
 }

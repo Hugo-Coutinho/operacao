@@ -2,7 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,7 +32,8 @@ import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
 @MultipartConfig
-@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm", "/Admin/addAnotacao.htm" })
+@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
+		"/Admin/addAnotacao.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +46,7 @@ public class CtrlAdmin extends HttpServlet {
 	Endereco endereco;
 	Calculo calculo;
 	AnotacaoIO anotacaoIO;
+	List<Anotacao> notas;
 
 	public CtrlAdmin() {
 		super();
@@ -74,15 +78,17 @@ public class CtrlAdmin extends HttpServlet {
 	private void addAnotacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		usuario = (Usuario) session.getAttribute("logado");
 		String nome = request.getParameter("nome");
 		String nota = request.getParameter("anotacao");
+		usuario.addAnotacao(new Anotacao(null, nome, new Date(),usuario));
 		try {
-			new AnotacaoDao().create(new Anotacao(null, nome, new Date()));
+			new AnotacaoDao().create(new Anotacao(null, nome, new Date(),usuario));
 			anotacaoIO = new AnotacaoIO(nome);
 			anotacaoIO.open();
 			anotacaoIO.writeFile(nota);
 			anotacaoIO.close();
+			session.setAttribute("logado", usuario);
 		} catch (Exception e) {
 			request.setAttribute("errorAddAnotacao", e.getMessage());
 		} finally {
@@ -133,7 +139,7 @@ public class CtrlAdmin extends HttpServlet {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
 			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e, u2.getPerfil(),
-					null);
+					u2.getAnotacoes());
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

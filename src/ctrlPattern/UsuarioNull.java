@@ -1,5 +1,8 @@
 package ctrlPattern;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
@@ -48,12 +51,14 @@ public class UsuarioNull implements IUsuarioModel {
 		return "-";
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "UsuarioNull [getFoto()=" + getFoto() + ", getSenha()=" + getSenha() + ", getPermissao()="
 				+ getPermissao() + ", getSexo()=" + getSexo() + ", getIdUsuario()=" + getIdUsuario() + ", getEmail()="
 				+ getEmail() + ", getNome()=" + getNome() + ", getEndereco()=" + getEndereco() + ", getPerfil()="
-				+ getPerfil() + ", getAnotacao()=" + getAnotacao() + "]";
+				+ getPerfil() + ", getAnotacoes()=" + getAnotacoes() + "]";
 	}
 
 	@Override
@@ -69,9 +74,9 @@ public class UsuarioNull implements IUsuarioModel {
 	}
 
 	@Override
-	public Anotacao getAnotacao() {
+	public List<Anotacao> getAnotacoes() {
 		// TODO Auto-generated method stub
-		return new Anotacao();
+		return new ArrayList<Anotacao>();
 	}
 
 }

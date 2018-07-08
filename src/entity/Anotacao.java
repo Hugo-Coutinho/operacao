@@ -1,7 +1,7 @@
 package entity;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,13 +9,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "anotacao")
-public class Anotacao {
+public class Anotacao implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	static SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -28,6 +35,10 @@ public class Anotacao {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 
+	@ManyToOne()
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+
 	public Anotacao() {
 		// TODO Auto-generated constructor stub
 	}
@@ -39,9 +50,18 @@ public class Anotacao {
 		this.data = data;
 	}
 
+	public Anotacao(Integer idAnotacao, String nome, Date data, Usuario usuario) {
+		super();
+		this.idAnotacao = idAnotacao;
+		this.nome = nome;
+		this.data = data;
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() {
-		return "Anotacao [idAnotacao=" + idAnotacao + ", nome=" + nome + ", data=" + data + "]";
+		return "Anotacao [idAnotacao=" + idAnotacao + ", nome=" + nome + ", data=" + data + ", usuario=" + usuario
+				+ "]";
 	}
 
 	public Integer getIdAnotacao() {
@@ -67,4 +87,13 @@ public class Anotacao {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }

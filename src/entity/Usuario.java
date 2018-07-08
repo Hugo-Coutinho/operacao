@@ -1,6 +1,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
@@ -49,16 +52,15 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
 
-	@OneToOne()
-	@JoinColumn(name = "id_anotacao")
-	private Anotacao anotacao;
+	@OneToMany(mappedBy = "usuario")
+	private List<Anotacao> anotacoes;
 
 	public Usuario() {
 
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
-			String permissao, Endereco endereco, Perfil perfil, Anotacao anotacao) {
+			String permissao, Endereco endereco, Perfil perfil, List<Anotacao> anotacoes) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -69,7 +71,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.permissao = permissao;
 		this.endereco = endereco;
 		this.perfil = perfil;
-		this.anotacao = anotacao;
+		this.anotacoes = anotacoes;
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
@@ -125,6 +127,15 @@ public class Usuario implements Serializable, IUsuarioModel {
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
 				+ ", sexo=" + sexo + ", permissao=" + permissao + ", endereco=" + endereco + "]";
+	}
+
+	public void addAnotacao(Anotacao... notas) {
+		if (anotacoes == null) {
+			anotacoes = new ArrayList<Anotacao>();
+		}
+		for (Anotacao x : notas) {
+			anotacoes.add(x);
+		}
 	}
 
 	public String getNome() {
@@ -199,12 +210,12 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.perfil = perfil;
 	}
 
-	public Anotacao getAnotacao() {
-		return anotacao;
+	public List<Anotacao> getAnotacoes() {
+		return anotacoes;
 	}
 
-	public void setAnotacao(Anotacao anotacao) {
-		this.anotacao = anotacao;
+	public void setAnotacoes(List<Anotacao> anotacoes) {
+		this.anotacoes = anotacoes;
 	}
 
 }
