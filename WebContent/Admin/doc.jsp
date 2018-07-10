@@ -302,7 +302,7 @@ $(document).ready(function(){
 							<td>
 							<a href="#editarAnotacao" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
 							<a href="#ver" data-toggle="modal"><i data-toggle="tooltip" title="visualizar"class="material-icons">play_circle_filled</i></a>
-                            <a href="#deletarAnotacao" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
+                            <a href="removerAnotacao.htm?resp=${nota.idAnotacao }" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
                             </td>
 						</tr>
 				</c:forEach>

@@ -58,10 +58,10 @@ public class Anotacao implements Serializable {
 		this.usuario = usuario;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Anotacao [idAnotacao=" + idAnotacao + ", nome=" + nome + ", data=" + data + ", usuario=" + usuario
-				+ "]";
+		return "Anotacao [idAnotacao=" + idAnotacao + ", nome=" + nome + ", data=" + data + "]";
 	}
 
 	public Integer getIdAnotacao() {

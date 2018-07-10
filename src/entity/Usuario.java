@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -126,9 +127,15 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
-				+ ", sexo=" + sexo + ", permissao=" + permissao + ", endereco=" + endereco + "]";
+				+ ", sexo=" + sexo + ", foto=" + foto + ", permissao=" + permissao + ", endereco=" + endereco
+				+ ", perfil=" + perfil + "]";
 	}
 
+	public void removerAnotacao(Anotacao nota) {
+		anotacoes.remove(nota);
+	}
+
+	
 	public void addAnotacao(Anotacao... notas) {
 		if (anotacoes == null) {
 			anotacoes = new ArrayList<Anotacao>();

@@ -1,6 +1,6 @@
 package control;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +32,7 @@ import util.EnviarEmail;
 
 @MultipartConfig
 @WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
-		"/Admin/addAnotacao.htm" })
+		"/Admin/addAnotacao.htm","/Admin/removerAnotacao.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -71,18 +71,40 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/addAnotacao.htm":
 			addAnotacao(request, response);
 			break;
+		case "/Admin/removerAnotacao.htm":
+			removerAnotacao(request, response);
+			break;
+		}
+	}
+
+	private void removerAnotacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			usuario = (Usuario) session.getAttribute("logado");
+			String anotacaoId = request.getParameter("resp");
+			new AnotacaoDao().delete(new AnotacaoDao().findByCode(new Integer(anotacaoId)));
+			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
+			session.setAttribute("logado", usuario);
+		} catch (Exception e) {
+			// TODO: handle exception
+//			request.setAttribute("errorAddAnotacao", e.getMessage());
+			e.printStackTrace();
+		} finally {
+			response.sendRedirect("doc.jsp");
 		}
 	}
 
 	private void addAnotacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		usuario = (Usuario) session.getAttribute("logado");
 		String nome = request.getParameter("nome");
 		String nota = request.getParameter("anotacao");
-		usuario.addAnotacao(new Anotacao(null, nome, new Date(),usuario));
 		try {
-			new AnotacaoDao().create(new Anotacao(null, nome, new Date(),usuario));
+			new AnotacaoDao().create(new Anotacao(null, nome, new Date(), usuario));
+//			usuario.addAnotacao(new Anotacao(null, nome, new Date(), usuario));
+			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
 			anotacaoIO = new AnotacaoIO(nome);
 			anotacaoIO.open();
 			anotacaoIO.writeFile(nota);

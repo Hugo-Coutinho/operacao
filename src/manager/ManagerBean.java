@@ -24,6 +24,7 @@ public class ManagerBean {
 	HttpSession session;
 
 	public ManagerBean() {
+		logado = new Usuario();
 		session = CtrlLogin.session;
 		logado = (Usuario) session.getAttribute("logado");
 	}
