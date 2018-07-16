@@ -3,7 +3,9 @@ package control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
 
 import ctrlPattern.IUsuarioModel;
 import entity.Anotacao;
@@ -32,7 +36,7 @@ import util.EnviarEmail;
 
 @MultipartConfig
 @WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
-		"/Admin/addAnotacao.htm","/Admin/removerAnotacao.htm","/Admin/verAnotacao.htm" })
+		"/Admin/addAnotacao.htm", "/Admin/removerAnotacao.htm", "/Admin/verAnotacao.htm", "/Admin/editarAnotacao.htm","/Admin/salvarAnotacaoEditada.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -77,16 +81,67 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/verAnotacao.htm":
 			verAnotacao(request, response);
 			break;
+		case "/Admin/editarAnotacao.htm":
+			editarAnotacao(request, response);
+			break;
+		case "/Admin/salvarAnotacaoEditada.htm":
+			salvarAnotacaoEditada(request, response);
+			break;
 		}
 	}
 
-	private void verAnotacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void salvarAnotacaoEditada(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			String id= request.getParameter("id");
+			usuario = (Usuario) session.getAttribute("logado");
+			String id = request.getParameter("idAnotacaoEditar");
+			String nomeAnotacao = request.getParameter("nomeAnotacao");
+//			String editarInput = request.getParameter("editarInput");
+			
+			Anotacao notaEditada = new Anotacao(new Integer(id),nomeAnotacao,new Date(),usuario);
+			new AnotacaoDao().update(notaEditada);
+			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
+			session.setAttribute("logado", usuario);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			request.setAttribute("errorAddAnotacao",e.getMessage() );
+		}finally {
+			request.getRequestDispatcher("doc.jsp").forward(request, response);
+		}
+		
+	}
+
+	private void editarAnotacao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			String id = request.getParameter("id");
 			Anotacao nota = new AnotacaoDao().findByCode(new Integer(id));
 			String anotacao = new AnotacaoIO().lerArquivo(nota.getNome());
-			
+
+			Map<String, String> notaJson = new LinkedHashMap<>();
+			notaJson.put("nome", nota.getNome());
+			notaJson.put("texto", anotacao);
+
+			String json = new Gson().toJson(notaJson);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+		}
+	}
+
+	private void verAnotacao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			String id = request.getParameter("id");
+			Anotacao nota = new AnotacaoDao().findByCode(new Integer(id));
+			String anotacao = new AnotacaoIO().lerArquivo(nota.getNome());
+
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(anotacao);
@@ -94,11 +149,11 @@ public class CtrlAdmin extends HttpServlet {
 			// TODO: handle exception
 			response.getWriter().write(e.getMessage());
 		}
-		
-		
+
 	}
 
-	private void removerAnotacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void removerAnotacao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			usuario = (Usuario) session.getAttribute("logado");
@@ -123,7 +178,7 @@ public class CtrlAdmin extends HttpServlet {
 		String nota = request.getParameter("anotacao");
 		try {
 			new AnotacaoDao().create(new Anotacao(null, nome, new Date(), usuario));
-//			usuario.addAnotacao(new Anotacao(null, nome, new Date(), usuario));
+			// usuario.addAnotacao(new Anotacao(null, nome, new Date(), usuario));
 			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
 			anotacaoIO = new AnotacaoIO(nome);
 			anotacaoIO.open();

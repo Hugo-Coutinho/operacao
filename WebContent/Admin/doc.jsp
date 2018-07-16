@@ -238,15 +238,36 @@
 		font-weight: normal;
 	}	
 </style>
+
 <script type="text/javascript">
 function deletarAnotacao(id) {
 	document.getElementById("idAnotacaoDelete").value = id;
 	$("#deletarAnotacao").modal('show');
 }
 </script>
+
+<script type="text/javascript">
+function editarAnotacao(id) {
+$.ajax({
+url:"editarAnotacao.htm",
+type:"get",
+data: {"id":id},
+success: function(resposta){
+ document.getElementById("idAnotacaoEditar").value=id;
+ document.getElementById("nomeAnotacao").value=resposta.nome;
+ document.getElementById("editarInput").value=resposta.texto;
+$("#editarAnotacao").modal('show');
+},
+error:function(xhr){
+	alert('deu ruim');
+}
+});
+
+}
+</script>
+
 <script type="text/javascript">
 function verAnotacao(id) {
-	
 $.ajax({
 url:"verAnotacao.htm",
 type:"get",
@@ -258,7 +279,6 @@ success: function(resposta){
 error:function(xhr){
 	alert('deu ruim');
 }
-
 });
 
 }
@@ -300,7 +320,7 @@ error:function(xhr){
 							<td>${nota.nome}</td>
 							<td>${nota.data}</td>
 							<td>
-							<a href="#editarAnotacao" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+							<i class="material-icons" data-toggle="tooltip" title="Editar" onclick="editarAnotacao(${nota.idAnotacao})" style="cursor:pointer">&#xE254;</i>
 							<i data-toggle="tooltip" title="visualizar"class="material-icons" onclick="verAnotacao(${nota.idAnotacao})" style="cursor:pointer">play_circle_filled</i>
                             <i class="material-icons" data-toggle="tooltip" title="Deletar" onclick="deletarAnotacao(${nota.idAnotacao})" style="cursor:pointer">&#xE872;</i>
                             </td>
@@ -324,7 +344,7 @@ error:function(xhr){
             </div>
         </div>
     </div>
-	<!-- Edit Modal HTML -->
+	<!-- Add Modal HTML -->
 	<div id="addAnotacao" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -363,16 +383,17 @@ error:function(xhr){
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Nome</label>
-							<input type="text" class="form-control" required>
+							<input type="text" class="form-control" required name="nomeAnotacao" id="nomeAnotacao">
+							<input type="hidden" class="form-control" required name="idAnotacaoEditar" id="idAnotacaoEditar">
 						</div>
 						<div class="form-group">
-							<label>Digite aqui sua anotacão</label>
-							<textarea class="form-control" required></textarea>
+							<label>Edite aqui sua anotacão</label>
+							<textarea  class="form-control" name="anotacao" required name="editarInput" id="editarInput"></textarea>
 						</div>					
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="submit" class="btn btn-info" value="Salvar">
+						<input type="submit" class="btn btn-info" value="Salvar" formaction="salvarAnotacaoEditada.htm" formmethod="Post">
 					</div>
 				</form>
 			</div>
