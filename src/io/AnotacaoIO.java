@@ -14,6 +14,10 @@ public class AnotacaoIO implements IArquivo {
 		// TODO Auto-generated constructor stub
 		this.nome = nome;
 	}
+	
+	public AnotacaoIO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void open() throws Exception {

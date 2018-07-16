@@ -32,7 +32,7 @@ import util.EnviarEmail;
 
 @MultipartConfig
 @WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
-		"/Admin/addAnotacao.htm","/Admin/removerAnotacao.htm" })
+		"/Admin/addAnotacao.htm","/Admin/removerAnotacao.htm","/Admin/verAnotacao.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -74,7 +74,28 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/removerAnotacao.htm":
 			removerAnotacao(request, response);
 			break;
+		case "/Admin/verAnotacao.htm":
+			verAnotacao(request, response);
+			break;
 		}
+	}
+
+	private void verAnotacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			String id= request.getParameter("id");
+			Anotacao nota = new AnotacaoDao().findByCode(new Integer(id));
+			String anotacao = new AnotacaoIO().lerArquivo(nota.getNome());
+			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(anotacao);
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.getWriter().write(e.getMessage());
+		}
+		
+		
 	}
 
 	private void removerAnotacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

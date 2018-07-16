@@ -244,6 +244,25 @@ function deletarAnotacao(id) {
 	$("#deletarAnotacao").modal('show');
 }
 </script>
+<script type="text/javascript">
+function verAnotacao(id) {
+	
+$.ajax({
+url:"verAnotacao.htm",
+type:"get",
+data: {"id":id},
+success: function(resposta){
+ document.getElementById("verInput").value=resposta;
+	$("#ver").modal('show');
+},
+error:function(xhr){
+	alert('deu ruim');
+}
+
+});
+
+}
+</script>
 </head>
 <body>
 <%@include file="/Admin/headerADM.jsp" %>
@@ -321,7 +340,7 @@ function deletarAnotacao(id) {
 						</div>
 						<div class="form-group">
 							<label>Digite aqui sua anotacão</label>
-							<textarea class="form-control" name="anotacao" required></textarea>
+							<textarea  class="form-control" name="anotacao" required></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -367,7 +386,7 @@ function deletarAnotacao(id) {
 					<h4 class="modal-title" align="center">visualizando anotação</h4>
 				</div>
 				<div class="modal-body">
-					<pre>vai vendo..</pre>
+					<textarea  class="form-control" name="anotacao" required name="verInput" id="verInput" readonly="readonly"></textarea>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="sair">
