@@ -239,29 +239,10 @@
 	}	
 </style>
 <script type="text/javascript">
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
+function deletarAnotacao(id) {
+	document.getElementById("idAnotacaoDelete").value = id;
+	$("#deletarAnotacao").modal('show');
+}
 </script>
 </head>
 <body>
@@ -301,8 +282,8 @@ $(document).ready(function(){
 							<td>${nota.data}</td>
 							<td>
 							<a href="#editarAnotacao" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-							<a href="#ver" data-toggle="modal"><i data-toggle="tooltip" title="visualizar"class="material-icons">play_circle_filled</i></a>
-                            <a href="removerAnotacao.htm?resp=${nota.idAnotacao }" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
+							<i data-toggle="tooltip" title="visualizar"class="material-icons" onclick="verAnotacao(${nota.idAnotacao})" style="cursor:pointer">play_circle_filled</i>
+                            <i class="material-icons" data-toggle="tooltip" title="Deletar" onclick="deletarAnotacao(${nota.idAnotacao})" style="cursor:pointer">&#xE872;</i>
                             </td>
 						</tr>
 				</c:forEach>
@@ -408,8 +389,9 @@ $(document).ready(function(){
 						<p class="text-warning"><small>Essa acão não poderá ser desfeita.</small></p>
 					</div>
 					<div class="modal-footer">
+						<input type="hidden" id="idAnotacaoDelete" name="idAnotacaoDelete">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-						<input type="submit" class="btn btn-danger" value="Deletar">
+						<input type="submit" class="btn btn-danger" value="Deletar" formaction="removerAnotacao.htm" formmethod="Post">
 					</div>
 				</form>
 			</div>

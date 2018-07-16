@@ -81,13 +81,12 @@ public class CtrlAdmin extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			usuario = (Usuario) session.getAttribute("logado");
-			String anotacaoId = request.getParameter("resp");
+			String anotacaoId = request.getParameter("idAnotacaoDelete");
 			new AnotacaoDao().delete(new AnotacaoDao().findByCode(new Integer(anotacaoId)));
 			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
 			session.setAttribute("logado", usuario);
 		} catch (Exception e) {
 			// TODO: handle exception
-//			request.setAttribute("errorAddAnotacao", e.getMessage());
 			e.printStackTrace();
 		} finally {
 			response.sendRedirect("doc.jsp");
