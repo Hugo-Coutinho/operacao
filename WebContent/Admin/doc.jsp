@@ -388,7 +388,7 @@ error:function(xhr){
 						</div>
 						<div class="form-group">
 							<label>Edite aqui sua anotacão</label>
-							<textarea  class="form-control" name="anotacao" required name="editarInput" id="editarInput"></textarea>
+							<textarea  class="form-control" required name="textoEditado" id="editarInput"></textarea>
 						</div>					
 					</div>
 					<div class="modal-footer">

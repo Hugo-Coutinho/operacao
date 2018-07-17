@@ -96,7 +96,12 @@ public class CtrlAdmin extends HttpServlet {
 			usuario = (Usuario) session.getAttribute("logado");
 			String id = request.getParameter("idAnotacaoEditar");
 			String nomeAnotacao = request.getParameter("nomeAnotacao");
-//			String editarInput = request.getParameter("editarInput");
+			String texto = request.getParameter("textoEditado");
+			
+			AnotacaoIO noteIO = new AnotacaoIO(nomeAnotacao);
+			noteIO.open();
+			noteIO.writeFile(texto);
+			noteIO.close();
 			
 			Anotacao notaEditada = new Anotacao(new Integer(id),nomeAnotacao,new Date(),usuario);
 			new AnotacaoDao().update(notaEditada);
