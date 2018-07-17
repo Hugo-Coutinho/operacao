@@ -247,6 +247,36 @@ function deletarAnotacao(id) {
 </script>
 
 <script type="text/javascript">
+function deletarTodasAnotacoes() {
+
+	var CheckedId = document.getElementsByClassName('checks');
+	var ids= [];
+	
+	for(i=0; i<CheckedId.length; i++ ){
+	
+		if(CheckedId[i].checked == true){
+			ids.push(CheckedId[i].value);
+		}
+	}
+// 	alert(ids[0]);	
+$.ajax({
+url:"apagarAnotacoesChecked.htm",
+type:"POST",
+dataType: 'json',
+data:{ids:ids}
+// sucess:function(resposta){
+// $("#deletarAnotacao").modal('show');
+// },
+// error:function(xhr){
+// 	alert('deu ruim');
+// }
+});
+
+ 	
+}
+</script>
+
+<script type="text/javascript">
 function editarAnotacao(id) {
 $.ajax({
 url:"editarAnotacao.htm",
@@ -297,7 +327,7 @@ error:function(xhr){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addAnotacao" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Novo</span></a>
-						<a href="#deletarAnotacao" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remover</span></a>						
+						<a onclick="deletarTodasAnotacoes()" class="btn btn-danger" ><i data-toggle="modal" class="material-icons">&#xE15C;</i> <span>Remover</span></a>						
 					</div>
                 </div>
             </div>
@@ -313,8 +343,8 @@ error:function(xhr){
 				<c:forEach items="${mb.notas }" var="nota">
 					<tbody>
 						<tr>
-							<td><span class="custom-checkbox"> <input
-									type="checkbox" id="checkbox1" name="options[]" value="1">
+							<td><span class="custom-checkbox"> <input class="checks"
+									type="checkbox" id="codigoCheck" name="codigoCheck" value="${nota.idAnotacao }">
 									<label for="checkbox1"></label>
 							</span></td>
 							<td>${nota.nome}</td>

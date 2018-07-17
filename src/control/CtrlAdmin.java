@@ -35,8 +35,8 @@ import strategyContext.DeletarContext;
 import util.EnviarEmail;
 
 @MultipartConfig
-@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm",
-		"/Admin/addAnotacao.htm", "/Admin/removerAnotacao.htm", "/Admin/verAnotacao.htm", "/Admin/editarAnotacao.htm","/Admin/salvarAnotacaoEditada.htm" })
+@WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm","/Admin/addAnotacao.htm", 
+	"/Admin/removerAnotacao.htm", "/Admin/verAnotacao.htm", "/Admin/editarAnotacao.htm","/Admin/salvarAnotacaoEditada.htm","/Admin/apagarAnotacoesChecked.htm" })
 public class CtrlAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -87,7 +87,29 @@ public class CtrlAdmin extends HttpServlet {
 		case "/Admin/salvarAnotacaoEditada.htm":
 			salvarAnotacaoEditada(request, response);
 			break;
+		case "/Admin/apagarAnotacoesChecked.htm":
+			apagarAnotacoesChecked(request, response);
+			break;
 		}
+	}
+
+	private void apagarAnotacoesChecked(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			usuario = (Usuario) session.getAttribute("logado");
+			String[] listaIds = request.getParameterValues("ids[]");
+			
+			for(String vl: listaIds) {
+				new AnotacaoDao().delete(new AnotacaoDao().findByCode(new Integer(vl)));
+			}
+			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
+			session.setAttribute("logado", usuario);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.sendRedirect("doc.jsp");
+		}
+		
 	}
 
 	private void salvarAnotacaoEditada(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
