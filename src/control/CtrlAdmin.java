@@ -93,23 +93,25 @@ public class CtrlAdmin extends HttpServlet {
 		}
 	}
 
-	private void apagarAnotacoesChecked(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void apagarAnotacoesChecked(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			usuario = (Usuario) session.getAttribute("logado");
 			String[] listaIds = request.getParameterValues("ids[]");
-			
-			for(String vl: listaIds) {
-				new AnotacaoDao().delete(new AnotacaoDao().findByCode(new Integer(vl)));
+
+			if (listaIds != null) {
+				for (String vl : listaIds) {
+					new AnotacaoDao().delete(new AnotacaoDao().findByCode(new Integer(vl)));
+				}
 			}
 			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
 			session.setAttribute("logado", usuario);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
-			response.sendRedirect("doc.jsp");
+			e.printStackTrace();
 		}
-		
 	}
 
 	private void salvarAnotacaoEditada(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

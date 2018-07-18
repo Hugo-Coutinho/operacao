@@ -261,15 +261,15 @@ function deletarTodasAnotacoes() {
 // 	alert(ids[0]);	
 $.ajax({
 url:"apagarAnotacoesChecked.htm",
-type:"POST",
+type:"get",
 dataType: 'json',
-data:{ids:ids}
-// sucess:function(resposta){
-// $("#deletarAnotacao").modal('show');
-// },
-// error:function(xhr){
-// 	alert('deu ruim');
-// }
+data:{ids:ids},
+success: function(){
+	location='doc.jsp';
+},
+error:function(xhr){
+	location='doc.jsp';
+}
 });
 
  	
