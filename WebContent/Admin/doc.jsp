@@ -360,18 +360,6 @@ error:function(xhr){
 				</tbody>
 			</table>
 			${errorAddAnotacao }
-			<div class="clearfix">
-                <div class="hint-text">mostrando <b>2</b> de <b>6</b> anotacões</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Anterior</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Próximo</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 	<!-- Add Modal HTML -->

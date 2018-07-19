@@ -269,6 +269,12 @@ public class CtrlAdmin extends HttpServlet {
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
 
+			for(Anotacao nota: u2.getAnotacoes()) {
+				if(nota!=null) {
+					new AnotacaoDao().update(nota);
+				}
+			}
+			
 			session.setAttribute("logado", usuario);
 			request.setAttribute("msg", "editado com sucesso");
 
