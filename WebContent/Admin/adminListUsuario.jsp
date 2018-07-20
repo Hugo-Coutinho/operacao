@@ -97,22 +97,11 @@
 			<label for="numero"style="font-family:Bell MT;">Senha : ${logado.senha}</label>
 			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" pattern="[0-9]+"class="form-control"><br/>
 			    
-			<div class="form-group">
-      			<label for="#">tipo de acesso:</label>
-      			<select class="form-control" id="#" name="permissao">
-        		<option>Administrador</option>
-        		<option>Usuario</option>
-			 	 </select>    
-			 </div>   
 			<br />Sexo :<br /> <input
 			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>
 			<input type="radio" name="sexo" value="f" /><font style="font-family:Bell MT;"size="4xp;">Feminino</font><br/> 
 
 				</div>
-<!-- 				<div class="panel-footer"> -->
-<!-- 				<button type="reset" class="btn btn-info">Limpar</button> -->
-<!-- 				<button type="submit" class="btn btn-info">Salvar</button> -->
-<!-- 				</div> -->
 			</div>
 		</div>
 		
@@ -138,11 +127,7 @@
 			
 			<label for="estado" style="font-family:Bell MT;">estado : ${logado.endereco.estado}</label>
 			<input type="text" id="uf"name="estado" required="required" placeholder="digite seu estado" pattern="[a-z A-Z]{2}" class="form-control"> <br /> <br />
-<!-- 						<button type="reset" class="btn btn-info">Limpar</button> -->
-<!-- 						<button type="submit" class="btn btn-info">Salvar</button> -->
 				</div>
-<!-- 				<div class="panel-footer"> -->
-<!-- 				</div> -->
 			</div>
 		</div>
 		

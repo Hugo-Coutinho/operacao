@@ -251,9 +251,6 @@ public class CtrlAdmin extends HttpServlet {
 		String email = request.getParameter("email");
 		Integer senha = new Integer(request.getParameter("senha"));
 		String sexo = request.getParameter("sexo");
-		String foto = request.getParameter("foto");
-		String permissao = request.getParameter("permissao");
-
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
 		String bairro = request.getParameter("bairro");
@@ -263,8 +260,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, foto, permissao, e, u2.getPerfil(),
-					u2.getAnotacoes());
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, null, u2.getPermissao(), e, u2.getPerfil());
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
