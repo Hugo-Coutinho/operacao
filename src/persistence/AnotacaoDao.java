@@ -21,5 +21,19 @@ public class AnotacaoDao extends GenericDao<Anotacao, Integer> {
 		List<Anotacao> notas = (List<Anotacao>) query.list();
 		return notas;
 	}
+	
+	public boolean verificaNomeAnotacaoJaExiste(String nome) {
+		session = HibernateUtil.getSessionFactory().openSession();
+		query = session.createSQLQuery("select * from anotacao where nome= :param1");
+		query.setParameter("param1", nome);
+		List<Anotacao> notas = (List<Anotacao>) query.list();
+		if(notas.isEmpty()) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	
 
 }

@@ -206,14 +206,18 @@ public class CtrlAdmin extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String nota = request.getParameter("anotacao");
 		try {
-			new AnotacaoDao().create(new Anotacao(null, nome, new Date(), usuario));
-			// usuario.addAnotacao(new Anotacao(null, nome, new Date(), usuario));
-			usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
-			anotacaoIO = new AnotacaoIO(nome);
-			anotacaoIO.open();
-			anotacaoIO.writeFile(nota);
-			anotacaoIO.close();
-			session.setAttribute("logado", usuario);
+			
+			if(!new AnotacaoDao().verificaNomeAnotacaoJaExiste(nome)) {
+				new AnotacaoDao().create(new Anotacao(null, nome, new Date(), usuario));
+				usuario.setAnotacoes(new AnotacaoDao().buscarListaAnotacaoPorUsuarioLogado(usuario.getIdUsuario()));
+				anotacaoIO = new AnotacaoIO(nome);
+				anotacaoIO.open();
+				anotacaoIO.writeFile(nota);
+				anotacaoIO.close();
+				session.setAttribute("logado", usuario);
+			}else {
+				request.setAttribute("errorAddAnotacao", "Anotação não criada: anotação com esse nome já existe..");
+			}
 		} catch (Exception e) {
 			request.setAttribute("errorAddAnotacao", e.getMessage());
 		} finally {

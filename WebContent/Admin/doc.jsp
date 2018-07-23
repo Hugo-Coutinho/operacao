@@ -359,7 +359,7 @@ error:function(xhr){
 
 				</tbody>
 			</table>
-			${errorAddAnotacao }
+			<span style="color:red;"> ${errorAddAnotacao } </span>
         </div>
     </div>
 	<!-- Add Modal HTML -->
