@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 import ctrlPattern.IUsuarioModel;
+import type.TypePermissao;
+import type.TypeSexo;
 
 @Entity
 @Table(name = "usuario")
@@ -38,12 +42,14 @@ public class Usuario implements Serializable, IUsuarioModel {
 	private String email;
 	@Column
 	private Integer senha;
-	@Column(columnDefinition = " enum('m','f')")
-	private String sexo;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 10)
+	private TypeSexo sexo;
 	@Column
 	private String foto;
-	@Column
-	private String permissao;
+	@Enumerated(EnumType.STRING)
+	@Column(length= 15)
+	private TypePermissao permissao;
 
 	@ManyToOne()
 	@JoinColumn(name = "id_endereco")
@@ -60,8 +66,8 @@ public class Usuario implements Serializable, IUsuarioModel {
 
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
-			String permissao, Endereco endereco, Perfil perfil, List<Anotacao> anotacoes) {
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+			TypePermissao permissao, Endereco endereco, Perfil perfil, List<Anotacao> anotacoes) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -75,8 +81,8 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.anotacoes = anotacoes;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
-			String permissao) {
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+			TypePermissao permissao) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -87,8 +93,8 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.permissao = permissao;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
-			String permissao, Endereco endereco, Perfil perfil) {
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+			TypePermissao permissao, Endereco endereco, Perfil perfil) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -101,8 +107,8 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.perfil = perfil;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, String sexo, String foto,
-			String permissao, Endereco endereco) {
+	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+			TypePermissao permissao, Endereco endereco) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -114,7 +120,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.endereco = endereco;
 	}
 
-	public Usuario(String nome, String email, Integer senha, String sexo, String foto, String permissao) {
+	public Usuario(String nome, String email, Integer senha, TypeSexo sexo, String foto, TypePermissao permissao) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -135,7 +141,6 @@ public class Usuario implements Serializable, IUsuarioModel {
 		anotacoes.remove(nota);
 	}
 
-	
 	public void addAnotacao(Anotacao... notas) {
 		if (anotacoes == null) {
 			anotacoes = new ArrayList<Anotacao>();
@@ -177,22 +182,9 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getSexo() {
-		return sexo;
-	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public String getPermissao() {
-		return permissao;
-	}
-
-	public void setPermissao(String permissao) {
-		this.permissao = permissao;
-	}
-
+	
+	
 	public Integer getSenha() {
 		return senha;
 	}
@@ -225,4 +217,23 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.anotacoes = anotacoes;
 	}
 
+	@Override
+	public TypeSexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(TypeSexo sexo) {
+		this.sexo = sexo;
+	}
+
+	@Override
+	public TypePermissao getPermissao() {
+		// TODO Auto-generated method stub
+		return permissao;
+	}
+
+	public void setPermissao(TypePermissao permissao) {
+		this.permissao = permissao;
+	}
+	
 }

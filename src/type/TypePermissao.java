@@ -2,5 +2,5 @@ package type;
 
 public enum TypePermissao {
 
-	USUARIO,ADMINISTRADOR;
+	USUARIO,ADMINISTRADOR,INDEFINIDO;
 }

@@ -32,6 +32,7 @@ import persistence.UsuarioDao;
 import strategyConcrete.ModoDeletar;
 import strategyConcrete.ModoDeletarNulo;
 import strategyContext.DeletarContext;
+import type.TypeSexo;
 import util.EnviarEmail;
 
 @MultipartConfig
@@ -264,7 +265,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, null, u2.getPermissao(), e, u2.getPerfil());
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, null, u2.getPermissao(), e, u2.getPerfil());
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

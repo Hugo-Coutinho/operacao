@@ -6,6 +6,8 @@ import java.util.List;
 import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
+import type.TypePermissao;
+import type.TypeSexo;
 
 public class UsuarioNull implements IUsuarioModel {
 
@@ -22,15 +24,15 @@ public class UsuarioNull implements IUsuarioModel {
 	}
 
 	@Override
-	public String getPermissao() {
+	public TypePermissao getPermissao() {
 		// TODO Auto-generated method stub
-		return "-";
+		return TypePermissao.INDEFINIDO;
 	}
 
 	@Override
-	public String getSexo() {
+	public TypeSexo getSexo() {
 		// TODO Auto-generated method stub
-		return "-";
+		return TypeSexo.INDEFINIDO;
 	}
 
 	@Override

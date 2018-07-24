@@ -29,6 +29,8 @@ import strategyConcrete.ModoUsuario;
 import strategyContext.CadastrarContext;
 import strategyContext.LoginContext;
 import strategyContext.SenhaContext;
+import type.TypePermissao;
+import type.TypeSexo;
 import util.EnviarEmail;
 import util.Valida;
 
@@ -94,7 +96,8 @@ public class CtrlLogin extends HttpServlet {
 
 			Perfil p = new Perfil(null, "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(null, nome, email, new Integer(senha), sexo, foto, permissao, endereco,p,null);
+			usuario = new Usuario(null, nome, email, new Integer(senha), sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, foto,
+					permissao.equalsIgnoreCase("Administrador")? TypePermissao.ADMINISTRADOR: TypePermissao.USUARIO, endereco,p,null);
 
 			CadastrarContext ctx = new CadastrarContext();
 			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail()) ? new ModoCadastrarFalha()
@@ -136,15 +139,15 @@ public class CtrlLogin extends HttpServlet {
 			if (new Valida().validaLoginNomeOuEmail(login).equalsIgnoreCase("Nome")) {
 				IUsuarioModel u = new UsuarioDao().loginByNome(login, new Integer(senha));
 				LoginContext ctx = new LoginContext();
-				ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
-						: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
+				ctx.setPermissao(u.getPermissao().equals(TypePermissao.USUARIO) ? new ModoUsuario()
+						: u.getPermissao().equals(TypePermissao.ADMINISTRADOR) ? new ModoAdmin() : new ModoNulo());
 				ctx.criarUsuario(session, u, request, response);
 
 			} else {
 				IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
 				LoginContext ctx = new LoginContext();
-				ctx.setPermissao(u.getPermissao().equalsIgnoreCase("usuario") ? new ModoUsuario()
-						: u.getPermissao().equalsIgnoreCase("Administrador") ? new ModoAdmin() : new ModoNulo());
+				ctx.setPermissao(u.getPermissao().equals(TypePermissao.USUARIO) ? new ModoUsuario()
+						: u.getPermissao().equals(TypePermissao.ADMINISTRADOR) ? new ModoAdmin() : new ModoNulo());
 				ctx.criarUsuario(session, u, request, response);
 			}
 

@@ -19,6 +19,7 @@ import io.Arquivo;
 import persistence.EnderecoDao;
 import persistence.PerfilDao;
 import persistence.UsuarioDao;
+import type.TypeSexo;
 import util.EnviarEmail;
 
 @MultipartConfig
@@ -133,7 +134,7 @@ public class CtrlUsuario extends HttpServlet {
 		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo, null, u2.getPermissao(), e,u2.getPerfil(),null);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, null, u2.getPermissao(), e,u2.getPerfil(),null);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

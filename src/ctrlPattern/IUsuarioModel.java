@@ -5,6 +5,8 @@ import java.util.List;
 import entity.Anotacao;
 import entity.Endereco;
 import entity.Perfil;
+import type.TypePermissao;
+import type.TypeSexo;
 
 public interface IUsuarioModel {
 
@@ -12,9 +14,9 @@ public interface IUsuarioModel {
 
 	public Integer getSenha();
 
-	public String getPermissao();
+	public TypePermissao getPermissao();
 
-	public String getSexo();
+	public TypeSexo getSexo();
 
 	public Integer getIdUsuario();
 
