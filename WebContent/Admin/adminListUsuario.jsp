@@ -95,7 +95,7 @@
 			<input type="email" id="email"name="email" required="required" placeholder="digite seu email" class="form-control">
 			
 			<label for="numero"style="font-family:Bell MT;">Senha : ${logado.senha}</label>
-			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" pattern="[0-9]+"class="form-control"><br/>
+			   <input type="password" id="senha" name="senha" required="required" placeholder="digite sua senha" pattern="^[a-zA-Z0-9_.-]*$" class="form-control"><br/>
 			    
 			<br />Sexo :<br /> <input
 			type="radio" name="sexo" value="m" /><font style="font-family:Bell MT;"size="4xp">Masculino </font>

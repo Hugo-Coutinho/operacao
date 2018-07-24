@@ -63,7 +63,7 @@
 						<input type="text" name="login" required placeholder="digite aqui seu email" title="email aqui" class="form-control">
 						
 						<br><label style="font-family:Bell MT; font-size:20px;" >Senha:</label><br>
-						<input type="password" name="senha" required placeholder="digite aqui sua senha" title="senha aqui" pattern="[0-9]{2,50}" class="form-control">
+						<input type="password" name="senha" required placeholder="digite aqui sua senha" title="senha aqui" pattern="^[a-zA-Z0-9_.-]*$" class="form-control">
 						<br><input type="submit" value="logar" name="btnLogar" class="btn btn-primary btn-block">
 						<br><a href="/operacao/senha.jsp" class="btn btn-link">esqueceu a senha</a>
 						<br><a href="/operacao/cadastrar.jsp" class="btn btn-link">cadastrar</a>

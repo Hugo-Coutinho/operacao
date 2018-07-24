@@ -12,7 +12,7 @@ public interface IUsuarioModel {
 
 	public String getFoto();
 
-	public Integer getSenha();
+	public String getSenha();
 
 	public TypePermissao getPermissao();
 

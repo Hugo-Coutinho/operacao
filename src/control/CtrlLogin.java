@@ -96,7 +96,7 @@ public class CtrlLogin extends HttpServlet {
 
 			Perfil p = new Perfil(null, "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(null, nome, email, new Integer(senha), sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, foto,
+			usuario = new Usuario(null, nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, foto,
 					permissao.equalsIgnoreCase("Administrador")? TypePermissao.ADMINISTRADOR: TypePermissao.USUARIO, endereco,p,null);
 
 			CadastrarContext ctx = new CadastrarContext();
@@ -137,14 +137,14 @@ public class CtrlLogin extends HttpServlet {
 		try {
 
 			if (new Valida().validaLoginNomeOuEmail(login).equalsIgnoreCase("Nome")) {
-				IUsuarioModel u = new UsuarioDao().loginByNome(login, new Integer(senha));
+				IUsuarioModel u = new UsuarioDao().loginByNome(login,senha);
 				LoginContext ctx = new LoginContext();
 				ctx.setPermissao(u.getPermissao().equals(TypePermissao.USUARIO) ? new ModoUsuario()
 						: u.getPermissao().equals(TypePermissao.ADMINISTRADOR) ? new ModoAdmin() : new ModoNulo());
 				ctx.criarUsuario(session, u, request, response);
 
 			} else {
-				IUsuarioModel u = new UsuarioDao().login(login, new Integer(senha));
+				IUsuarioModel u = new UsuarioDao().login(login, senha);
 				LoginContext ctx = new LoginContext();
 				ctx.setPermissao(u.getPermissao().equals(TypePermissao.USUARIO) ? new ModoUsuario()
 						: u.getPermissao().equals(TypePermissao.ADMINISTRADOR) ? new ModoAdmin() : new ModoNulo());

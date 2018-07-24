@@ -78,7 +78,7 @@
 			<input type="email" id="email"name="email" required="required" placeholder="digite seu email" class="form-control">
 			
 			<label for="numero"style="font-family:Bell MT;">Senha :</label>
-			   <input type="password" id="senha" name="senha" required="required" pattern="[0-9]+" placeholder="digite sua senha" class="form-control"><br/>
+			   <input type="password" id="senha" name="senha" required="required" pattern="^[a-zA-Z0-9_.-]*$" placeholder="digite sua senha" class="form-control"><br/>
 				
 				<input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId" required="required">
 				  <img id="imagem" src="" alt="sua foto" width="250px" height="250px" class="img-rounded" />

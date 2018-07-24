@@ -34,21 +34,21 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idUsuario;
-	@Column(length = 50)
+	@Column(length = 50, nullable= false)
 	@Pattern(regexp = "[a-z A-Z]{2,50}", message = "Error no nome")
 	private String nome;
-	@Column(length = 50, unique = true)
+	@Column(length = 50, unique = true, nullable= false)
 	@Pattern(regexp = "^.+@.+\\.[a-z]+$", message = "deu ruim no email")
 	private String email;
-	@Column
-	private Integer senha;
+	@Column(length = 50, nullable= false)
+	private String senha;
 	@Enumerated(EnumType.STRING)
-	@Column(length = 10)
+	@Column(length = 10, nullable= false)
 	private TypeSexo sexo;
 	@Column
 	private String foto;
 	@Enumerated(EnumType.STRING)
-	@Column(length= 15)
+	@Column(length= 15, nullable= false)
 	private TypePermissao permissao;
 
 	@ManyToOne()
@@ -66,7 +66,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
 			TypePermissao permissao, Endereco endereco, Perfil perfil, List<Anotacao> anotacoes) {
 		super();
 		this.idUsuario = idUsuario;
@@ -81,7 +81,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.anotacoes = anotacoes;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
 			TypePermissao permissao) {
 		super();
 		this.idUsuario = idUsuario;
@@ -93,7 +93,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.permissao = permissao;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
 			TypePermissao permissao, Endereco endereco, Perfil perfil) {
 		super();
 		this.idUsuario = idUsuario;
@@ -107,7 +107,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.perfil = perfil;
 	}
 
-	public Usuario(Integer idUsuario, String nome, String email, Integer senha, TypeSexo sexo, String foto,
+	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
 			TypePermissao permissao, Endereco endereco) {
 		super();
 		this.idUsuario = idUsuario;
@@ -120,7 +120,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.endereco = endereco;
 	}
 
-	public Usuario(String nome, String email, Integer senha, TypeSexo sexo, String foto, TypePermissao permissao) {
+	public Usuario(String nome, String email, String senha, TypeSexo sexo, String foto, TypePermissao permissao) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -181,15 +181,12 @@ public class Usuario implements Serializable, IUsuarioModel {
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-
-
 	
-	
-	public Integer getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(Integer senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 

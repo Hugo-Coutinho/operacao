@@ -14,7 +14,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
 	}
 
-	public IUsuarioModel login(String login, Integer senha) throws Exception {
+	public IUsuarioModel login(String login, String senha) throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		String hql = "from Usuario where email= :param1 and senha= :param2";
 		IUsuarioModel u = null;
@@ -29,7 +29,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		return u;
 	}
 
-	public IUsuarioModel loginByNome(String login, Integer senha) throws Exception {
+	public IUsuarioModel loginByNome(String login, String senha) throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		String hql = "from Usuario where nome= :param1 and senha= :param2";
 		IUsuarioModel u = null;
@@ -82,7 +82,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
 		try {
 
-			System.out.println(new UsuarioDao().loginByNome("Goku", 567));
+			System.out.println(new UsuarioDao().loginByNome("maior do mundo", "hexa"));
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

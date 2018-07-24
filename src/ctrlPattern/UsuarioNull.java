@@ -18,9 +18,9 @@ public class UsuarioNull implements IUsuarioModel {
 	}
 
 	@Override
-	public Integer getSenha() {
+	public String getSenha() {
 		// TODO Auto-generated method stub
-		return 0;
+		return "-";
 	}
 
 	@Override

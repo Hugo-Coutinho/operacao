@@ -254,7 +254,7 @@ public class CtrlAdmin extends HttpServlet {
 
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
-		Integer senha = new Integer(request.getParameter("senha"));
+		String senha = request.getParameter("senha");
 		String sexo = request.getParameter("sexo");
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
