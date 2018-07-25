@@ -137,7 +137,7 @@
 <div class="container">
   <h2>Lista de Usuarios</h2>
   <form>
-  <p><input type="text" name="id" placeholder="digite o número do usuário que deseja excluir." pattern="[0-9]{1,50}" title="digite o id e exclua" class="form-control">
+  <p><input type="number" name="id" placeholder="digite o número do usuário que deseja excluir." pattern="[0-9]{1,50}" title="digite o id e exclua" class="form-control" required="required">
   <br><button class="btn btn-danger" formmethod="post" formaction="deletar.htm">deletar</button> </p>
               
   <table class="table table-bordered">
