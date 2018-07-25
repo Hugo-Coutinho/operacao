@@ -158,7 +158,7 @@ public class CtrlAdmin extends HttpServlet {
 			response.getWriter().write(json);
 		} catch (Exception e) {
 			// TODO: handle exception
-
+			e.printStackTrace();
 		}
 	}
 
@@ -262,7 +262,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getPermissao(), e);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getFoto(), u2.getPermissao(), e);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
