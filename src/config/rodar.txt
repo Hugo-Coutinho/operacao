@@ -6,3 +6,8 @@ segue os passos:
 3- ir no mock.sql e criar a procudre no banco
 4- rodar o main para o hibernate gerar as tabelas
 5- start no login.jsp
+
+error persistir..
+
+ java build path e atualizar JRE 
+

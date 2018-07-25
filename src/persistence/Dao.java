@@ -24,18 +24,4 @@ public class Dao {
 		con.close();
 	}
 
-	public static void main(String[] args) {
-		Dao d = new Dao();
-		try {
-
-			d.open();
-			d.close();
-			System.out.println("Banco ok");
-
-		} catch (Exception e) {
-				e.printStackTrace();
-		}
-
-	}
-
 }

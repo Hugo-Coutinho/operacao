@@ -57,36 +57,24 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 		return lst;
 	}
 
-	public Integer findPasswordByEmail(String email) {
+	public String findPasswordByEmail(String email) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		query = session.createSQLQuery("select senha from usuario where email= :param1");
 		query.setParameter("param1", email);
-		List<Integer> senha = (List<Integer>) query.list();
+		List<String> senha = (List<String>) query.list();
 		if (senha.size() == 0) {
-			return -1;
+			return "-1";
 		} else {
 			return senha.get(0);
 		}
 	}
 
 	public boolean usuarioExiste(String email) {
-		Integer vl = 0;
-		vl = findPasswordByEmail(email);
-		if (vl >= 1)
-			return true;
+		String vl = findPasswordByEmail(email);
+		if (vl.equalsIgnoreCase("-1"))
+			return false;
 
-		return false;
-	}
-
-	public static void main(String[] args) {
-
-		try {
-
-			System.out.println(new UsuarioDao().loginByNome("maior do mundo", "hexa"));
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		return true;
 
 	}
 

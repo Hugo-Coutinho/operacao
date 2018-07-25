@@ -65,13 +65,4 @@ public class ManagerBean {
 		this.notas = notas;
 	}
 
-	public static void main(String[] args) {
-
-		try {
-			System.out.println(new ManagerBean().getUsuarios());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-	}
 }

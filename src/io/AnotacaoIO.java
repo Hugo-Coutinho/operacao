@@ -58,17 +58,4 @@ public class AnotacaoIO implements IArquivo {
 			return "não encontrado";
 		}
 	}
-
-	public static void main(String[] args) {
-		try {
-			AnotacaoIO noteIo = new AnotacaoIO("diaTeste");
-			noteIo.open();
-			noteIo.writeFile("teste o dia todo ...\n vai vendo.");
-			noteIo.close();
-			System.out.println(noteIo.lerArquivo("diaTeste"));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 }

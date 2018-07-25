@@ -111,10 +111,10 @@ public class CtrlLogin extends HttpServlet {
 		try {
 
 			String login = request.getParameter("senha");
-			Integer senha = new UsuarioDao().findPasswordByEmail(login);
+			String senha = new UsuarioDao().findPasswordByEmail(login);
 			String msg = "<h1>SENHA </h1>" + "Sua senha = " + senha;
 			SenhaContext ctx = new SenhaContext();
-			ctx.setSenha(senha.equals(-1) ? new ErroSenha() : new EnviarEmailConcrete());
+			ctx.setSenha(senha.equalsIgnoreCase("-1") ? new ErroSenha() : new EnviarEmailConcrete());
 			ctx.executar(request, response, login, msg);
 
 		} catch (Exception e) {

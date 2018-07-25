@@ -40,12 +40,4 @@ public class EnviarEmail {
 
 	}
 
-	public static void main(String[] args) {
-
-		EnviarEmail ee = new EnviarEmail();
-//		ee.enviar("hugocoutinho2011@gmail.com", "testando sem nome", "foi , parabéns !!!");
-		new EnviarEmail().enviar("hugocoutinho2011@gmail.com", "senha do sistema operação", "senha 123");
-
-	}
-
 }
