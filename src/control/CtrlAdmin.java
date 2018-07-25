@@ -1,6 +1,6 @@
 package control;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -21,20 +21,18 @@ import com.google.gson.Gson;
 import ctrlPattern.IUsuarioModel;
 import entity.Anotacao;
 import entity.Endereco;
-import entity.Perfil;
 import entity.Usuario;
 import io.AnotacaoIO;
 import io.Arquivo;
 import persistence.AnotacaoDao;
 import persistence.EnderecoDao;
-import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import strategyConcrete.ModoDeletar;
 import strategyConcrete.ModoDeletarNulo;
 import strategyContext.DeletarContext;
 import type.TypeSexo;
 import util.EnviarEmail;
-
+ 
 @MultipartConfig
 @WebServlet({ "/Admin/anotar.htm", "/Admin/atualizarFoto.htm", "/Admin/editar.htm", "/Admin/deletar.htm","/Admin/addAnotacao.htm", 
 	"/Admin/removerAnotacao.htm", "/Admin/verAnotacao.htm", "/Admin/editarAnotacao.htm","/Admin/salvarAnotacaoEditada.htm","/Admin/apagarAnotacoesChecked.htm" })
@@ -235,10 +233,9 @@ public class CtrlAdmin extends HttpServlet {
 			part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
 
 			Usuario usu = (Usuario) session.getAttribute("logado");
-			Perfil novoPerfil = usu.getPerfil();
-			novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
-			new PerfilDao().update(novoPerfil);
-			usu.getPerfil().setFoto(novoPerfil.getFoto());
+			String novoPerfil= "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName());
+			usu.setFoto(novoPerfil);
+			new UsuarioDao().update(usu);
 			session.setAttribute("logado", usu);
 			request.setAttribute("msg", "atualizado com sucesso");
 		} catch (Exception e) {
@@ -265,7 +262,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, null, u2.getPermissao(), e, u2.getPerfil());
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getPermissao(), e);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

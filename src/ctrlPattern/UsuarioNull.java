@@ -1,11 +1,10 @@
 package ctrlPattern;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import entity.Anotacao;
 import entity.Endereco;
-import entity.Perfil;
 import type.TypePermissao;
 import type.TypeSexo;
 
@@ -59,20 +58,13 @@ public class UsuarioNull implements IUsuarioModel {
 	public String toString() {
 		return "UsuarioNull [getFoto()=" + getFoto() + ", getSenha()=" + getSenha() + ", getPermissao()="
 				+ getPermissao() + ", getSexo()=" + getSexo() + ", getIdUsuario()=" + getIdUsuario() + ", getEmail()="
-				+ getEmail() + ", getNome()=" + getNome() + ", getEndereco()=" + getEndereco() + ", getPerfil()="
-				+ getPerfil() + ", getAnotacoes()=" + getAnotacoes() + "]";
+				+ getEmail() + ", getNome()=" + getNome() + ", getEndereco()=" + getEndereco() + ", getAnotacoes()=" + getAnotacoes() + "]";
 	}
 
 	@Override
 	public Endereco getEndereco() {
 		// TODO Auto-generated method stub
 		return new Endereco();
-	}
-
-	@Override
-	public Perfil getPerfil() {
-		// TODO Auto-generated method stub
-		return new Perfil();
 	}
 
 	@Override

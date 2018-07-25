@@ -1,8 +1,7 @@
 package entity;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -55,10 +53,6 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
-	@OneToOne()
-	@JoinColumn(name = "id_perfil")
-	private Perfil perfil;
-
 	@OneToMany(mappedBy = "usuario")
 	private List<Anotacao> anotacoes;
 
@@ -67,7 +61,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
-			TypePermissao permissao, Endereco endereco, Perfil perfil, List<Anotacao> anotacoes) {
+			TypePermissao permissao, Endereco endereco, List<Anotacao> anotacoes) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -77,7 +71,6 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.foto = foto;
 		this.permissao = permissao;
 		this.endereco = endereco;
-		this.perfil = perfil;
 		this.anotacoes = anotacoes;
 	}
 
@@ -94,20 +87,6 @@ public class Usuario implements Serializable, IUsuarioModel {
 	}
 
 	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
-			TypePermissao permissao, Endereco endereco, Perfil perfil) {
-		super();
-		this.idUsuario = idUsuario;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
-		this.sexo = sexo;
-		this.foto = foto;
-		this.permissao = permissao;
-		this.endereco = endereco;
-		this.perfil = perfil;
-	}
-
-	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, String foto,
 			TypePermissao permissao, Endereco endereco) {
 		super();
 		this.idUsuario = idUsuario;
@@ -120,6 +99,18 @@ public class Usuario implements Serializable, IUsuarioModel {
 		this.endereco = endereco;
 	}
 
+	public Usuario(Integer idUsuario, String nome, String email, String senha, TypeSexo sexo, TypePermissao permissao, Endereco endereco) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.sexo = sexo;
+		this.foto = foto;
+		this.permissao = permissao;
+		this.endereco = endereco;
+	}
+	
 	public Usuario(String nome, String email, String senha, TypeSexo sexo, String foto, TypePermissao permissao) {
 		super();
 		this.nome = nome;
@@ -133,8 +124,7 @@ public class Usuario implements Serializable, IUsuarioModel {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
-				+ ", sexo=" + sexo + ", foto=" + foto + ", permissao=" + permissao + ", endereco=" + endereco
-				+ ", perfil=" + perfil + "]";
+				+ ", sexo=" + sexo + ", foto=" + foto + ", permissao=" + permissao + ", endereco=" + endereco + "]";
 	}
 
 	public void removerAnotacao(Anotacao nota) {
@@ -196,14 +186,6 @@ public class Usuario implements Serializable, IUsuarioModel {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
 	}
 
 	public List<Anotacao> getAnotacoes() {

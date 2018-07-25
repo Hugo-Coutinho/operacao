@@ -13,11 +13,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import entity.Endereco;
-import entity.Perfil;
 import entity.Usuario;
 import io.Arquivo;
+import persistence.AnotacaoDao;
 import persistence.EnderecoDao;
-import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import type.TypeSexo;
 import util.EnviarEmail;
@@ -30,6 +29,7 @@ public class CtrlUsuario extends HttpServlet {
 
 	EnviarEmail enviaremail;
 	UsuarioDao usuariodao;
+	EnderecoDao enderecodao;
 	Arquivo word;
 	PrintWriter out;
 	HttpSession session;
@@ -82,16 +82,19 @@ public class CtrlUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			enderecodao = new EnderecoDao();
+			usuariodao = new UsuarioDao();
 			Part part = request.getPart("file");
 				
 				part.write(request.getRealPath("/" + Operacoes.getNomeImagem(part.getSubmittedFileName())));
 				
 				Usuario usu = (Usuario) session.getAttribute("logado");
-				Perfil novoPerfil = usu.getPerfil();
-				novoPerfil.setFoto("\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
-				new PerfilDao().update(novoPerfil);
-				usu.getPerfil().setFoto(novoPerfil.getFoto());
-				session.setAttribute("logado", usu);
+				
+				String novaFoto= "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName());
+				Usuario atualizaUsu = new Usuario(usu.getIdUsuario(),usu.getNome(),usu.getEmail(),usu.getSenha(),usu.getSexo(),novaFoto,usu.getPermissao(),usu.getEndereco());
+				enderecodao.update(usu.getEndereco());
+				usuariodao.update(atualizaUsu);
+				session.setAttribute("logado", atualizaUsu);
 				request.setAttribute("msg", "atualizado com sucesso");
 		} catch (Exception e) {
 			request.setAttribute("msg", e.getMessage());
@@ -134,7 +137,7 @@ public class CtrlUsuario extends HttpServlet {
 		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, null, u2.getPermissao(), e,u2.getPerfil(),null);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getPermissao(), e);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);

@@ -12,7 +12,7 @@
 <form enctype="multipart/form-data" id="form1" runat="server">
 
 <div align="center" style="padding-top: 100px">
-<img src="${logado.perfil.foto}" alt="perfil" class="img-thumbnail" id="imagem" alt="perfil" width="390px" height="450px">
+<img src="${logado.foto}" class="img-thumbnail" id="imagem" alt="perfil" width="390px" height="450px">
 <input type="file" name="file" class="form-control-file" aria-describedby="fileHelp" id="fileId" required="required">
 <br>
 <button class="btn btn-primary btn-lg" formaction="atualizarFotoModoUsu.htm" formmethod="Post">Atualizar</button>

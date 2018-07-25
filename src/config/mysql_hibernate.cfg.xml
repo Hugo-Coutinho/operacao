@@ -15,7 +15,6 @@
     
     <mapping class="entity.Usuario"/>
     <mapping class="entity.Endereco"/>
-    <mapping class="entity.Perfil"/>
     <mapping class="entity.Anotacao"/>
 
 

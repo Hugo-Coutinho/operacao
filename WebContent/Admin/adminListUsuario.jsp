@@ -78,8 +78,6 @@
   </ul>
 <div id="edit" >
 
-<!-- <div align="center"><h2 align="center"><b>Editar</b></h2><br /> <br />  </div>  -->
-  
 <form method="post" action="editar.htm">
 <div class="col-md-6">
 			<div class="panel panel-info">
@@ -104,8 +102,6 @@
 				</div>
 			</div>
 		</div>
-		
-		
 		
 		<div class="col-md-6">
 			<div class="panel panel-info">
@@ -157,7 +153,7 @@
     <tbody>
     <c:forEach items="${mb.usuarios }" var="linha">
       <tr>
-        <td><img src="${linha.perfil.foto }" class="img-rounded" alt="Cinque Terre" width="104" height="50"></td>
+        <td><img src="${linha.foto }" class="img-rounded" alt="Cinque Terre" width="104" height="50"></td>
         <td>${linha.idUsuario}</td>
         <td>${linha.nome}</td>
         <td>${linha.endereco.logradouro}</td>

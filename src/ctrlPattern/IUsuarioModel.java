@@ -1,10 +1,9 @@
 package ctrlPattern;
 
-import java.util.List;
+ import java.util.List;
 
 import entity.Anotacao;
 import entity.Endereco;
-import entity.Perfil;
 import type.TypePermissao;
 import type.TypeSexo;
 
@@ -25,8 +24,6 @@ public interface IUsuarioModel {
 	public String getNome();
 
 	public Endereco getEndereco();
-
-	public Perfil getPerfil();
 
 	public List<Anotacao> getAnotacoes(); 
 

@@ -10,7 +10,7 @@
 
 <div align="center"><img src="/operacao/Admin/bem-vindo.jpg" class="img-rounded" alt="Cinque Terre" width="600" height="300"></div>
 <br><br>
-<div align="center"><img src="${logado.perfil.foto}" class="img-circle" alt="perfil" width="250px" height="250px">
+<div align="center"><img src="${logado.foto}" class="img-circle" alt="perfil" width="250px" height="250px">
 
 </body>
 </html>

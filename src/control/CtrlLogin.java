@@ -1,6 +1,6 @@
 package control;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -14,10 +14,8 @@ import javax.servlet.http.Part;
 
 import ctrlPattern.IUsuarioModel;
 import entity.Endereco;
-import entity.Perfil;
 import entity.Usuario;
 import io.Arquivo;
-import persistence.PerfilDao;
 import persistence.UsuarioDao;
 import strategyConcrete.EnviarEmailConcrete;
 import strategyConcrete.ErroSenha;
@@ -84,7 +82,6 @@ public class CtrlLogin extends HttpServlet {
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
 		String sexo = request.getParameter("sexo");
-		String foto = request.getParameter("foto");
 		String permissao = request.getParameter("permissao");
 
 		String cep = request.getParameter("cep");
@@ -94,15 +91,15 @@ public class CtrlLogin extends HttpServlet {
 		String estado = request.getParameter("estado");
 
 
-			Perfil p = new Perfil(null, "\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName()));
+			String foto="\\operacao\\" + Operacoes.getNomeImagem(part.getSubmittedFileName());
 			endereco = new Endereco(null, logradouro, bairro, cidade, estado, cep);
 			usuario = new Usuario(null, nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, foto,
-					permissao.equalsIgnoreCase("Administrador")? TypePermissao.ADMINISTRADOR: TypePermissao.USUARIO, endereco,p,null);
+					permissao.equalsIgnoreCase("Administrador")? TypePermissao.ADMINISTRADOR: TypePermissao.USUARIO, endereco);
 
 			CadastrarContext ctx = new CadastrarContext();
 			ctx.setCadastrar(new UsuarioDao().usuarioExiste(usuario.getEmail()) ? new ModoCadastrarFalha()
 					: new ModoCadastrar());
-			ctx.executarCadastramento(request, response, usuario, endereco,p);
+			ctx.executarCadastramento(request, response, usuario, endereco);
 
 		} catch (Exception e) {
 			request.getRequestDispatcher("cadastrar.jsp").forward(request, response);

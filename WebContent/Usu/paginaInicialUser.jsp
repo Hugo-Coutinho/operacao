@@ -9,7 +9,7 @@
 
 <div align="center"><img src="bem-vindo.jpg" class="img-rounded" alt="Cinque Terre" width="600" height="300"></div>
 <br><br>
-<div align="center"><img src="${logado.perfil.foto}" alt="perfil" class="img-circle" alt="perfil" width="250px" height="250px"></div>
+<div align="center"><img src="${logado.foto}" class="img-circle" alt="perfil" width="250px" height="250px"></div>
 
 
 </body>

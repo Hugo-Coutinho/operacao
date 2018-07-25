@@ -9,15 +9,12 @@ import control.CtrlLogin;
 import ctrlPattern.IUsuarioModel;
 import ctrlPattern.UsuarioNull;
 import entity.Anotacao;
-import entity.Perfil;
 import entity.Usuario;
-import persistence.PerfilDao;
 import persistence.UsuarioDao;
 
 public class ManagerBean {
 
 	private List<IUsuarioModel> usuarios;
-	private List<Perfil> perfis;
 	private List<Anotacao> notas;
 
 	Usuario logado;
@@ -27,19 +24,6 @@ public class ManagerBean {
 		logado = new Usuario();
 		session = CtrlLogin.session;
 		logado = (Usuario) session.getAttribute("logado");
-	}
-
-	public List<Perfil> getPerfis() {
-		try {
-			perfis = new PerfilDao().findAll();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return perfis;
-	}
-
-	public void setPerfis(List<Perfil> perfis) {
-		this.perfis = perfis;
 	}
 
 	public List<IUsuarioModel> getUsuarios() {
@@ -64,12 +48,12 @@ public class ManagerBean {
 
 	public List<Anotacao> getNotas() {
 		try {
-			if(notas == null) {
+			if (notas == null) {
 				notas = new ArrayList<Anotacao>();
 			}
 			for (Anotacao nota : logado.getAnotacoes()) {
-					notas.add(nota);
-				}
+				notas.add(nota);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -84,17 +68,10 @@ public class ManagerBean {
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(new ManagerBean().getPerfis());
 			System.out.println(new ManagerBean().getUsuarios());
-			List<IUsuarioModel> lst = new ManagerBean().getUsuarios();
-
-			// for (IUsuarioModel x : lst) {
-			// System.out.println(x.getPerfil());
-			// }
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
-
 }
