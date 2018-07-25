@@ -5,6 +5,7 @@ import java.util.List;
 import ctrlPattern.IUsuarioModel;
 import ctrlPattern.UsuarioNull;
 import entity.Usuario;
+import type.TypePermissao;
 
 public class UsuarioDao extends GenericDao<Usuario, Integer> {
 
@@ -47,7 +48,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> {
 	public List<IUsuarioModel> findByPermision() throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		query = session.createQuery("from Usuario where permissao= :param1");
-		query.setParameter("param1", "Usuario");
+		query.setParameter("param1", TypePermissao.USUARIO);
 		List<IUsuarioModel> lst = (List<IUsuarioModel>) query.list();
 		if (lst.size() == 0) {
 			IUsuarioModel nulo = new UsuarioNull();
