@@ -137,7 +137,7 @@ public class CtrlUsuario extends HttpServlet {
 		try {
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getFoto(), u2.getPermissao(), e);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: sexo.isEmpty() ? TypeSexo.INDEFINIDO :TypeSexo.MASCULINO, u2.getFoto(), u2.getPermissao(), e);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
@@ -148,7 +148,7 @@ public class CtrlUsuario extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			request.setAttribute("msg", "fudeu mané!!, " + e.getMessage());
+			request.setAttribute("msg", "fudeu mane!!, " + e.getMessage());
 
 		} finally {
 			request.getRequestDispatcher("cadastro.jsp").forward(request, response);

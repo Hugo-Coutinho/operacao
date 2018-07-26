@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException; 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -262,7 +263,7 @@ public class CtrlAdmin extends HttpServlet {
 
 			Usuario u2 = (Usuario) session.getAttribute("logado");
 			Endereco e = new Endereco(u2.getEndereco().getIdEndereco(), logradouro, bairro, cidade, estado, cep);
-			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: TypeSexo.MASCULINO, u2.getFoto(), u2.getPermissao(), e);
+			usuario = new Usuario(u2.getIdUsuario(), nome, email, senha, sexo.equalsIgnoreCase("f")? TypeSexo.FEMININO: sexo.isEmpty() ? TypeSexo.INDEFINIDO :TypeSexo.MASCULINO, u2.getFoto(), u2.getPermissao(), e);
 
 			new EnderecoDao().update(e);
 			new UsuarioDao().update(usuario);
@@ -272,6 +273,10 @@ public class CtrlAdmin extends HttpServlet {
 					new AnotacaoDao().update(nota);
 				}
 			}
+			
+			List<Anotacao> notas = new ArrayList<>();
+			notas= (u2.getAnotacoes());
+			usuario.setAnotacoes(notas);
 			
 			session.setAttribute("logado", usuario);
 			request.setAttribute("msg", "editado com sucesso");
